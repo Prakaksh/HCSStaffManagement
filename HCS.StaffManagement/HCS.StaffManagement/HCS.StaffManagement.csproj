@@ -150,6 +150,7 @@
     <Content Include="Content\css\bootstrap-reboot.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\dataTables.bootstrap4..css" />
     <Content Include="Content\css\demo.css" />
     <Content Include="Content\css\material-dashboard.css" />
     <Content Include="Content\css\material-icons.css" />
@@ -158,6 +159,7 @@
     <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\background1.jpg" />
     <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\default-avatar.png" />
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\securityguard.jpg" />
     <Content Include="Content\Images\StaffManagement.jpg" />
@@ -169,6 +171,7 @@
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
     <Content Include="Content\js\chartist.min.js" />
+    <Content Include="Content\js\dataTables.bootstrap4.js" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\fullcalendar.min.js" />
     <Content Include="Content\js\jasny-bootstrap.min.js" />
@@ -197,36 +200,76 @@
     <Content Include="Content\css\bootstrap-reboot.css.map" />
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
+    <Content Include="Scripts\AppScripts\Common.js" />
+    <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Login\Login.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppUtility\AppUtility.cs" />
+    <Compile Include="AppUtility\SqlUtility.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\PayslipController.cs" />
+    <Compile Include="Controllers\V1\AddressCategoryController.cs" />
     <Compile Include="Controllers\V1\CountryController.cs" />
+    <Compile Include="Controllers\V1\CountryStateController.cs" />
+    <Compile Include="Controllers\V1\LoginController.cs" />
+    <Compile Include="Controllers\V1\MaritalStatusController.cs" />
+    <Compile Include="Controllers\V1\RelationshipController.cs" />
     <Compile Include="Filters\SessionTimeoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\MasterQualification.cs" />
+    <Compile Include="Models\MasterRelationship.cs" />
+    <Compile Include="Models\OrganizationClient.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeAddress.cs" />
     <Compile Include="Models\EmployeeBankAccount.cs" />
     <Compile Include="Models\EmployeeBonus.cs" />
+    <Compile Include="Models\EmployeeClient.cs" />
+    <Compile Include="Models\EmployeeDependent.cs" />
+    <Compile Include="Models\EmployeeDocument.cs" />
+    <Compile Include="Models\EmployeeHistory.cs" />
+    <Compile Include="Models\EmployeeInternationalWork.cs" />
+    <Compile Include="Models\EmployeePhisicalDisability.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MasterAddressCategory.cs" />
     <Compile Include="Models\MasterCountry.cs" />
     <Compile Include="Models\MasterCountryState.cs" />
     <Compile Include="Models\MasterDepartment.cs" />
     <Compile Include="Models\MasterDocumentCategory.cs" />
+    <Compile Include="Models\MasterMaritalStatus.cs" />
     <Compile Include="Models\Organization.cs" />
+    <Compile Include="Models\Payslip.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
+    <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
+    <Compile Include="Repositories\V1\CountryStateContext.cs" />
+    <Compile Include="Repositories\V1\LoginContext.cs" />
+    <Compile Include="Repositories\V1\MaritalStatusContext.cs" />
+    <Compile Include="Repositories\V1\PayslipContext.cs" />
+    <Compile Include="Repositories\V1\QualificationContext.cs" />
+    <Compile Include="Repositories\V1\RelationshipContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -248,10 +291,15 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Login\LoginPage.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Shared\_AdminLandingPage.cshtml" />
     <Content Include="Views\Employee\Employee.cshtml" />
+    <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Organization\CreateOrganization.cshtml" />
+    <Content Include="Views\Payslip\Payslip.cshtml" />
+    <Content Include="Views\Client\GetClient.cshtml" />
+    <Content Include="Views\Client\ClientInsertUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,11 +308,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppUtility\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\sass\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Scripts\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

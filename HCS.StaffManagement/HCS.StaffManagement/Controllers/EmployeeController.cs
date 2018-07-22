@@ -1,4 +1,5 @@
 ﻿using HCS.StaffManagement.Models;
+using HCS.StaffManagement.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,25 @@ namespace HCS.StaffManagement.Controllers
         {
             return View();
         }
+        public ActionResult CreateEmployee()
+        {
+            return View();
+        }
         [HttpPost]
         //--this is for add
         public ActionResult EmployeeInsertUpdate(Employee objEmployee)
         {
+            try
+            {
+                EmployeeInsertUpdateContext objEmp = new EmployeeInsertUpdateContext();
+
+                string result= objEmp.EmployeeInsertUpdate(objEmployee);
+                TempData["Success"] = "Added Successfully!";
+                
+                return RedirectToAction("Employee", "Employee");
+                //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
+            }
+            catch(Exception ex) { }
             return View();
         }
         //--this is for edit

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace HCS.StaffManagement.Models
 {
-    public class EmployeeAddress
+    public class Address
     {
         public string EmployeeID { get; set; }
         public string OrganizationID { get; set; }
@@ -17,6 +17,9 @@ namespace HCS.StaffManagement.Models
         public string CountryID { get; set; }
         public string CountryStateID { get; set; }
         public string City { get; set; }
+        public string PinCode { get; set; }
+        public bool IsSameAsCurrentAddress { get; set; }
+        //public bool IsSameAsPermanentAddress { get; set; } //If Required ok
 
     }
 }

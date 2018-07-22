@@ -1,0 +1,201 @@
+﻿@model HCS.StaffManagement.Models.Payslip
+
+@{
+    ViewBag.Title = "Payslip";
+    Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 style="text-align:left; color:green"><b>Generate Payslip</b></h2>
+        </div>
+    </div>
+    <div class="row divWidth">
+        <div class="col-md-12">
+            <div class="card">
+                <form id="Earnings" action="" method="get">
+                    <!--<div>
+                        <div class="card-header card-header-icon" data-background-color="green">
+                            <i class="material-icons">description</i>  <b>   Input Data    </b>
+                        </div>
+                    </div>-->
+                    <!-- <h4 class="card-title">Employee List</h4> -->
+                    <div class="">
+                        <div class="row col-md-12">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <!--<form id="Earnings" action="" method="">-->
+                                    <div class="card-header card-header-icon" data-background-color="rose">
+                                        <i class="material-icons">attach_money</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="card-title">Earnings</h4>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Working Days
+                                                <small>*</small>
+                                            </label>
+                                            <input class="form-control" name="days" type="text" required="true" />
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        Basic
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control" name="Basic" type="text" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        Total Basic
+                                                    </label>
+                                                    <input class="form-control" readonly name="totalBasic" type="text" />
+                                                </div>
+                                                <!--<div class="form-group label-floating right-align">
+                                                    <label id="lblBasic">0.00</label>
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        Wages D.A
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control" name="Wages" type="text" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        Total Wages D.A
+                                                    </label>
+                                                    <input class="form-control" name="totalWages" readonly type="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Incentive
+                                            </label>
+                                            <input class="form-control" name="Incentive" type="text" required="false" />
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="form-group label-floating text-right">
+                                                <div id="lblEarnings">0.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--</form>-->
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <!--<form id="Deductions" action="" method="">-->
+                                    <div class="card-header card-header-icon" data-background-color="rose">
+                                        <i class="material-icons">money_off</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4 class="card-title">Deductions</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        Advance
+                                                    </label>
+                                                    <input class="form-control" name="Advance" type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        F.Adavance
+                                                    </label>
+                                                    <input class="form-control" name="FAdvance" id="" type="text" required="false" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        P.F
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control" name="PF" id="" type="text" required="true" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        E.S.I
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control" name="ESI" id="" type="text" required="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        L.I.C
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control" name="LIC" id="" type="text" required="true" />
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        P.T
+                                                    </label>
+                                                    <input class="form-control" name="PT" id="" type="text" required="false" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        W.W.F
+                                                    </label>
+                                                    <input class="form-control" name="WWF" id="" type="text" required="false" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="form-group label-floating text-right">
+                                                <div id="lblDeductions">0.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--</form>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row col-md-12">
+                                <div class="col-md-6">
+                                    <div class="text-right">
+                                        <div class="form-group label-floating text-left">
+                                            <div id="lblNetPay">Net Pay: &nbsp;<label>0.00</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-footer text-right">
+                                        <a href="../../PaySlip/PaySlip_HCS0010_Jun_18.pdf" target="_blank" id="anchDownload">
+                                            <button type="button" id="btnGenerate" class="btn btn-rose btn-fill">Generate</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
