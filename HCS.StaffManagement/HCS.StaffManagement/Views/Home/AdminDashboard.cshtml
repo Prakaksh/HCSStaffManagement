@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "AdminDashboard";
+    Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        @*<br /> <br /><br />*@
+        <div class="row">
+            <div class="col-md-12">
+                <h2 style="text-align:left; color:black">Hi User, Welcome to <b>Staff Management System!</b></h2>
+            </div>
+        </div>
+        <br /><br /> <br /> <br />
+        <div class="container-fluid card">
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    @*<input type="button" value="Create" onclick="location.href='@Url.Action("Employee", "Employee")'" />*@
+                    <a href=@Url.Action("Employee","Employee")>
+                        <div class="card card-stats">
+                            <div>
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="material-icons">group</i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title center-align">Employees - 165</h3>
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href=@Url.Action("Payslip","Payslip")>
+                        <div class="card card-stats">
+                            <div>
+                                <div class="card-header" data-background-color="green">
+                                    <i class="material-icons">description</i> <!-- attach_money -->
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <!-- <p class="category">Website Visits</p> -->
+                                <h3 class="card-title center-align">Generate Payslip</h3>
+                            </div>
+                            <!--<div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                    </div>
+                </div>-->
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="../Payslip/ViewDownloadPayslip.html">
+                        <div class="card card-stats">
+                            <div>
+                                <div class="card-header" data-background-color="rose">
+                                    <i class="material-icons">move_to_inbox</i>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <!-- <p class="category">Revenue</p> -->
+                                <h3 class="card-title center-align">Download</h3>
+                            </div>
+                            <!--<div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">date_range</i> Last 24 Hours
+                    </div>
+                </div>-->
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="../Report/Report.html">
+                        <div class="card card-stats">
+                            <div>
+                                <div class="card-header" data-background-color="purple">
+                                    <i class="material-icons">list_alt</i> <!-- trending_down   library_books list view_list -->
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <!-- <p class="category">Followers</p> -->
+                                <h3 class="card-title center-align">Reports</h3>
+                            </div>
+                            <!--<div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
+                </div>-->
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href=@Url.Action("Client","GetClient")>
+                        <div class="card card-stats">
+                            <div>
+                                <div class="card-header" data-background-color="orange">
+                                    <i class="material-icons">list_alt</i> 
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title center-align">Client</h3>
+                            </div>
+                     
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <marquee direction="left"><b>SAP Security Services</b></marquee>
+</footer>
+
+
+@*<script src="../../Scripts/Payslip/ViewDownloadPayslip.js"></script>*@
+
+

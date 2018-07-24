@@ -1,0 +1,186 @@
+﻿@model HCS.StaffManagement.Models.Organization
+
+@{
+                /**/
+
+                ViewBag.Title = "CreateOrganization";
+                Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
+}
+<br /> <br />
+
+<div class="container-fluid">
+
+    @using (Ajax.BeginForm(
+                            new AjaxOptions
+                            {
+                                HttpMethod = "post",
+                                Url = "/Api/WebApi/OraganizationApi",
+                                InsertionMode = InsertionMode.Replace,
+                                OnSuccess = "onAjaxRequestSuccess"
+
+                            }))
+    {
+
+        @*@using (Ajax.BeginForm("", "", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onAjaxRequestSuccess" }))*@
+
+        <form id="RegisterValidation" action="">
+            <div class="row card">
+                <div class="col-md-12">
+                    <div class="card-header card-header-text" data-background-color="red">
+                        <h4 class="card-title">Create Organization</h4>
+                    </div>
+                    @*<h4 class="card-head card-header-text btn btn-danger input-lg" data-background-color="rose">Create Organization</h4>*@
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Organization Name
+                                <small>*</small>
+                            </label>
+                            @Html.TextBoxFor(Model => Model.OrganizationName, new { @class = "form-control", required = "true" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                GSTIN NO
+                                <small>*</small>
+                            </label>
+                            @Html.TextBoxFor(Model => Model.GSTIN, new { @class = "form-control", required = "true" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                ESCI NO
+                            </label>
+                            @Html.TextBoxFor(Model => Model.ESCINO, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                EPF NO
+                            </label>
+                            @Html.TextBoxFor(Model => Model.EPFNO, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Organization Address Line 1
+                            </label>
+                            @Html.TextBoxFor(Model => Model.Address1, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Organization Address Line 2
+                            </label>
+                            @Html.TextBoxFor(Model => Model.Address2, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <select name="DropDownStateList" id="StateList" class="form-control" onchange="fncState()"></select>
+                            @Html.HiddenFor(Model => Model.StateID)
+
+                            @*<select id="StateList" name="StateList" multiple="multiple" class="form-control"></select>*@
+
+
+
+                            @*@Html.DropDownList("StateList", new { @class = "form-control"})*@
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                City
+                            </label>
+                            @Html.TextBoxFor(Model => Model.City, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Contact NO
+                            </label>
+                            @Html.TextBoxFor(Model => Model.ContactNO, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Mobile NO
+                            </label>
+                            @Html.TextBoxFor(Model => Model.MobileNO, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Email ID
+                                <small>*</small>
+                            </label>
+                            @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", required = "true" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            <label class="control-label">
+                                Invoice Prefix
+                            </label>
+                            @Html.TextBoxFor(Model => Model.InvoicePrefix, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="category form-category text-danger">
+                        <small>*</small> Required fields
+                    </div>
+                </div>
+
+                <div class="form-footer text-right">
+                    <button type="submit" class="btn btn-rose btn-fill">Register</button>
+                </div>
+            </div>
+
+        </form>
+    }
+</div>
+
+<div id="DivOrganization" class="container-fluid">
+    <label> Show Created Organization Datatable </label>
+</div>
+<script>
+    var onAjaxRequestSuccess = function (result) {
+        if (result = "success") {
+            debugger;
+            alert("Organization created successfuly")
+            $("#form0")[0].reset();
+            //toastr.success("Organization created successfully");
+            //setTimeout($("#RegisterValidation")[0].reset(), 2000);
+
+        }
+
+    }
+</script>
+
+<script src="@Url.Content("~/Scripts/HCS_ProjectScript/ProjectScript.js")"></script>
+<script src="@Url.Content("~/Scripts/HCS_ProjectScript/Organization.js")"></script>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <title>HCS Staff Management</title>
+    <link href="~/Content/css/material-dashboard.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+
+    <!--     Fonts and icons     -->
+    @*<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">*@
+    <link href="~/Content/css/material-icons.css" rel="stylesheet" />
+    @*<link rel="stylesheet" type="text/css" href="../../Content/font-awesome/font-awesome.css" />*@
+
+    <!--   Core JS Files   -->
+    <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/material.min.js"></script>
+
+    <script src="~/Content/js/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="~/Content/js/material-dashboard.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Content/js/jquery.validate.min.js"></script>
+
+    <script src="~/Content/js/moment.min.js"></script>
+    <script src="~/Content/js/chartist.min.js"></script>
+    <script src="~/Content/js/jquery.bootstrap-wizard.js"></script>
+    <script src="~/Content/js/bootstrap-notify.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/jquery-jvectormap.js"></script>
+    <script src="~/Content/js/nouislider.min.js"></script>
+    <script src="~/Content/js/jquery.select-bootstrap.js"></script>
+    <script src="~/Content/js/jasny-bootstrap.min.js"></script>
+
+
+     @*dont include this for project just refer *@ 
+    @*<link href="~/Content/css/demo.css" rel="stylesheet" />
+    <script src="~/Content/js/demo.js"></script>*@
+    <!--  DataTables.net Plugin    -->
+    <script src="~/Content/js/jquery.datatables.js"></script>
+    <link href="~/Content/css/dataTables.bootstrap4..css" rel="stylesheet" />
+    <script src="~/Content/js/dataTables.bootstrap4.js"></script>
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">*@
+    @*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>*@
+
+    <!-- Sweet Alert 2 plugin -->
+    <script src="~/Content/js/sweetalert2.js"></script>
+
+    <!--  Full Calendar Plugin    -->
+    <script src="~/Content/js/fullcalendar.min.js"></script>
+
+    <!-- TagsInput Plugin -->
+    <script src="~/Content/js/jquery.tagsinput.js"></script>
+
+    <style>
+        body {
+            background-color: rgb(37, 199, 211);
+            /* background-color: blue;  */
+            /* background-image: url('../../Content/Images/securityguard.jpg');
+            background-repeat: no-repeat;
+            background-size: cover; */
+        }
+
+        footer {
+            /* background-color: orange; */
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            /* height: 100px; */
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .center-align {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
