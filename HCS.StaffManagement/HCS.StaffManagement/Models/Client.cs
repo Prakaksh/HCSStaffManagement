@@ -17,6 +17,8 @@ namespace HCS.StaffManagement.Models
         public string ClientAddress1 { get; set; }
         public string ClientAddress2 { get; set; }
         public string CountryID { get; set; }
+        
+        
         public string CountryStateID { get; set; }
         public string City { get; set; }
         [DataType(DataType.PostalCode)]
