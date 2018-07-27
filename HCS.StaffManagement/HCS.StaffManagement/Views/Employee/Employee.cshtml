@@ -7,12 +7,11 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    
-    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>*@
-    <style>
 
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" />
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+            <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>*@
+    <style>
         .table-style {
             width: 100% !important;
             max-width: 100% !important;
@@ -27,9 +26,9 @@
     <div class="card container-fluid">
         <div class="row">
             @*<div class="card-header" data-background-color="orange">
-                <i class="material-icons">group</i>
-              
-            </div>*@
+                    <i class="material-icons">group</i>
+
+                </div>*@
             <button class="btn btn-outline-dark btn-dark">
                 <i class="material-icons">person_add</i>
                 Add Employee
@@ -52,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-              
+
                 <tr>
                     <td>Rhona</td>
                     <td>Davidson</td>
@@ -606,46 +605,25 @@
             </tbody>
         </table>
     </div>
-    <div class="card">
-    <div class="row">
-        <div class="card-content ">
-            <!--<h4 class="card-title">Login Form</h4>-->
-            <form class="form-horizontal">
-                <div class="row">
-                    <label class="col-md-3 label-on-left">Email</label>
-                    <div class="col-md-9">
-                        <div class="form-group label-floating is-empty">
-                            <label class="control-label"></label>
-                            <input type="email" id="txtEmail" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                </form>
-                </div>
-        </div>
-      </div>
-    </div>
-
-
-<script>
-    $(document).ready(function () {
-        $('#example').DataTable({
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal({
-                        header: function (row) {
-                            var data = row.data();
-                            return 'Details for ' + data[0] + ' ' + data[1];
-                        }
-                    }),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                        tableClass: 'table'
-                    })
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function (row) {
+                                var data = row.data();
+                                return 'Details for ' + data[0] + ' ' + data[1];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table'
+                        })
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 
 
 
