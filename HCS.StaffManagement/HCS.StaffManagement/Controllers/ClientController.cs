@@ -24,7 +24,7 @@ namespace HCS.StaffManagement.Controllers
                 ClientContext objEmp = new ClientContext();
 
                 //string result = objEmp.EmployeeInsertUpdate(objEmployee);
-                TempData["Success"] = "Added Successfully!"; 
+                TempData["Success"] = "Added Successfully!";
 
                 return RedirectToAction("Employee", "Employee");
                 //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
