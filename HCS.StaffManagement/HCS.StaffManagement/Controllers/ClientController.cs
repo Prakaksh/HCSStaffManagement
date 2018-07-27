@@ -10,7 +10,7 @@ namespace HCS.StaffManagement.Controllers
     {
         // GET: Client
         [HttpGet]
-        public ActionResult GetClient()
+        public ActionResult GetClientDetails()
         {
             return View();
         }

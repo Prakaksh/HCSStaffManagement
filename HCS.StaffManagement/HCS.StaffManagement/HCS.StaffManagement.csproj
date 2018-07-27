@@ -201,6 +201,7 @@
     <Content Include="Content\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Scripts\AppScripts\Common.js" />
+    <Content Include="Scripts\Client\Client.js" />
     <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -228,6 +229,7 @@
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PayslipController.cs" />
     <Compile Include="Controllers\V1\AddressCategoryController.cs" />
+    <Compile Include="Controllers\V1\ClientController.cs" />
     <Compile Include="Controllers\V1\CountryController.cs" />
     <Compile Include="Controllers\V1\CountryStateController.cs" />
     <Compile Include="Controllers\V1\LoginController.cs" />
@@ -300,6 +302,7 @@
     <Content Include="Views\Payslip\Payslip.cshtml" />
     <Content Include="Views\Client\GetClient.cshtml" />
     <Content Include="Views\Client\ClientInsertUpdate.cshtml" />
+    <Content Include="Views\Client\GetClientDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
