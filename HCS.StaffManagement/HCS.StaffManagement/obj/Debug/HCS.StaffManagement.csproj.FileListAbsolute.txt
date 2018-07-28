@@ -1,3 +1,4 @@
+E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.csproj.CoreCompileInputs.cache
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\NLog.config
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\HCS.StaffManagement.dll.config
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\HCS.StaffManagement.dll
@@ -60,6 +61,7 @@ E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\b
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Http.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Http.WebHost.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Mvc.dll
+E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Optimization.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Razor.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.WebPages.Deployment.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.WebPages.dll
@@ -76,6 +78,7 @@ E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\b
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Http.xml
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Http.WebHost.xml
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Mvc.xml
+E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Optimization.xml
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.Razor.xml
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.WebPages.xml
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\System.Web.WebPages.Deployment.xml
@@ -83,7 +86,6 @@ E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\b
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\de\PdfSharp.resources.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\bin\de\PdfSharp.Charting.resources.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.csprojAssemblyReference.cache
-E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.csproj.CoreCompileInputs.cache
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.csproj.CopyComplete
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.dll
 E:\Project_IMP_File\HCSStaffManagement\HCS.StaffManagement\HCS.StaffManagement\obj\Debug\HCS.StaffManagement.pdb
