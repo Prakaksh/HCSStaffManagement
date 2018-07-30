@@ -16,22 +16,39 @@ namespace HCS.StaffManagement.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult CreateClient()
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult ClientInsertUpdate(Client objClient)
         {
-            try
+            if (ModelState.IsValid)
             {
-                ClientContext objEmp = new ClientContext();
+                try
+                {
+                    ClientContext objEmp = new ClientContext();
 
-                //string result = objEmp.EmployeeInsertUpdate(objEmployee);
-                TempData["Success"] = "Added Successfully!";
-                
+                    //string result = objEmp.EmployeeInsertUpdate(objEmployee);
+                    TempData["Success"] = "Added Successfully!";
 
-                return RedirectToAction("Employee", "Employee");
-                //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
+
+                    return RedirectToAction("GetClient", "Client");
+                    //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
+                }
+                catch (Exception ex) {
+                }
+                return RedirectToAction("GetClient", "Client");
+
             }
-            catch (Exception ex) { }
-            return View();
+            else {
+                return View();
+            }
+            
         }
         
     }

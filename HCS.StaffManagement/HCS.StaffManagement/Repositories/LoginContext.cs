@@ -8,20 +8,24 @@ using Dapper;
 using HCS.StaffManagement.AppUtility;
 using HCS.StaffManagement.Models;
 
-namespace HCS.StaffManagement.Repositories.V1
+namespace HCS.StaffManagement.Repositories
 {
     public class LoginContext
     {
         private SqlConnection sqlConnection;
 
-        public IEnumerable<Login> GetLogin(Login obj)
+        public string GetLogin(Login obj)
         {
+            string result = "";
             try
             {
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
-                    IEnumerable<Login> GetRoleType = sqlConnection.Query<Login>("Usp_GetMstStateList", commandType: CommandType.StoredProcedure).ToList();
-                    return GetRoleType;
+                    var com = new DynamicParameters();
+                    com.Add("@EmailID", obj.EmailID);
+                        com.Add("@Password", obj.Password);
+                    result = sqlConnection.Query<string>("usp_GetUserClaims",com, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    return result;
                 }
             }
             catch (Exception ex)

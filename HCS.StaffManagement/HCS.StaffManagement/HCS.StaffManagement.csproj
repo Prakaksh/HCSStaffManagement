@@ -182,7 +182,13 @@
     <Content Include="Content\js\jquery.datatables.js" />
     <Content Include="Content\js\jquery.select-bootstrap.js" />
     <Content Include="Content\js\jquery.tagsinput.js" />
+    <None Include="Content\js\jquery.validate-vsdoc.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\js\jquery.validate.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\js\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\js\material-dashboard.js" />
     <Content Include="Content\js\material.min.js" />
     <Content Include="Content\js\moment.min.js" />
@@ -204,14 +210,9 @@
     <Content Include="Scripts\Client\Client.js" />
     <Content Include="Scripts\Client\CreateClient.js" />
     <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Employee\Employee.js" />
     <Content Include="Scripts\Login\Login.js" />
+    <Content Include="Scripts\Report\Report.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -229,11 +230,13 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PayslipController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\V1\AddressCategoryController.cs" />
     <Compile Include="Controllers\V1\ClientController.cs" />
     <Compile Include="Controllers\V1\CountryController.cs" />
     <Compile Include="Controllers\V1\CountryStateController.cs" />
-    <Compile Include="Controllers\V1\LoginController.cs" />
+    <Compile Include="Controllers\V1\EmployeeController.cs" />
     <Compile Include="Controllers\V1\MaritalStatusController.cs" />
     <Compile Include="Controllers\V1\RelationshipController.cs" />
     <Compile Include="Filters\SessionTimeoutAttribute.cs" />
@@ -266,10 +269,16 @@
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientContext.cs" />
+    <Compile Include="Repositories\DTO\ClientDto.cs" />
+    <Compile Include="Repositories\DTO\EmployeeDto.cs" />
+    <Compile Include="Repositories\DTO\LoginDto.cs" />
     <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
+    <Compile Include="Repositories\RoleType.cs" />
     <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
+    <Compile Include="Repositories\V1\ClientContext.cs" />
     <Compile Include="Repositories\V1\CountryStateContext.cs" />
-    <Compile Include="Repositories\V1\LoginContext.cs" />
+    <Compile Include="Repositories\V1\EmployeeContext.cs" />
+    <Compile Include="Repositories\LoginContext.cs" />
     <Compile Include="Repositories\V1\MaritalStatusContext.cs" />
     <Compile Include="Repositories\V1\PayslipContext.cs" />
     <Compile Include="Repositories\V1\QualificationContext.cs" />
@@ -304,8 +313,12 @@
     <Content Include="Views\Payslip\Payslip.cshtml" />
     <Content Include="Views\Client\GetClient.cshtml" />
     <Content Include="Views\Client\ClientInsertUpdate.cshtml" />
-    <Content Include="Views\Client\Client.cshtml" />
+    <Content Include="Views\Client\CreateClient.cshtml" />
     <Content Include="Views\Client\GetClientDetails.cshtml" />
+    <Content Include="Views\Home\SuperAdminDashboard.cshtml" />
+    <Content Include="Views\Shared\_SuperAdminDashboard.cshtml" />
+    <Content Include="Views\User\CreateUser.cshtml" />
+    <Content Include="Views\Report\GetReport.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -318,6 +331,7 @@
     <Folder Include="Content\sass\" />
     <Folder Include="ExternalDll\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -334,7 +348,18 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:8095/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:8095/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

@@ -1,8 +1,8 @@
 ﻿@model HCS.StaffManagement.Models.Login
-@{Layout = "";}
+@{
+    Layout = "";}
 
-<!DOCTYPE html>
-<html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,15 +15,21 @@
     <link href="~/Content/css/material-icons.css" rel="stylesheet" />
     <!--   Core JS Files   -->
     <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+  
+   <script src="~/Content/js/jquery.validate.min.js"></script>
+
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/js/material.min.js"></script>
     <script src="~/Content/js/perfect-scrollbar.jquery.min.js"></script>
     <script src="~/Content/js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    @*<script src="~/Content/js/demo.js"></script>*@
+
 
     <!-- TagsInput Plugin -->
     <script src="~/Content/js/jquery.tagsinput.js"></script>
+
+
+</head>
 
     <style>
         body {
@@ -36,8 +42,8 @@
             /*width: 100%;*/
         }
     </style>
-</head>
-<body>
+
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -57,15 +63,26 @@
                             <span><b>Login Form </b></span>
                         </div>
                         <div class="card-content">
-                            <!--<h4 class="card-title">Login Form</h4>-->
-                            <form class="form-horizontal">
+                            @using (Ajax.BeginForm(
+                            new AjaxOptions
+                            {
+                                HttpMethod = "Post",
+                                Url = "ClientInsertUpdate",
+                                InsertionMode = InsertionMode.Replace,
+                                OnSuccess = "onAjaxRequestSuccess"
+
+                            }))
+                            {
+                                <!--<h4 class="card-title">Login Form</h4>-->
+                            @*<form class="form-horizontal" id="loginform" action="">*@
                                 <div class="row">
                                     <label class="col-md-3 label-on-left">Email</label>
                                     <div class="col-md-9">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control",required="true"})
+                                            @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", required = "true", type = "email", maxlength = 50 })
                                         </div>
+                                        <div class="errorTxt1"></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -73,14 +90,15 @@
                                     <div class="col-md-9">
                                         <div class="form-group label-floating is-empty">
                                             <label class="control-label"></label>
-                                            @Html.TextBoxFor(Model => Model.Password, new { @class = "form-control", required = "true" })
+                                            @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", required = "true", maxlength = 25 })
                                         </div>
+                                        <div class="errorTxt2"></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-3"></label>
                                     <div class="col-md-9">
-                                        <div style="color:red;" id="divError"></div>
+                                        <div style="color:red;" id="">@ViewBag.Message</div>
                                     </div>
                                 </div>
 
@@ -88,18 +106,23 @@
                                     <label class="col-md-3"></label>
                                     <div class="col-md-9">
                                         <div class="form-group form-button">
+                                            @*<button type="submit" class="btn btn-rose btn-fill">Register</button>*@
                                             <button type="submit" id="btnLogin" class="btn btn-fill btn-rose">Sign in</button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            }
+                            @*</form>*@
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
 
+<script>
+        var BaseUrl = "@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"].ToString()";
+</script>
+
+<script src="~/Scripts/AppScripts/Common.js"></script>
 <script src="~/Scripts/Login/Login.js"></script>

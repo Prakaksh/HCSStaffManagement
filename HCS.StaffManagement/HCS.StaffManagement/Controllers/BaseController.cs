@@ -8,10 +8,25 @@ namespace HCS.StaffManagement.Controllers
 {
     public class BaseController : Controller
     {
-        //// GET: Base
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        public ActionResult GetRoleType(string RoleName)
+        {
+            switch (RoleName)
+            {
+                case "Admin":
+                    return RedirectToAction("AdminDashboard", "Home");
+
+                case "Manager":
+                    return RedirectToAction("AdminDashboard", "Home");
+
+                case "SuperAdmin":
+                    return RedirectToAction("SuperAdminDashboard", "Home");
+                case "0":
+                    ViewBag.Message = "Please enter valid credentials!";
+                    return View();
+                default:
+                    return RedirectToAction("Login", "Login");
+            }
+
+        }
     }
 }

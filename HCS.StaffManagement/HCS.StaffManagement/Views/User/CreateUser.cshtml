@@ -1,0 +1,86 @@
+﻿@model HCS.StaffManagement.Models.Users
+@{
+    Layout = "~/Views/Shared/_SuperAdminDashboard.cshtml";
+}
+<div class="container-fluid">
+    <form id="RegisterValidation" action="">
+        <div class="row card">
+            <div class="col-md-12">
+                <div class="card-header card-header-text" data-background-color="red">
+                    <h4 class="card-title">Create User</h4>
+                </div>
+                @*<h4 class="card-head card-header-text btn btn-danger input-lg" data-background-color="rose">Create Organization</h4>*@
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Email ID
+                        <small>*</small>
+                    </label>
+                    @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "email", required = "true" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Password
+                        <small>*</small>
+                    </label>
+                    @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", type = "password", required = "true" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Organization Name
+                        <small>*</small>
+                    </label>
+                    @Html.TextBoxFor(Model => Model.OrganizationID, new { @class = "form-control", required = "true" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Role Type
+                        <small>*</small>
+                    </label>
+                    @Html.TextBoxFor(Model => Model.RoleID, new { @class = "form-control", required = "true" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        First Name
+                    </label>
+                    @Html.TextBoxFor(Model => Model.FirstName, new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Last Name
+                    </label>
+                    @Html.TextBoxFor(Model => Model.LastName, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="category form-category text-danger">
+                    <small>*</small> Required fields
+                </div>
+            </div>
+
+            <div class="form-footer text-right">
+                <button type="submit" class="btn btn-rose btn-fill">Create</button>
+            </div>
+        </div>
+
+    </form>
+</div>

@@ -1,9 +1,11 @@
 ﻿$(document).ready(function()
 {
-
+        //AutoComplete Text Turn Off
+        $('form').attr('autocomplete', 'off');
 })
 
 function SaveClient() {
+    debugger;
     var objsave = new Object();
     objsave.ClientName = $('#ClientName').val();
     objsave.ClientGSTIN = $('#ClientGSTIN').val();
