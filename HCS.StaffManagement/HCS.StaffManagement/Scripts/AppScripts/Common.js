@@ -1,4 +1,7 @@
-﻿
+﻿//Constant Month Names
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 //Function for Global ajax calls
 function fnAjax(Url, Method, objdata, DataType, ContentType, fnSuccess, fnError) {
@@ -37,18 +40,18 @@ function fnDdlBind(Url, Method, objdata, DataType, ContentType, controlID, propK
 }
 
 
-$('.datepicker').datetimepicker({
-    format: 'MM/DD/YYYY',
-    icons: {
-        time: "fa fa-clock-o",
-        date: "fa fa-calendar",
-        up: "fa fa-chevron-up",
-        down: "fa fa-chevron-down",
-        previous: 'fa fa-chevron-left',
-        next: 'fa fa-chevron-right',
-        today: 'fa fa-screenshot',
-        clear: 'fa fa-trash',
-        close: 'fa fa-remove',
-        inline: true
-    }
-});
+//$('.datepicker').datetimepicker({
+//    format: 'MM/DD/YYYY',
+//    icons: {
+//        time: "fa fa-clock-o",
+//        date: "fa fa-calendar",
+//        up: "fa fa-chevron-up",
+//        down: "fa fa-chevron-down",
+//        previous: 'fa fa-chevron-left',
+//        next: 'fa fa-chevron-right',
+//        today: 'fa fa-screenshot',
+//        clear: 'fa fa-trash',
+//        close: 'fa fa-remove',
+//        inline: true
+//    }
+//});

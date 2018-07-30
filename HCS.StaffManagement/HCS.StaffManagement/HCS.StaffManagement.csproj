@@ -175,6 +175,7 @@
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\fullcalendar.min.js" />
     <Content Include="Content\js\jasny-bootstrap.min.js" />
+    <Content Include="Content\js\jquery-3.0.0.slim.min.js" />
     <Content Include="Content\js\jquery-3.1.1.min.js" />
     <Content Include="Content\js\jquery-jvectormap.js" />
     <Content Include="Content\js\jquery-ui.min.js" />
@@ -211,6 +212,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Login\Login.js" />
+    <Content Include="Scripts\Payslip\Payslip.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -261,10 +263,13 @@
     <Compile Include="Models\MasterMaritalStatus.cs" />
     <Compile Include="Models\Organization.cs" />
     <Compile Include="Models\Payslip.cs" />
+    <Compile Include="Models\ResponseModel.cs" />
+    <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientContext.cs" />
     <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
+    <Compile Include="Repositories\PayslipContext.cs" />
     <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
     <Compile Include="Repositories\V1\CountryStateContext.cs" />
     <Compile Include="Repositories\V1\LoginContext.cs" />
