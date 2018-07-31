@@ -22,9 +22,9 @@ namespace HCS.StaffManagement.Repositories
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
                     var com = new DynamicParameters();
-                    com.Add("@EmailID", obj.EmailID);
+                        com.Add("@EmailID", obj.EmailID);
                         com.Add("@Password", obj.Password);
-                    result = sqlConnection.Query<string>("usp_GetUserClaims",com, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    result = sqlConnection.Query<string>("usp_UserAuthenticate", com, commandType: CommandType.StoredProcedure).FirstOrDefault();
                     return result;
                 }
             }

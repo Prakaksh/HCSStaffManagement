@@ -69,7 +69,7 @@
                                                     Employee AadharNo
                                                     <small>*</small>
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control", })
+                                                @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", })
                                             </div>
 
                                             <div class="form-group label-floating">
@@ -85,13 +85,12 @@
                                                     Mobile No
                                                     <small>*</small>
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control", })
+                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", maxlength = 13 })
                                             </div>
 
                                             <div class="form-group label-floating">
                                                 <label class="control-label">
                                                     Nationality
-
                                                 </label>
                                                 @Html.TextBoxFor(Model => Model.Natioality, new { @class = "form-control" })
                                             </div>
@@ -103,7 +102,7 @@
                                                     Employee First Name
                                                     <small>*</small>
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control" })
+                                                @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control",maxlength=50 })
                                             </div>
 
                                             <div class="form-group label-floating">
@@ -118,7 +117,7 @@
                                                 <label class="control-label">
                                                     Contact No
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control" })
+                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation" })
                                             </div>
 
                                             <div class="form-group label-floating">
@@ -281,7 +280,7 @@
                                                     <label class="control-label">
                                                         Enter Bank Account No.
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountNo, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountNo, new { @class = "form-control DigitOnlyValidation" })
                                                 </div>
 
 
@@ -289,7 +288,7 @@
                                                     <label class="control-label">
                                                         Enter Linked Mobile No.
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedMobileNo, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedMobileNo, new { @class = "form-control DigitOnlyValidation" })
                                                 </div>
 
 
@@ -306,7 +305,7 @@
                                                     <label class="control-label">
                                                         Enter Linked Email ID
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedEmailID, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedEmailID, new { @class = "form-control",type="Email" })
                                                 </div>
 
                                             </div>

@@ -40,7 +40,7 @@ namespace HCS.StaffManagement.Repositories.V1
             string Result = "";
             try
             {
-               var com = new DynamicParameters();
+                var com = new DynamicParameters();
                 com.Add("@OrganizationID", objClient.OrganizationID);
                 com.Add("@ClientName", objClient.ClientName);
                 com.Add("@ClientGSTIN", objClient.ClientGSTIN);

@@ -23,6 +23,7 @@ namespace HCS.StaffManagement.Controllers
                 case "0":
                     ViewBag.Message = "Please enter valid credentials!";
                     return View();
+                                   
                 default:
                     return RedirectToAction("Login", "Login");
             }

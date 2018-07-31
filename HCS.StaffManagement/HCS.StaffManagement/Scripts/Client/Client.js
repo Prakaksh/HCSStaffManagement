@@ -24,10 +24,16 @@ function GetClient() {
     //objClient.UserID = null;
     createDataTable(false, TableName, "Api/V1/GetClient", fnDataTableCallBack, datatableColumn, objClient, [], []);
 }
+
 function fnDataTableCallBack() { }
 
 
 $('#btnaddClient').off('click').on('click', function (e) {
     return window.location = '/Client/CreateClient';
-})
+});
+
+
+
+
+
 

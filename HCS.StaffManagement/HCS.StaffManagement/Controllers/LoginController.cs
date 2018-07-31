@@ -30,9 +30,8 @@ namespace HCS.StaffManagement.Controllers
                  
                     string result = obj.GetLogin(objlogin);
 
+                    //Redirecting to screen based on role..
                     return GetRoleType(result);
-                   
-                  
                 }
                 catch (Exception ex)
                 {
