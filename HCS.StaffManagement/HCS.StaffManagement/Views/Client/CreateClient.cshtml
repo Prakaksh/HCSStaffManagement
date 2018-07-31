@@ -1,0 +1,139 @@
+﻿@model  HCS.StaffManagement.Models.Client
+@{
+    ViewBag.Title = "Client";
+    Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
+}
+@using (Ajax.BeginForm(
+                            new AjaxOptions
+                            {
+                                HttpMethod = "post",
+                                Url = "ClientInsertUpdate",
+                                InsertionMode = InsertionMode.Replace,
+                                OnSuccess = "onAjaxRequestSuccess"
+
+                            }))
+{
+@*<form id="RegisterValidation" action="">*@
+    <div class="card">
+        <div class="row col-md-12 col-sm-12 col-lg-12">
+            <div class="card-header card-header-text" data-background-color="red">
+                <h4 class="card-title">Create Client</h4>
+            </div>
+            @*<h4 class="card-head card-header-text btn btn-danger input-lg" data-background-color="rose">Create Organization</h4>*@
+        </div>
+        <div class="row col-md-12 container-fluid">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Client Name
+                        <small>*</small>
+                    </label>
+                    @Html.TextBoxFor(Model => Model.ClientName, new { @class = "form-control", required = "true", maxlength = 100 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        GSTIN No.
+                        <small>*</small>
+                    </label>
+                    @Html.TextBoxFor(Model => Model.ClientGSTIN, new { @class = "form-control", required = "true", maxlength = 15 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Client Address 1
+                    </label>
+                    @Html.TextBoxFor(Model => Model.ClientAddress1, new { @class = "form-control", maxlength = 150 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Client Address 2
+                    </label>
+                    @Html.TextBoxFor(Model => Model.ClientAddress2, new { @class = "form-control", maxlength = 150 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Select Country
+                    </label>
+                    <select name="ddlCountry" id="ddlCountry" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Select State
+                    </label>
+                    <select name="ddlState" id="ddlState" class="form-control" onchange="fncState()"></select>
+                    @Html.HiddenFor(Model => Model.CountryStateID)
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        City
+                    </label>
+                    @Html.TextBoxFor(Model => Model.City, new { @class = "form-control", maxlength = 50 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Pin Code
+                    </label>
+                    @Html.TextBoxFor(Model => Model.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Mobile No.
+                    </label>
+                    @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", required = "true", MinimumLength = 10, maxlength = 13 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Contact No.
+                    </label>
+                    @Html.TextBoxFor(Model => Model.ContactNo, new { @class = "form-control DigitOnlyValidation", MinimumLength = 10, maxlength = 13 })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Email ID
+                    </label>
+                    @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "Email" })
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid col-md-12">
+            <div class="form-footer text-right">
+                <input type='submit' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSaveClient" name='Save' value='Save' />
+            </div>
+        </div>
+    </div>
+}
+@*</form>*@
+
+
+<script src="~/Scripts/AppScripts/Common.js"></script>
+<script src="~/Scripts/Client/CreateClient.js"></script>

@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+   
+        <title>HCSStaffAdmin</title>
+
+        <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/css/material-dashboard.css" />
+
+        <!--     Fonts and icons     -->
+        <link rel="stylesheet" type="text/css" href="~/Content/css/material-icons.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/css/font-awesome.css" />
+
+        <!--   Core JS Files   -->
+        <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+     
+        <script src="~/Scripts/js/bootstrap.min.js"></script>
+        <script src="~/Scripts/js/material-plugins/material.min.js"></script>
+        <script src="~/Scripts/js/material-plugins/perfect-scrollbar.jquery.min.js"></script>
+        <script src="~/Scripts/js/material-plugins/material-dashboard.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="">@Html.ActionLink("Home", "SuperAdminDashBoard", "Home")</li>
+                </ul>
+
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+    @*<div class="container">
+            <hr />
+        </div>*@
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -18,6 +18,13 @@ namespace HCS.StaffManagement.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult SuperAdminDashboard()
+        {
+            return View();
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

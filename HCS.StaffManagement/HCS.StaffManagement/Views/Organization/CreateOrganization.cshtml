@@ -6,11 +6,12 @@
                 ViewBag.Title = "CreateOrganization";
                 Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
 }
+
 <br /> <br />
 
 <div class="container-fluid">
-
-    @using (Ajax.BeginForm(
+   
+    @*@using (Ajax.BeginForm(
                             new AjaxOptions
                             {
                                 HttpMethod = "post",
@@ -19,13 +20,13 @@
                                 OnSuccess = "onAjaxRequestSuccess"
 
                             }))
-    {
+    {*@
 
         @*@using (Ajax.BeginForm("", "", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onAjaxRequestSuccess" }))*@
 
         <form id="RegisterValidation" action="">
-            <div class="row card">
-                <div class="col-md-12">
+            <div class="card">
+                <div class="row col-md-12">
                     <div class="card-header card-header-text" data-background-color="red">
                         <h4 class="card-title">Create Organization</h4>
                     </div>
@@ -158,7 +159,7 @@
             </div>
 
         </form>
-    }
+    @*}*@
 </div>
 
 <div id="DivOrganization" class="container-fluid">
