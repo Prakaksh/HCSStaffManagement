@@ -119,7 +119,7 @@ $(document).ready(function () {
         objPaySlip.WWF = $("#txtWWF").val();
         objPaySlip.Remarks = $("#txtRemarks").val();
         debugger;
-        fnAjax(Url + "/Payslip/PayslipInsertUpdate", "POST", objPaySlip, "JSON", "application/json", fnPayslipInsertUpdateSuccess, fnPayslipInsertUpdateFailure)
+        fnAjax(BaseUrl + "/Payslip/PayslipInsertUpdate", "POST", objPaySlip, "JSON", "application/json", fnPayslipInsertUpdateSuccess, fnPayslipInsertUpdateFailure)
     });
 });
 
