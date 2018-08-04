@@ -1,4 +1,131 @@
-﻿//Function for Global ajax calls
+﻿
+//Sweet Alert Functionality
+//showAlter: function(type) {
+
+//}
+$(document).ready(function () {
+    $("input:text,form").attr("autocomplete", "off");
+  
+});
+
+var QualificationList = {
+    "Qualification": [
+        { "QualificationCode": 1, "QualificationName": "Select Qualification" },
+        { "QualificationCode": "SSLC", "QualificationName": "SSLC" },
+        { "QualificationCode": "PUC", "QualificationName": "PUC" },
+        { "QualificationCode": "BTECH", "QualificationName": "Btech" },
+        { "QualificationCode": "ME", "QualificationName": "M.E" },
+        { "QualificationCode": "MTECH", "QualificationName": "Mtech" },
+        { "QualificationCode": "BSC", "QualificationName": "B.Sc" },
+        { "QualificationCode": "MSC", "QualificationName": "M.Sc" },
+        { "QualificationCode": "BE", "QualificationName": "B.E" },
+        { "QualificationCode": "MBA", "QualificationName": "MBA" },
+        { "QualificationCode": "PGD", "QualificationName": "PGD" },
+        { "QualificationCode": "BCOM", "QualificationName": "B.Com" },
+        { "QualificationCode": "OTHER", "QualificationName": "Other Bachelors" }
+        ]
+}  
+
+
+
+var MaritalStatusList = {
+    "MaritalStatus": [
+        { "MaritalStatusCode": "1", "MaritalStatusName": "Select MaritalStatus" },
+        { "MaritalStatusCode": "MR", "MaritalStatusName": "Married" },
+        { "MaritalStatusCode": "SP", "MaritalStatusName": "Separated" },
+        { "MaritalStatusCode": "WD", "MaritalStatusName": "Widowed" },
+        { "MaritalStatusCode": "DV", "MaritalStatusName": "Divorced" },
+        { "MaritalStatusCode": "NM", "MaritalStatusName": "Never Married" }
+    ]
+}
+
+
+var CountryList = {
+    "Country": [
+        { "CountryCode": "1", "CountryName": "Select Country" },
+        { "CountryCode": "IND", "CountryName": "India" }
+        ]
+}
+
+// This function To Check Image Extension Type .jpeg,jpg,png, ext-- 
+function isImage(ImageID) {
+    var extension = ImageID.val().split('.').pop().toLowerCase()
+    if ($.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) === -1) {
+        return false;
+    }
+    else { return true }
+}
+
+
+HCSStaff = {
+    showAlert: function (type) {
+        if (type == 'success-message') {
+            swal({
+                title: "Created Successfully! ",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            });
+        } 
+        if (type == 'invalid-message') {
+            swal({
+                //title: "Auto close alert!",
+                text: "invalid format !",
+                type: 'error',
+                confirmButtonClass: "btn btn-info",
+                buttonsStyling: false,
+
+            });
+        }
+        if (type == 'image-size') {
+            swal({
+                //title: "Auto close alert!",
+                text: "Please check image size !",
+                type: 'error',
+                confirmButtonClass: "btn btn-info",
+                buttonsStyling: false,
+
+            });
+        }
+    },
+}
+
+//$('.datepicker').off('change').on('change', function () {
+//    debugger;
+//    var ele = $(this).parent.find('div');
+//    ele.removeClass('label-floating')
+//})
+
+
+$('.datepicker').datetimepicker({
+
+    format: 'DD-MM-YYYY',
+    useCurrent: false, 
+    icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-chevron-up",
+        down: "fa fa-chevron-down",
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-screenshot',
+        clear: 'fa fa-trash',
+        close: 'fa fa-remove',
+        inline: true
+    }
+}).on('dp.change', function (e) {
+   // this next line fixed the floating label issue for me     
+  $(this).parent('.label-floating').removeClass('is-empty');
+    });
+
+
+//$(".datepicker").off('click').on('click',function () {
+//    var ele = $(this).parent().find('div');
+//    $(ele).addClass('is-focused');
+//});
+
+
+//Function for Global ajax calls
 function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
     $.ajax({
         url: Url,
@@ -15,26 +142,46 @@ function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
     });
 }
 
-//Function for Dropdown binding
-function fnDdlBind(Url, Method, objdata, DataType, ContentType, controlID, propKey, propVal, selectText) {
-    $(controlID).empty();
+
+//This Function Only for Image or File uploading
+function fnFileUpload(URL, fileData, fnSuccess) {
+    debugger;
     $.ajax({
-        url: Url,
-        method: Method,
-        dataType: (DataType != null ? DataType : "json"),
-        contentType: (ContentType != null ? ContentType : "application/x-www-form-urlencoded; charset=UTF-8"),
+        url: URL,
+        type: "POST",
+        contentType: false, // Not to set any content header  
+        processData: false, // Not to process data  
+        data: fileData,
+        success: function (result) {
+            fnSuccess(result);
+        },
+        error: function (err) {
+            
+            HCSStaff.showAlert('image-size');
+        }
+    });
+}
+
+//Function for Dropdown binding
+function fnDDLBind(controlID, Url, propKey, propVal, selectText, objdata) {
+    $.ajax({
+        url: BaseUrl+Url,
+        contentType:"application/x-www-form-urlencoded; charset=UTF-8",
         data: objdata,
         success: function (result) {
+           $(controlID).empty();
+          var html;
             if (result.length > 0) {
-                var html = "<option value=''>" + selectText + "</option>";
+                html = "<option value='0'>" + selectText + "</option>";
                 $.each(result, function (i, item) {
                     html += "<option value='" + item[propKey] + "'>" + item[propVal] + "</option>";
-                }); //Prakash there? I'm having lunch now.. okay
-                //banni uta madana...
-                //ok...preparing chicken..here...you carry on
+                }); 
             }
+            $(controlID).append(html);
         },
-        error: fnError
+        error: function (xhr, error, data) {
+            function fnError() { };
+        }
     });
 }
 
@@ -46,7 +193,6 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
         var table = tableName.DataTable();
         table.destroy();
     };
-    debugger;
     tableName.DataTable({
         "columns": columns,
         "columnDefs": colDefs,
@@ -63,7 +209,7 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
             //        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             //    },
             "error": function (xhr, obj, data) {
-                fnAuthorizationFailure(xhr, obj, data, fnError);
+               // fnAuthorizationFailure(xhr, obj, data, fnError);
             }
         },
         "order": order,

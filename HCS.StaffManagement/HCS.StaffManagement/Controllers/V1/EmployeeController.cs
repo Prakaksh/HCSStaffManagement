@@ -8,15 +8,18 @@ using System.Web.Http;
 using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories.V1;
 using HCS.StaffManagement.Repositories.DTO;
+using NLog;
 
 namespace HCS.StaffManagement.Controllers.V1
 {
     [RoutePrefix("Api/V1")]
     public class EmployeeController : ApiController
     {
+        Logger logger = LogManager.GetCurrentClassLogger();
+
         [Route("GetEmployee")]
         [HttpGet]
-        public HttpResponseMessage GetClient([FromBody]EmployeeDto objEmp)
+        public HttpResponseMessage EmployeeGet([FromBody]EmployeeDto objEmp)
         {
             try
             {
@@ -28,7 +31,8 @@ namespace HCS.StaffManagement.Controllers.V1
             }
             catch (Exception ex)
             {
-                //objErrorLogServices.LogError("Client", "GetClient", "", "", ex.Message.ToString());
+                logger.Error(ex.Message, "test");
+                            
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Internal Server Error");
             }
 

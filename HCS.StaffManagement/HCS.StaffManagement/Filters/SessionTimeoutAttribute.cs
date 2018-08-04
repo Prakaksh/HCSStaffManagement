@@ -8,7 +8,7 @@ namespace HCS.StaffManagement.Filter
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             HttpContext ctx = HttpContext.Current;
-            if (HttpContext.Current.Session["ID"] == null)
+            if (HttpContext.Current.Session["UserID"] == null)
             {
                 //Session need to be killed if exists..
                 filterContext.Result = new RedirectResult(AppUtility.AppUtility.AppSettingsGet("LoginUrl")); //Read from config file.. ok....

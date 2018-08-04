@@ -1,9 +1,20 @@
 ﻿$(document).ready(function () {
-
+    ReportGetEmpty();
 });
+var TableName = $('#tblReport');
+
+//Get All Employee Details
+function ReportGetEmpty() {
+    alert("HI")
+    var objReport = new Object();
+    createDataTable(false, TableName, "api/V1/ReportSearchEmpty", fnDataTableCallBack, datatableColumn, objReport, [], []);
+}
+
+function 
+    fnDataTableCallBack() { }
 
 
-GetReport();
+//GetReport();
 
 
 //Create column to show in datatable
@@ -29,5 +40,5 @@ var datatableColumn = [
     { "sTitle": "W.W.F", "data": "WWF", "width": "15%" },
     { "sTitle": "TotalDeduction", "data": "TotalDeduction", "width": "15%" },
     { "sTitle": " Net Paid", "data": " NetPaid", "width": "15%" },
-    { "sTitle": "Sig or Thumb Impression of Employee", "data": " Sign", "width": "15%" }
+    { "sTitle": "Sig or Thumb Impression of Employee", "data": "", "width": "15%" }
     ]

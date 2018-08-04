@@ -10,7 +10,7 @@ $(document).ready(function () {
 var datatableColumn = [
     { "sTitle": "OrganizationID", "data": "OrganizationID", "visible": false },
     { "sTitle": "SL No.", "data": "SlNo", "width": "5%" },
-    { "sTitle": "EMP No..", "data": "EmployeeNo", "width": "10%" },
+    { "sTitle": "EMP No.", "data": "EmployeeNo", "width": "10%" },
     { "sTitle": "Employee Name", "data": "EmployeeName", "width": "20%" },
     { "sTitle": "Mobile No.", "data": "MobileNo", "width": "10%" },
     { "sTitle": "Client Location", "data": "ClientLocation", "width": "20%" },

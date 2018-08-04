@@ -30,11 +30,13 @@ namespace HCS.StaffManagement.Models
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
         public string Natioality { get; set; }
-        public int QualificationCode { get; set; }
-        public int MaritalStatusCode { get; set; }
+        public string QualificationCode { get; set; }
+        public string MaritalStatusCode { get; set; }
         public bool IsInternationalWorker { get; set; }
         public bool IsPhisicalHandicap { get; set; }
         public string PanNo { get; set; }
+        public string PFNo { get; set; }
+        public string ESINo { get; set; }
         public string VoterCardNo { get; set; }
         public string RationCardNo { get; set; }
         public string DrivingLicenseNo { get; set; }
@@ -42,6 +44,8 @@ namespace HCS.StaffManagement.Models
         public string CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string UpdatedDate { get; set; }
+
+       
 
         //Employee Address
         //public string AddressCategoryCode { get; set; }
@@ -53,10 +57,19 @@ namespace HCS.StaffManagement.Models
         //public string PinCode { get; set; }
 
         public EmployeeBankAccount objBankAccount { get; set; }
+        public BasicWages BasicWages { get; set; }
+
 
         public Address CurrentAddress { get; set; }
         public Address PermanentAddress { get; set; }
         //public List<EmployeeAddress> EmployeeAddress { get; set; }
 
     }
+
+    public class BasicWages {
+        public int BasicSalary { get; set; }
+        public int BonusPercentage { get; set; }
+        public int IncentivePerDay { get; set; }
+    }
 }
+

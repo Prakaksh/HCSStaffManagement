@@ -7,8 +7,8 @@ namespace HCS.StaffManagement.Models
 {
     public class MasterCountryState
     {
-        public int CoutnryID { get; set; }
-        public int CoutnryStateID { get; set; }
+        public int CountryID { get; set; }
+        public string CountryStateID { get; set; }
         public string StateName { get; set; }
     }
 }

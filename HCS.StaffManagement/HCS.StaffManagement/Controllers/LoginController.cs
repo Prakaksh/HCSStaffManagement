@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using HCS.StaffManagement.Filter;
 using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories;
@@ -29,9 +30,16 @@ namespace HCS.StaffManagement.Controllers
                     LoginContext obj = new LoginContext();
                  
                     string result = obj.GetLogin(objlogin);
-
-                    //Redirecting to screen based on role..
-                    return GetRoleType(result);
+                    if (result != "0")
+                    {
+                        //Redirecting to screen based on role..
+                        return GetRoleType(result, objlogin);
+                    }
+                    else {
+                        ViewBag.Message = "Please enter valid credentials!";
+                    }
+                    return View();
+                   
                 }
                 catch (Exception ex)
                 {
@@ -44,15 +52,26 @@ namespace HCS.StaffManagement.Controllers
                 return View();
             }
 
-            return RedirectToAction("Home","AdminDashboard");
+            return View();
         }
 
-        //[HttpPost]
-        //public ActionResult Login(Login objlogin)
-        //{
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            Session.Clear();
+            Response.Cookies.Clear();
+            Session.RemoveAll();
+            Session["UserID"] = null;
 
-        //    return RedirectToAction("Home", "AdminDashboard");
-        //}
+            //If you hit backbutton of browser, page loads from cache..So Label and other controls will dispaly previous values.
+
+            //HttpContext.Current.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //HttpContext.Current.Response.Cache.SetNoServerCaching();
+            //HttpContext.Current.Response.Cache.SetNoStore();
+
+            return RedirectToAction("Login", "Login");
+        }
 
     }
 }

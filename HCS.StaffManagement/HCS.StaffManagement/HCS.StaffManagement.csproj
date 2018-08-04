@@ -107,7 +107,7 @@
     </Reference>
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ExternalDll\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <HintPath>ExternalDll\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
@@ -153,6 +153,7 @@
     <Content Include="Content\css\dataTables.bootstrap4..css" />
     <Content Include="Content\css\demo.css" />
     <Content Include="Content\css\material-dashboard.css" />
+    <Content Include="Content\css\material-fonts.css" />
     <Content Include="Content\css\material-icons.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\font-awesome.min.css" />
@@ -183,6 +184,7 @@
     <Content Include="Content\js\jquery.datatables.js" />
     <Content Include="Content\js\jquery.select-bootstrap.js" />
     <Content Include="Content\js\jquery.tagsinput.js" />
+    <Content Include="Content\css\flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" />
     <None Include="Content\js\jquery.validate-vsdoc.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.js" />
     <Content Include="Content\js\jquery.unobtrusive-ajax.min.js" />
@@ -200,6 +202,8 @@
     <Content Include="Content\js\popper.js" />
     <Content Include="Content\js\popper.min.js" />
     <Content Include="Content\js\sweetalert2.js" />
+    <Content Include="Content\material-icons\edit.png" />
+    <Content Include="Content\material-icons\person_add.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
@@ -212,8 +216,10 @@
     <Content Include="Scripts\Client\CreateClient.js" />
     <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
     <Content Include="Scripts\Employee\Employee.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Login\Login.js" />
     <Content Include="Scripts\Payslip\Payslip.js" />
+    <Content Include="Scripts\Payslip\PayslipDonwnload.js" />
     <Content Include="Scripts\Report\Report.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -240,12 +246,15 @@
     <Compile Include="Controllers\V1\CountryStateController.cs" />
     <Compile Include="Controllers\V1\EmployeeController.cs" />
     <Compile Include="Controllers\V1\MaritalStatusController.cs" />
+    <Compile Include="Controllers\V1\PayslipController.cs" />
     <Compile Include="Controllers\V1\RelationshipController.cs" />
+    <Compile Include="Controllers\V1\ReportController.cs" />
     <Compile Include="Filters\SessionTimeoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ImageDetail.cs" />
     <Compile Include="Models\MasterQualification.cs" />
     <Compile Include="Models\MasterRelationship.cs" />
     <Compile Include="Models\OrganizationClient.cs" />
@@ -276,9 +285,12 @@
     <Compile Include="Repositories\DTO\ClientDto.cs" />
     <Compile Include="Repositories\DTO\EmployeeDto.cs" />
     <Compile Include="Repositories\DTO\LoginDto.cs" />
+    <Compile Include="Repositories\DTO\PayslipDownloadDto.cs" />
+    <Compile Include="Repositories\DTO\ReportDto.cs" />
     <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
     <Compile Include="Repositories\PayslipContext.cs" />
     <Compile Include="Repositories\RoleType.cs" />
+    <Compile Include="Repositories\UploadImageContext.cs" />
     <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
     <Compile Include="Repositories\V1\ClientContext.cs" />
     <Compile Include="Repositories\V1\CountryStateContext.cs" />
@@ -323,7 +335,8 @@
     <Content Include="Views\Home\SuperAdminDashboard.cshtml" />
     <Content Include="Views\Shared\_SuperAdminDashboard.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
-    <Content Include="Views\Report\GetReport.cshtml" />
+    <Content Include="Views\Report\ReportGet.cshtml" />
+    <Content Include="Views\Payslip\PayslipDownload.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
