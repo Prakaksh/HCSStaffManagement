@@ -19,6 +19,22 @@ namespace HCS.StaffManagement.Controllers
             return View();
         }
 
+        [HttpGet]
+        public JsonResult PayslipGet(Employee objEmp)
+        {
+            PayScale objPayScale= new PayScale();
+            try
+            {
+                objContext = new PayslipContext();
+                objPayScale = objContext.PayScaleGet(objEmp, new UserInfo());
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Json(objPayScale, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public JsonResult PayslipInsertUpdate(Payslip objPayslip)
         {
@@ -30,6 +46,28 @@ namespace HCS.StaffManagement.Controllers
                 strResult = objRes.StatusText;
             }
             catch(Exception ex)
+            {
+
+            }
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult PayslipGeneration(PayslipRequestList objPayslip)
+        {
+            string strResult = string.Empty;
+            OrganizationPayslip objResult = new OrganizationPayslip();
+            try
+            {
+                objContext = new PayslipContext();
+                objResult = objContext.PayslipGeneration(objPayslip, new UserInfo());
+                if(objResult != null && objResult.PayslipList != null && objResult.PayslipList.Count > 0)
+                {
+                    PayslipGeneration obj = new Models.PayslipGeneration();
+                    obj.PayslipPDFGeneration(objResult, Server.MapPath("~/Temp/"));
+                }
+            }
+            catch (Exception ex)
             {
 
             }

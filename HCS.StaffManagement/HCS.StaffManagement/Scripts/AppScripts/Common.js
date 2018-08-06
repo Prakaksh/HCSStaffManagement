@@ -1,4 +1,6 @@
-﻿
+﻿var MonthName = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var MonthNameShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
 //Sweet Alert Functionality
 //showAlter: function(type) {
 
@@ -131,9 +133,10 @@ function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
         url: Url,
         method: Method,
         //dataType: (DataType != null ? DataType : "json"),
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        contentType: 'application/json',
+        dataType: "json",
         data: objdata,
-        success: function (result, status, XMLHttpRequest) {
+        success: function (result) {
             fnSuccess(result);
         },
         error: function (xhr, error, data) {
@@ -255,7 +258,11 @@ $(".DigitOnlyValidation").keypress(function (e) {
     }
 });
 
-
-//var Country = '{ "employees" : [' +
-//    '{ "CountryID":"1" , "CountryName":"India" } ]}';
-//var objCountry = JSON.parse(Country);
+//remove isEmpty lable without focus
+function fnLabelInOut(ctrl, flag) {
+    if (flag) {
+        $(ctrl).closest(".form-group").addClass("is-empty");
+    } else {
+        $(ctrl).closest(".form-group").removeClass("is-empty");
+    }
+}
