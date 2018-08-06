@@ -27,6 +27,8 @@ namespace HCS.StaffManagement.Models
         public string MobileNo { get; set; }
         [StringLength(13,MinimumLength =10)]
         public string ContactNo { get; set; }
+
+        [Required]
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
 

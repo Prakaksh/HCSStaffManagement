@@ -9,7 +9,7 @@ namespace HCS.StaffManagement.Controllers
     public class ReportController : Controller
     {
         // GET: Report
-        public ActionResult GetReport()
+        public ActionResult ReportGet()
         {
             return View();
         }

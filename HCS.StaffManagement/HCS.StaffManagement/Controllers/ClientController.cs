@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HCS.StaffManagement.Filter;
 using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories;
 
 namespace HCS.StaffManagement.Controllers
 {
+    [SessionTimeout]
     public class ClientController : Controller
     {
         // GET: Client
@@ -25,29 +27,23 @@ namespace HCS.StaffManagement.Controllers
 
 
         [HttpPost]
-        public ActionResult ClientInsertUpdate(Client objClient)
+        public JsonResult ClientInsertUpdate(Client objClient)
         {
-            if (ModelState.IsValid)
-            {
                 try
                 {
                     ClientContext objEmp = new ClientContext();
 
-                    //string result = objEmp.EmployeeInsertUpdate(objEmployee);
+                    var result = objEmp.ClientInsertUpdate(objClient);
+                
                     TempData["Success"] = "Added Successfully!";
 
-
-                    return RedirectToAction("GetClient", "Client");
-                    //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
-                }
+                return Json(new{result}, JsonRequestBehavior.AllowGet);
+            }
                 catch (Exception ex) {
                 }
-                return RedirectToAction("GetClient", "Client");
+            
+            return Json("GetClient", "Client");
 
-            }
-            else {
-                return View();
-            }
             
         }
         

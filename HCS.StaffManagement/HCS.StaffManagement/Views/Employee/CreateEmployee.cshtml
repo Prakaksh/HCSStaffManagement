@@ -4,273 +4,341 @@
     ViewBag.Title = "CreateEmployee";
     Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
 }
-<head>
 
-    @*<link href="~/Content/css/demo.css" rel="stylesheet" />*@
-    @*<script src="~/Content/js/demo.js"></script>*@
-</head>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+@*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>*@
+@*<link href="~/Content/css/demo.css" rel="stylesheet" />*@
+@*<script src="~/Content/js/demo.js"></script>*@
 
 <div class="container-fluid">
     <div class="col-sm-12">
         <!--      Wizard container        -->
         <div class="container-fluid">
             <div class="card wizard-card" data-color="rose" id="wizardProfile">
-                @using (Html.BeginForm("EmployeeInsertUpdate", "Employee", FormMethod.Post))
-                {
-                    @*<form id="FormEmployeeDetails" action="post">*@
-                        <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-                        <div class="wizard-header">
-                            <h3 class="wizard-title">
-                                Build Your Employee Profile
-                            </h3>
-                            <h5>This information will let us know more about your Employee.</h5>
-                        </div>
+                @*@using (Html.BeginForm("EmployeeInsertUpdate", "Employee", FormMethod.Post))
+                    {*@
+                <form id="FormEmployeeDetails" action="">
+                    <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                    <div class="wizard-header">
+                        <h3 class="wizard-title">
+                            Build Your Employee Profile
+                        </h3>
+                        <h5>This information will let us know more about your Employee.</h5>
+                    </div>
+                    
+                    <div class="wizard-navigation">
+                        <ul>
+                            <li class="text-center">
+                                <a href="#about" data-toggle="tab">About</a>
+                            </li>
 
-                        <div class="wizard-navigation">
-                            <ul>
-                                <li class="text-center">
-                                    <a href="#about" data-toggle="tab">About</a>
-                                </li>
+                            <li class="text-center">
+                                <a href="#information" data-toggle="tab">Information</a>
+                            </li>
 
-                                <li class="text-center">
-                                    <a href="#information" data-toggle="tab">Information</a>
-                                </li>
+                            @*<li class="text-center">
+                    <a href="#account" data-toggle="tab">Account</a>
+                </li>*@
 
-                                <li class="text-center">
-                                    <a href="#account" data-toggle="tab">Account</a>
-                                </li>
+                            <li class="text-center">
+                                <a href="#wages" data-toggle="tab">Wages and Role</a>
+                            </li>
+                        </ul>
+                    </div>
 
-                                <li class="text-center">
-                                    <a href="#wages" data-toggle="tab">Wages and Role</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="tab-content">
-                            <div class="tab-pane" id="about">
-                                <div class="card">
-                                    <div class="card-header">
-                                        Employee Basic Details
+                    <div class="tab-content">
+                        <div class="tab-pane" id="about">
+                            <div class="card">
+                                <div class="card-header">
+                                    Employee Basic Details
+                                </div>
+                                <div class="row col-md-12">
+                                    <div class="col-sm-3 col-sm-offset-1">
+                                        <div class="picture-container" style="padding-top:65px;">
+                                            <div class="picture">
+                                                <img src="~/Content/Images/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
+                                                <input type="file" id="profile-picture">
+                                                <input type="hidden" id="EmployeeProfilePictureID">
+                                            </div>
+                                            <h6>Choose Picture</h6>
+                                        </div>
                                     </div>
-                                    <div class="row col-md-12">
-                                        <div class="col-sm-3 col-sm-offset-1">
-                                            <div class="picture-container" style="padding-top:65px;">
-                                                <div class="picture">
-                                                    <img src="~/Content/Images/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                                                    <input type="file" id="wizard-picture">
-                                                </div>
-                                                <h6>Choose Picture</h6>
-                                            </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee AadharNo
+                                                <small>*</small>
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", maxlength = 16 })
                                         </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee AadharNo
-                                                    <small>*</small>
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control", })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Date of Birth
-                                                    <small>*</small>
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.DOB, new { @class = "form-control datepicker", })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Mobile No
-                                                    <small>*</small>
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control", })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Nationality
-
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.Natioality, new { @class = "form-control" })
-                                            </div>
-
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee First Name
-                                                    <small>*</small>
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Date of join
-                                                    <small>*</small>
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.DateofJoin, new { @class = "form-control datepicker" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Contact No
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <select name="MaritalStatusCode" id="MaritalStatusCode" class="form-control" onchange="fncMaritalStatus()"></select>
-                                                @Html.HiddenFor(Model => Model.MaritalStatusCode)
-
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee Last Name
-
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.EmployeeLastName, new { @class = "form-control" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <select name="Gender" id="ddlGender" class="form-control">
-                                                    <option value=1>Select Gender</option>
-                                                    <option value="male">Male</option>
-                                                    <option value="female">Female</option>
-                                                </select>
-                                                @*@Html.HiddenFor(Model => Model.Gender)*@
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Qalification
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "email" })
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <select name="Qualification" id="Qualification" class="form-control" onchange="fncQualification()"></select>
-                                                @Html.HiddenFor(Model => Model.QualificationCode)
-
-                                            </div>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Date of Birth
+                                                <small>*</small>
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.DOB, new { @class = "form-control datepicker" })
                                         </div>
 
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Mobile No
+                                                <small>*</small>
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", maxlength = 13 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Nationality
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.Natioality, new { @class = "form-control" })
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee First Name
+                                                <small>*</small>
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control", maxlength = 25 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Date of join
+                                                <small>*</small>
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.DateofJoin, new { @class = "form-control datepicker" })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Contact No
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation",minlength=10, maxlength = 13 })
+                                        </div>
+
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">
+                                                Marital Status
+                                            </label>
+                                            <select name="MaritalStatusCode" id="MaritalStatusCode" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee Last Name
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.EmployeeLastName, new { @class = "form-control", maxlength = 25 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Gender
+                                            </label>
+                                            <select name="Gender" id="ddlGender" class="form-control">
+                                                <option value=1>Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                            @*@Html.HiddenFor(Model => Model.Gender)*@
+                                        </div>
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Email ID
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "email" })
+                                        </div>
+                                        <div class="form-group label-floating is-focused">
+                                            <label class="control-label">
+                                                Qualification
+                                            </label>
+                                            <select name="Qualification" id="Qualification" class="form-control"></select>
+                                            @Html.HiddenFor(Model => Model.QualificationCode)
+
+                                        </div>
                                     </div>
 
                                 </div>
+
                             </div>
+                        </div>
 
-                            <div class="tab-pane" id="information">
-                                <div class="card">
-                                    <div class="card-header">Document Details</div>
-                                    <div class=" row col-sm-12">
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee Voter Card No.
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.VoterCardNo, new { @class = "form-control", })
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee Driving License No.
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.DrivingLicenseNo, new { @class = "form-control", })
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee PAN No.
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.PanNo, new { @class = "form-control", })
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Employee Ration Card No.
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.RationCardNo, new { @class = "form-control", })
-                                            </div>
+                        <div class="tab-pane" id="information">
+                            <div class="card">
+                                <div class="card-header">Document Details</div>
+                                <div class=" row col-sm-12">
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee Voter Card No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.VoterCardNo, new { @class = "form-control", maxlength = 25 })
                                         </div>
                                     </div>
-                                </div>
-
-
-                                <div class="card">
-                                    <div class="card-header">
-                                        Permanent Address
-                                    </div>
-
-                                    <div class="row col-sm-12">
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Enter Address 1
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Enter City Name
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.PermanentAddress.City, new { @class = "form-control" })
-                                            </div>
-
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Enter Address 2
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control" })
-                                            </div>
-
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Enter Pin Code
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control" })
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Select Country
-                                                </label>
-                                                <select name="CountryID" id="CountryID" class="form-control" onchange="fncCountry()"></select>
-                                                @*@Html.TextBoxFor(Model => Model.CountryID, new { @class = "form-control", type = "email" })*@
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    Select State
-                                                </label>
-                                                <select name="CountryStateID" id="CountryStateID" class="form-control" onchange="fncState()"></select>
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee Driving License No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.DrivingLicenseNo, new { @class = "form-control", maxlength = 25 })
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
-                                        Check me out
-                                    </label>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee PAN No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PanNo, new { @class = "form-control", maxlength = 11,minlength=10 })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Employee Ration Card No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.RationCardNo, new { @class = "form-control", maxlength = 25 })
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
 
-                            <div class="tab-pane" id="account">
+                            <div class="card">
+                                <div class="card-header">
+                                    Permanent Address
+                                </div>
+
+                                <div class="row col-sm-12">
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Address 1
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control",maxlength=100 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter City Name
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.City, new { @class = "form-control", maxlength = 50 })
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Address 2
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control",maxlength=100 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Pin Code
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6, minlength = 6})
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Select Country
+                                            </label>
+                                            <select name="CountryID" id="CountryID" class="form-control" disabled></select>
+                                            @*@Html.TextBoxFor(Model => Model.CountryID, new { @class = "form-control", type = "email" })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating is-empty is-focused">
+                                            <label class="control-label">
+                                                Select State
+                                            </label>
+                                            <select name="CountryStateID" id="CountryStateID" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" id="sameasPermanent" class="form-check-input">
+                                    Same as Permanent Address
+                                </label>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Currrent Address
+                                </div>
+
+                                <div class="row col-sm-12">
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Address 1
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control",maxlength=100 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter City Name
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.City, new { @class = "form-control", maxlength = 50 })
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Address 2
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control",maxlength=100 })
+                                        </div>
+
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Enter Pin Code
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6 })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Select Country
+                                            </label>
+                                            <select name="CountryID" id="CountryID1" class="form-control" disabled></select>
+                                            @*@Html.TextBoxFor(Model => Model.CountryID, new { @class = "form-control", type = "email" })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating is-empty is-focused">
+                                            <label class="control-label">
+                                                Select State
+                                            </label>
+                                            <select name="CountryStateID" id="CountryStateID1" class="form-control CountryState"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="tab-pane" id="account">
                                 <div class="card">
                                     <div class="card-header">Salary Account Details</div>
 
@@ -281,15 +349,14 @@
                                                     <label class="control-label">
                                                         Enter Bank Account No.
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountNo, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountNo, new { @class = "form-control DigitOnlyValidation" })
                                                 </div>
-
 
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         Enter Linked Mobile No.
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedMobileNo, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedMobileNo, new { @class = "form-control DigitOnlyValidation" })
                                                 </div>
 
 
@@ -306,7 +373,7 @@
                                                     <label class="control-label">
                                                         Enter Linked Email ID
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedEmailID, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.LinkedEmailID, new { @class = "form-control", type = "Email" })
                                                 </div>
 
                                             </div>
@@ -333,13 +400,13 @@
                                                     <label class="control-label">
                                                         Account Type
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountType, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.AccountType, new { @class = "form-control", maxlength = 50 })
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         Branch Name
                                                     </label>
-                                                    @Html.TextBoxFor(Model => Model.objBankAccount.BankAddress, new { @class = "form-control" })
+                                                    @Html.TextBoxFor(Model => Model.objBankAccount.BankAddress, new { @class = "form-control", maxlength = 50 })
                                                 </div>
                                             </div>
 
@@ -347,36 +414,78 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div>*@
 
 
 
-                            <div class="tab-pane" id="wages">
-                                <div class="row">
-                                    <div class="col-lg-10 col-lg-offset-1">
-                                        <div class="col-sm-4">
-                                            <label>sdkfjskdjk</label>
+                        <div class="tab-pane" id="wages">
+                            <div class="card">
+                                <div class="card-header">Employee Pay Scale</div>
+
+                                <div>
+                                    <div class="row col-md-12">
+                                        <div class="col-sm-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">
+                                                    Basic Salary
+                                                </label>
+                                                @Html.TextBoxFor(Model => Model.BasicWages.BasicSalary, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">
+                                                    Bonus Percentage
+                                                </label>
+                                                @Html.TextBoxFor(Model => Model.BasicWages.BonusPercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 2 })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">
+                                                    Incentive PerDay
+                                                </label>
+                                                @Html.TextBoxFor(Model => Model.BasicWages.IncentivePerDay, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">
+                                                    PF No.
+                                                </label>
+                                                @Html.TextBoxFor(Model => Model.PFNo, new { @class = "form-control", maxlength = 25 })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">
+                                                    ESI No.
+                                                </label>
+                                                @Html.TextBoxFor(Model => Model.ESINo, new { @class = "form-control", maxlength = 25 })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-
-                            <div class="wizard-footer">
-                                <div class="float-right">
-                                    <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                                    <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSaveEmployee" name='finish' value='Finish' />
-                                </div>
-                                <div class="float-left">
-                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
                         </div>
 
-                    @*</form>*@
-                }
+                    </div>
+                    <div class="wizard-footer">
+                        <div class="float-right">
+                            <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
+                            <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSaveEmployee" onclick="HCSStaff.showSwal('success-message')" name='finish' value='Finish' />
+                        </div>
+                        <div class="float-left">
+                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </form>
+                @*}*@
             </div>
         </div>
 
@@ -391,5 +500,5 @@
 
 @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval");
-}*@
+        @Scripts.Render("~/bundles/jqueryval");
+    }*@

@@ -17,13 +17,13 @@ namespace HCS.StaffManagement.Repositories.V1
 
         public IEnumerable<EmployeeDto> GetEmployee()
         {
-            IEnumerable<EmployeeDto> ResultGetEmployee = new List<EmployeeDto>();
+           // IEnumerable<EmployeeDto> ResultGetEmployee = new List<EmployeeDto>();
 
             try
             {
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
-                   // IEnumerable<EmployeeDto> ResultGetEmployee = sqlConnection.Query<EmployeeDto>("usp_GetEmployee", commandType: CommandType.StoredProcedure).ToList();
+                   IEnumerable<EmployeeDto> ResultGetEmployee = sqlConnection.Query<EmployeeDto>("usp_EmployeeGet", commandType: CommandType.StoredProcedure).ToList();
                     return ResultGetEmployee;
                 }
             }

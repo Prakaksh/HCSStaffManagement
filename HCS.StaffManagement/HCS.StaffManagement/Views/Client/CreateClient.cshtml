@@ -21,6 +21,7 @@
             </div>
             @*<h4 class="card-head card-header-text btn btn-danger input-lg" data-background-color="rose">Create Organization</h4>*@
         </div>
+
         <div class="row col-md-12 container-fluid">
             <div class="col-md-4">
                 <div class="form-group label-floating">
@@ -65,16 +66,16 @@
                     <label class="control-label">
                         Select Country
                     </label>
-                    <select name="ddlCountry" id="ddlCountry" class="form-control"></select>
+                    <select name="ddlCountry" id="ddlCountry" class="form-control" disabled></select>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="form-group label-floating">
+                <div class="form-group label-floating is-empty is-focused" >
                     <label class="control-label">
                         Select State
                     </label>
-                    <select name="ddlState" id="ddlState" class="form-control" onchange="fncState()"></select>
+                    <select name="ddlState" id="ddlState" class="form-control"></select>
                     @Html.HiddenFor(Model => Model.CountryStateID)
                 </div>
             </div>
@@ -93,7 +94,7 @@
                     <label class="control-label">
                         Pin Code
                     </label>
-                    @Html.TextBoxFor(Model => Model.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6 })
+                    @Html.TextBoxFor(Model => Model.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6,minlength=6, autocomplete = "off"})
                 </div>
             </div>
 
@@ -102,7 +103,7 @@
                     <label class="control-label">
                         Mobile No.
                     </label>
-                    @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", required = "true", MinimumLength = 10, maxlength = 13 })
+                    @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", required = "true", minlength = 10, maxlength = 13 })
                 </div>
             </div>
 
@@ -111,7 +112,7 @@
                     <label class="control-label">
                         Contact No.
                     </label>
-                    @Html.TextBoxFor(Model => Model.ContactNo, new { @class = "form-control DigitOnlyValidation", MinimumLength = 10, maxlength = 13 })
+                    @Html.TextBoxFor(Model => Model.ContactNo, new { @class = "form-control DigitOnlyValidation", minlength = 10, maxlength = 13 })
                 </div>
             </div>
 
@@ -120,7 +121,7 @@
                     <label class="control-label">
                         Email ID
                     </label>
-                    @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "Email" })
+                    @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "Email",required= "required" })
                 </div>
             </div>
 

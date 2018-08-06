@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories;
+using HCS.StaffManagement.Filter;
 
 namespace HCS.StaffManagement.Controllers
 {
+   // [SessionTimeout]
     public class PayslipController : Controller
     {
         PayslipContext objContext;
@@ -33,5 +35,12 @@ namespace HCS.StaffManagement.Controllers
             }
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult PayslipDownload()
+        {
+            return View();
+        }
+
     }
 }

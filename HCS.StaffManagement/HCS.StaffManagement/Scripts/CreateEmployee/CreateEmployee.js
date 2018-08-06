@@ -1,7 +1,15 @@
 ﻿$(document).ready(function () {
     initMaterialWizard();
+    fnQualification();
+    fnMaritalStatus();
+    fnCountry();
+    fnDDLBind("#CountryStateID,#CountryStateID1", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
     //fnAjax("API URL", "GET", null, "json", null, fnSuccessMaritalStatusGet, fnErrorMaritalStatusGet);
+
+
 });
+
+
     function initMaterialWizard() {
     // Code for the Validator
     var $validator = $('.wizard-card form').validate({
@@ -10,6 +18,9 @@
                 required: true,
                 minlength: 3
             },
+            //AadharNo: {
+            //    required: true,
+            //},
             lastname: {
                 required: true,
                 minlength: 3
@@ -32,6 +43,7 @@
         'previousSelector': '.btn-previous',
 
         onNext: function (tab, navigation, index) {
+           
             var $valid = $('.wizard-card form').valid();
             if (!$valid) {
                 $validator.focusInvalid();
@@ -61,6 +73,7 @@
         },
 
         onTabClick: function (tab, navigation, index) {
+            //return true;
             var $valid = $('.wizard-card form').valid();
 
             if (!$valid) {
@@ -112,8 +125,16 @@
 
 
     // Prepare the preview for profile picture
-    $("#wizard-picture").change(function () {
-        readURL(this);
+        $("#profile-picture").change(function () {
+            var imgID = $(this);
+            var $IsImageValid = isImage(imgID);
+            if ($IsImageValid) {
+                readURL(this);
+            }
+            else {
+                HCSStaff.showAlert('invalid-message');
+            }
+      
     });
 
     $('[data-toggle="wizard-radio"]').click(function () {
@@ -138,16 +159,31 @@
 
     //Function to show image before upload
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        function readURL(input) {
+            if (input.files[0].size <= 2097152) {
 
-            reader.onload = function (e) {
-                $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                // Create FormData object  
+                var fileData = new FormData();
+                // Looping over all files and add it to FormData object  
+                for (var i = 0; i < input.files.length; i++) {
+                    fileData.append(input.files[i].name, input.files[i]);
+                }
+                fnFileUpload("/Employee/ProfileImageUpload", fileData, fnSuccess)
+                function fnSuccess(res) {
+                    $('#EmployeeProfilePictureID').val(res.ID)
+                }
             }
-            reader.readAsDataURL(input.files[0]);
+            else {
+                return HCSStaff.showAlert('image-size');
+            }
         }
-    }
 
     $(window).resize(function () {
         $('.wizard-card').each(function () {
@@ -184,11 +220,17 @@
     }
     }
 
+
+
+
 //Success CallBack
 function fnSuccessMaritalStatusGet() { }
 function fnErrorMaritalStatusGet() { }
 
 $('#btnSaveEmployee').on('click', function () {
+
+    HCSStaff.showSwal('success-message')
+   
     var objEmp = new Object();
     var AccountInfo = new Object();
     var objBankAccount = [];
@@ -227,7 +269,9 @@ $('#btnSaveEmployee').on('click', function () {
         alert("Created Successfully")
 
     }
-    function fnError() { }
+    function fnError() {
+        alert('HI');
+    }
     //$.ajax({
     //    type: "POST",
     //    url: "/Employee/EmployeeInsertUpdate",
@@ -246,3 +290,24 @@ $('#btnSaveEmployee').on('click', function () {
     //object objEmp = new object();
     //objEmp.firstname = "fljksdlfjsldf";
 });
+
+function fnQualification() {
+    $.each(QualificationList.Qualification, function (data, value) {
+        $("#Qualification").append($("<option></option>").val(value.QualificationCode).html(value.QualificationName)).sort();
+    })
+ }
+
+function fnMaritalStatus() {
+    $.each(MaritalStatusList.MaritalStatus, function (data, value) {
+        $("#MaritalStatusCode").append($("<option></option>").val(value.MaritalStatusCode).html(value.MaritalStatusName));
+    })
+}
+
+
+function fnCountry() {
+    $.each(CountryList.Country, function (data, value) {
+
+        $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
+        $("#CountryID,#CountryID1").val("IND").trigger('change');
+    })
+}

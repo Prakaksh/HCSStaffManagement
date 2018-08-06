@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "PayslipDonwload";
+    Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+    <div class="card">
+        <div class="row col-md-12">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Select Month
+                        <small>*</small>
+                    </label>
+                    <input class="form-control datepicker" id="payslipdate" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSearch" name='Search' value='Search' />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="col-md-12">
+            <table id="tblPayslipDonwload" class="table-style table-striped table-bordered nowrap" style="width:100%"></table>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/AppScripts/Common.js"></script>
+<script src="~/Scripts/Payslip/PayslipDonwnload.js"></script>

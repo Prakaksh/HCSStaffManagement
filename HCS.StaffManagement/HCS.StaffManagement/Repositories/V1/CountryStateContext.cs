@@ -20,7 +20,7 @@ namespace HCS.StaffManagement.Repositories
             {
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
-                    IEnumerable<MasterCountryState> GetCountryState = sqlConnection.Query<MasterCountryState>("Usp_GetMstStateList", commandType: CommandType.StoredProcedure).ToList();
+                    IEnumerable<MasterCountryState> GetCountryState = sqlConnection.Query<MasterCountryState>("usp_CountryStateGet", commandType: CommandType.StoredProcedure).ToList();
                     return GetCountryState;
                 }
             }
