@@ -220,6 +220,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppUtility\AppConstant.cs" />
     <Compile Include="AppUtility\AppUtility.cs" />
     <Compile Include="AppUtility\SqlUtility.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\MasterQualification.cs" />
     <Compile Include="Models\MasterRelationship.cs" />
+    <Compile Include="Models\NumberToWordConverter.cs" />
     <Compile Include="Models\OrganizationClient.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeAddress.cs" />
@@ -267,7 +269,10 @@
     <Compile Include="Models\MasterDocumentCategory.cs" />
     <Compile Include="Models\MasterMaritalStatus.cs" />
     <Compile Include="Models\Organization.cs" />
+    <Compile Include="Models\PayScale.cs" />
     <Compile Include="Models\Payslip.cs" />
+    <Compile Include="Models\PayslipGeneration.cs" />
+    <Compile Include="Models\RequestModel.cs" />
     <Compile Include="Models\ResponseModel.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\Users.cs" />
@@ -335,6 +340,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\sass\" />
     <Folder Include="ExternalDll\" />
+    <Folder Include="Temp\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Common\" />
   </ItemGroup>
