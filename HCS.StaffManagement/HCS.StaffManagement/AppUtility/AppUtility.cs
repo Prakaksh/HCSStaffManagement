@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace HCS.StaffManagement.AppUtility
@@ -27,6 +28,18 @@ namespace HCS.StaffManagement.AppUtility
                 return ConfigurationManager.ConnectionStrings[name].ToString();
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string ReturnDecimalPoint(float flVal, int precession)
+        {
+            try
+            {
+                return flVal.ToString("n" + precession.ToString("n"+ precession.ToString()));
+            }
+            catch(Exception ex)
             {
                 throw ex;
             }

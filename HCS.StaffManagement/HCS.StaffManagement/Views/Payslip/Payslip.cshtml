@@ -1,4 +1,4 @@
-﻿@model HCS.StaffManagement.Models.Payslip
+﻿@*@model HCS.StaffManagement.Models.PayScale*@
 
 @{
     ViewBag.Title = "Payslip";
@@ -30,8 +30,8 @@
                         @*selectpicker*@
                         <select class="" data-style="btn btn-primary btn-round" id="ddlEmployee" title="Single Select" data-size="7">
                             <option disabled selected>Select Employee</option>
-                            <option value="HCS001">Employee 1</option>
-                            <option value="HCS002">Employee 2</option>
+                            <option value="CA3AEBEB-2A0A-40F9-A6F7-17EDC8B43F04">Employee 1</option>
+                            <option value="CA3AEBEB-2A0A-40F9-A6F7-17EDC8B43F02">Employee 2</option>
                         </select>
                     </div>
                 </div>
@@ -49,17 +49,16 @@
                                     <div class="card">
                                         <!--<form id="Earnings" action="" method="">-->
                                         <div class="card-header card-header-icon" data-background-color="rose">
-                                            <i class="material-icons">attach_money</i>
+                                            <i class="material-icons">attach_money</i><b>Earnings</b>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="card-title">Earnings</h4>
-
+                                            @*<h4 class="card-title">Earnings</h4>*@
                                             <div class="form-group label-floating">
                                                 <label class="control-label">
                                                     Working Days
                                                     <small>*</small>
                                                 </label>
-                                                <input class="form-control" name="days" id="txtWorkingDays" type="text" required="true" />
+                                                <input class="form-control DigitOnlyValidation" name="days" id="txtWorkingDays" type="text" required="true" />
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -76,7 +75,7 @@
                                                         <label class="control-label">
                                                             Total Basic
                                                         </label>
-                                                        <input class="form-control earnings" name="txtBasicPerMonth" id="txtBasicPerMonth" type="text" readonly />
+                                                        <input class="form-control earnings" name="txtBasicPerMonth" id="txtBasicPerMonth" type="text" readonly tabindex="-1" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -95,7 +94,7 @@
                                                         <label class="control-label">
                                                             Total Wages D.A
                                                         </label>
-                                                        <input class="form-control earnings" name="txtWagesDAPerMonth" id="txtWagesDAPerMonth" type="text" readonly />
+                                                        <input class="form-control earnings" name="txtWagesDAPerMonth" id="txtWagesDAPerMonth" type="text" readonly tabindex="-1" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,10 +117,10 @@
                                     <div class="card">
                                         <!--<form id="Deductions" action="" method="">-->
                                         <div class="card-header card-header-icon" data-background-color="rose">
-                                            <i class="material-icons">money_off</i>
+                                            <i class="material-icons">money_off</i><b> Deductions</b>
                                         </div>
                                         <div class="card-content">
-                                            <h4 class="card-title">Deductions</h4>
+                                            <h4 class="card-title"></h4>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">

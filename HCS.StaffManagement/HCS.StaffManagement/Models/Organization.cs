@@ -8,7 +8,7 @@ namespace HCS.StaffManagement.Models
 {
     public class Organization
     {
-        public string OrganizationID { get; set; }
+        public Guid OrganizationID { get; set; }
 
         [Required]
         public string OrganizationName { get; set; }
@@ -25,7 +25,7 @@ namespace HCS.StaffManagement.Models
 
         public int CountryID { get; set; }
         public int StateID { get; set; }
-        public int City { get; set; }
+        public string City { get; set; }
 
         [StringLength(13,MinimumLength =10)]
         public string ContactNO { get; set; }

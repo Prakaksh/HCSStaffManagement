@@ -38,6 +38,8 @@ namespace HCS.StaffManagement.Models
         public string VoterCardNo { get; set; }
         public string RationCardNo { get; set; }
         public string DrivingLicenseNo { get; set; }
+        public string PF { get; set; }
+        public string ESI { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
@@ -58,5 +60,8 @@ namespace HCS.StaffManagement.Models
         public Address PermanentAddress { get; set; }
         //public List<EmployeeAddress> EmployeeAddress { get; set; }
 
+        public string Designation { get; set; }
+        public string Department { get; set; }
+        public string Location { get; set; }
     }
 }
