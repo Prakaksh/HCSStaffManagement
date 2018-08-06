@@ -57,8 +57,7 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
         "columns": columns,
         "columnDefs": colDefs,
         "bDestroy": true,
-        "ajax": {
-         
+        "ajax": {         
             "url": BaseUrl + url,
             "type": "GET",
             "data": paramObj,
@@ -69,7 +68,7 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
             //        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             //    },
             "error": function (xhr, obj, data) {
-                fnAuthorizationFailure(xhr, obj, data, fnError);
+                //fnAuthorizationFailure(xhr, obj, data, fnError);
             }
         },
         "order": order,
