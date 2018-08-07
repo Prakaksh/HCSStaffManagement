@@ -1,40 +1,45 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
     initMaterialWizard();
     fnQualification();
     fnMaritalStatus();
     fnCountry();
-    fnDDLBind("#CountryStateID,#CountryStateID1", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
-    //fnAjax("API URL", "GET", null, "json", null, fnSuccessMaritalStatusGet, fnErrorMaritalStatusGet);
+    fnGender();
 
-
+    fnDDLBind("#PermanentAddress_CountryID,#CurrentAddress_CountryStateID", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
+    $('#PermanentAddress_CountryID,#CurrentAddress_CountryStateID').val('0').trigger('change');
 });
 
+//$('#PermanentAddress_CountryID').slideDown()
+//{
+//    label_floatingRemove(this);
+//}
 
     function initMaterialWizard() {
     // Code for the Validator
-    var $validator = $('.wizard-card form').validate({
-        rules: {
-            firstname: {
-                required: true,
-                minlength: 3
-            },
-            //AadharNo: {
-            //    required: true,
-            //},
-            lastname: {
-                required: true,
-                minlength: 3
-            },
-            email: {
-                required: true,
-                minlength: 3,
-            }
-        },
+    //var $validator = $('.wizard-card form').validate({
+    //    rules: {
+    //        firstname: {
+    //            required: true,
+    //            minlength: 3
+    //        },
+    //        //AadharNo: {
+    //        //    required: true,
+    //        //},
+    //        lastname: {
+    //            required: true,
+    //            minlength: 3
+    //        },
+    //        email: {
+    //            required: true,
+    //            minlength: 3,
+    //        }
+    //    },
 
-        errorPlacement: function (error, element) {
-            $(element).parent('div').addClass('has-error');
-        }
-    });
+    //    errorPlacement: function (error, element) {
+    //        $(element).parent('div').addClass('has-error');
+    //    }
+    //});
 
     // Wizard Initialization
     $('.wizard-card').bootstrapWizard({
@@ -106,7 +111,7 @@
 
             var checkbox = $('.footer-checkbox');
 
-            if (!index == 0) {
+            if (!index === 0) {
                 $(checkbox).css({
                     'opacity': '0',
                     'visibility': 'hidden',
@@ -166,7 +171,7 @@
                     var reader = new FileReader();
                     reader.onload = function (e) {
                         $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-                    }
+                    };
                     reader.readAsDataURL(input.files[0]);
                 }
                 // Create FormData object  
@@ -175,10 +180,8 @@
                 for (var i = 0; i < input.files.length; i++) {
                     fileData.append(input.files[i].name, input.files[i]);
                 }
-                fnFileUpload("/Employee/ProfileImageUpload", fileData, fnSuccess)
-                function fnSuccess(res) {
-                    $('#EmployeeProfilePictureID').val(res.ID)
-                }
+                fnFileUpload("/Employee/ProfileImageUpload", fileData, fnSuccess);
+               
             }
             else {
                 return HCSStaff.showAlert('image-size');
@@ -205,9 +208,9 @@
 
         $current = index + 1;
 
-        if ($current == 1) {
+        if ($current === 1) {
             move_distance -= 8;
-        } else if ($current == total_steps) {
+        } else if ($current === total_steps) {
             move_distance += 8;
         }
 
@@ -221,93 +224,149 @@
     }
 
 
+$('#sameasPermanent').change(function () {
+
+    if (this.checked) {
+        $('#CurrentAddress_Address1').val($('#PermanentAddress_Address1').val());
+        $('#CurrentAddress_Address1').parent('.label-floating').removeClass('is-empty');
+
+        $('#CurrentAddress_Address2').val($('#PermanentAddress_Address2').val());
+        $('#CurrentAddress_Address2').parent('.label-floating').removeClass('is-empty');
+
+        $('#CurrentAddress_City').val($('#PermanentAddress_City').val());
+        $('#CurrentAddress_City').parent('.label-floating').removeClass('is-empty');
+
+        $('#CurrentAddress_PinCode').val($('#PermanentAddress_PinCode').val());
+        $('#CurrentAddress_PinCode').parent('.label-floating').removeClass('is-empty');
+
+        $('#CurrentAddress_CountryStateID').val($('#PermanentAddress_CountryID').val());
+        $('#CurrentAddress_CountryStateID').parent('.label-floating').removeClass('is-empty');
+
+        
+    }
+    else {
+        $('#CurrentAddress_Address1').val('');
+        $('#CurrentAddress_Address1').parent('.label-floating').addClass('is-empty');
+
+        $('#CurrentAddress_Address2').val('');
+        $('#CurrentAddress_Address2').parent('.label-floating').addClass('is-empty');
+
+        $('#CurrentAddress_City').val('');
+        $('#CurrentAddress_City').parent('.label-floating').addClass('is-empty');
+
+        $('#CurrentAddress_Address1').val('');
+        $('#CurrentAddress_Address1').parent('.label-floating').addClass('is-empty');
+
+        $('#CurrentAddress_PinCode').val('');
+        $('#CurrentAddress_PinCode').parent('.label-floating').addClass('is-empty');
+
+        $('#CurrentAddress_CountryStateID').val('');
+        $('#CurrentAddress_CountryStateID').parent('.label-floating').addClass('is-empty');
+    }
 
 
+});
 //Success CallBack
 function fnSuccessMaritalStatusGet() { }
 function fnErrorMaritalStatusGet() { }
 
-$('#btnSaveEmployee').on('click', function () {
+//$('#btnSaveEmployee').on('click', function () {
 
-    HCSStaff.showSwal('success-message')
+//    HCSStaff.showSwal('success-message');
    
-    var objEmp = new Object();
-    var AccountInfo = new Object();
-    var objBankAccount = [];
-    //var objBankAccount = new Object();
-    objEmp.AadharNo = $('#AadharNo').val();
-    objEmp.EmployeeFirstName = $('#EmployeeFirstName').val();
-    objEmp.EmployeeLastName = $('#EmployeeLastName').val();
-    objEmp.DOB = $('#DOB').val();
-    objEmp.DateofJoin = $('#DateofJoin').val();
-    objEmp.Gender = $('#Gender').val();
-    objEmp.MobileNo = $('#MobileNo').val();
-    objEmp.EmailID = $('#EmailID').val();
-    objEmp.Natioality = $('#Natioality').val();
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.VoterCardNo = $('#VoterCardNo').val();
-    objEmp.RationCardNo = $('#RationCardNo').val();
-    objEmp.DrivingLicenseNo = $('#DrivingLicenseNo').val();
+//    var objEmp = new Object();
+//    var AccountInfo = new Object();
+//    var objBankAccount = [];
+//    //var objBankAccount = new Object();
+//    objEmp.AadharNo = $('#AadharNo').val();
+//    objEmp.EmployeeFirstName = $('#EmployeeFirstName').val();
+//    objEmp.EmployeeLastName = $('#EmployeeLastName').val();
+//    objEmp.DOB = $('#DOB').val();
+//    objEmp.DateofJoin = $('#DateofJoin').val();
+//    objEmp.Gender = $('#Gender').val();
+//    objEmp.MobileNo = $('#MobileNo').val();
+//    objEmp.EmailID = $('#EmailID').val();
+//    objEmp.Natioality = $('#Natioality').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.VoterCardNo = $('#VoterCardNo').val();
+//    objEmp.RationCardNo = $('#RationCardNo').val();
+//    objEmp.DrivingLicenseNo = $('#DrivingLicenseNo').val();
 
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.PanNo = $('#PanNo').val();
-    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
+//    objEmp.PanNo = $('#PanNo').val();
 
-    //
-    AccountInfo.AccountNo = 123456789;
-    AccountInfo.BankName = "HDFC"
-    //objEmp.AccountNo = AccountInfo
-    debugger;/// TRY Now  objEmp for Employee class object..  EmployeeBankAccount
-    //objBankAccount.push(objBankAccount.AccountNo);
-    objEmp.objBankAccount = AccountInfo;   //now fine..s
-    //objEmp.objBankAccount
-    fnAjax("/Employee/EmployeeInsertUpdate", "POST", objEmp, fnSuccess, fnError)
-    function fnSuccess() {
-        alert("Created Successfully")
+//    //
+//    AccountInfo.AccountNo = 123456789;
+//    AccountInfo.BankName = "HDFC"
+//    //objEmp.AccountNo = AccountInfo
+//    debugger;/// TRY Now  objEmp for Employee class object..  EmployeeBankAccount
+//    //objBankAccount.push(objBankAccount.AccountNo);
+//    objEmp.objBankAccount = AccountInfo;   //now fine..s
+//    //objEmp.objBankAccount
+//    fnAjax("/Employee/EmployeeInsertUpdate", "POST", objEmp, fnSuccess, fnError)
+//    function fnSuccess() {
+//        alert("Created Successfully")
 
-    }
-    function fnError() {
-        alert('HI');
-    }
-    //$.ajax({
-    //    type: "POST",
-    //    url: "/Employee/EmployeeInsertUpdate",
-    //    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-    //    data: objEmp,
-    //    dataType: "json",
-    //    success: function (result, status, xhr) {
-    //        debugger;
-    //        $("#dataDiv").html(result);
-    //    },
-    //    error: function (xhr, status, error) {
-    //        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-    //    }
-    //});  
+//    }
+//    function fnError() {
+//        alert('HI');
+//    }
+//    //$.ajax({
+//    //    type: "POST",
+//    //    url: "/Employee/EmployeeInsertUpdate",
+//    //    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+//    //    data: objEmp,
+//    //    dataType: "json",
+//    //    success: function (result, status, xhr) {
+//    //        debugger;
+//    //        $("#dataDiv").html(result);
+//    //    },
+//    //    error: function (xhr, status, error) {
+//    //        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+//    //    }
+//    //});  
 
-    //object objEmp = new object();
-    //objEmp.firstname = "fljksdlfjsldf";
-});
+//    //object objEmp = new object();
+//    //objEmp.firstname = "fljksdlfjsldf";
+//});
 
 function fnQualification() {
     $.each(QualificationList.Qualification, function (data, value) {
         $("#Qualification").append($("<option></option>").val(value.QualificationCode).html(value.QualificationName)).sort();
-    })
+        $('#Qualification').val('0').trigger('change');
+    });
  }
 
 function fnMaritalStatus() {
     $.each(MaritalStatusList.MaritalStatus, function (data, value) {
         $("#MaritalStatusCode").append($("<option></option>").val(value.MaritalStatusCode).html(value.MaritalStatusName));
-    })
+        $('#MaritalStatusCode').val('0').trigger('change');
+    });
 }
 
 
 function fnCountry() {
     $.each(CountryList.Country, function (data, value) {
-
         $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
         $("#CountryID,#CountryID1").val("IND").trigger('change');
-    })
+    });
+}
+
+
+function fnGender() {
+    $.each(GenderList.Gender, function (data, value) {
+
+        $("#ddlGender").append($("<option></option>").val(value.GenderCode).html(value.GenderName));
+        $("#ddlGender").val("0").trigger('change');
+    });
+}
+
+
+
+function fnSuccess(res) {
+    $('#EmployeeProfilePictureID').val(res.ID);
 }

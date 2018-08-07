@@ -5,19 +5,24 @@
     Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
 }
 
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
-@*<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.min.js"></script>*@
-@*<link href="~/Content/css/demo.css" rel="stylesheet" />*@
-@*<script src="~/Content/js/demo.js"></script>*@
-
 <div class="container-fluid">
     <div class="col-sm-12">
         <!--      Wizard container        -->
         <div class="container-fluid">
             <div class="card wizard-card" data-color="rose" id="wizardProfile">
-                @*@using (Html.BeginForm("EmployeeInsertUpdate", "Employee", FormMethod.Post))
-                    {*@
-                <form id="FormEmployeeDetails" action="">
+                @using (Ajax.BeginForm(
+                            new AjaxOptions
+                            {
+                                HttpMethod = "post",
+                                Url = "EmployeeInsertUpdate",
+                                InsertionMode = InsertionMode.Replace,
+                                OnSuccess = "onAjaxRequestSuccess"
+
+                            }))
+                {
+                    @*@using (Html.BeginForm("EmployeeInsertUpdate", "Employee", FormMethod.Post))
+                        {*@
+                    @*<form id="FormEmployeeDetails" action="">*@
                     <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                     <div class="wizard-header">
                         <h3 class="wizard-title">
@@ -25,7 +30,7 @@
                         </h3>
                         <h5>This information will let us know more about your Employee.</h5>
                     </div>
-                    
+
                     <div class="wizard-navigation">
                         <ul>
                             <li class="text-center">
@@ -37,8 +42,8 @@
                             </li>
 
                             @*<li class="text-center">
-                    <a href="#account" data-toggle="tab">Account</a>
-                </li>*@
+                                    <a href="#account" data-toggle="tab">Account</a>
+                                </li>*@
 
                             <li class="text-center">
                                 <a href="#wages" data-toggle="tab">Wages and Role</a>
@@ -49,7 +54,7 @@
                     <div class="tab-content">
                         <div class="tab-pane" id="about">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-info">
                                     Employee Basic Details
                                 </div>
                                 <div class="row col-md-12">
@@ -70,7 +75,7 @@
                                                 Employee AadharNo
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", maxlength = 16 })
+                                            @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", maxlength = 16, minlength = 12 })
                                         </div>
 
                                         <div class="form-group label-floating">
@@ -86,7 +91,7 @@
                                                 Mobile No
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", maxlength = 13 })
+                                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", maxlength = 13, minlength = 10 })
                                         </div>
 
                                         <div class="form-group label-floating">
@@ -118,7 +123,7 @@
                                             <label class="control-label">
                                                 Contact No
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation",minlength=10, maxlength = 13 })
+                                            @Html.TextBoxFor(Model => Model.ContactNo, new { @class = "form-control DigitOnlyValidation", minlength = 10, maxlength = 13 })
                                         </div>
 
                                         <div class="form-group label-floating is-focused">
@@ -132,7 +137,9 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">
                                                 Employee Last Name
+                                                <small>*</small>
                                             </label>
+
                                             @Html.TextBoxFor(Model => Model.EmployeeLastName, new { @class = "form-control", maxlength = 25 })
                                         </div>
 
@@ -141,11 +148,8 @@
                                                 Gender
                                             </label>
                                             <select name="Gender" id="ddlGender" class="form-control">
-                                                <option value=1>Select Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
                                             </select>
-                                            @*@Html.HiddenFor(Model => Model.Gender)*@
+
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">
@@ -170,7 +174,7 @@
 
                         <div class="tab-pane" id="information">
                             <div class="card">
-                                <div class="card-header">Document Details</div>
+                                <div class="card-header bg-info">Document Details</div>
                                 <div class=" row col-sm-12">
                                     <div class="col-sm-3">
                                         <div class="form-group label-floating">
@@ -194,7 +198,7 @@
                                             <label class="control-label">
                                                 Employee PAN No.
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PanNo, new { @class = "form-control", maxlength = 11,minlength=10 })
+                                            @Html.TextBoxFor(Model => Model.PanNo, new { @class = "form-control", maxlength = 11, minlength = 10 })
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -210,7 +214,7 @@
 
 
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-info">
                                     Permanent Address
                                 </div>
 
@@ -220,7 +224,7 @@
                                             <label class="control-label">
                                                 Enter Address 1
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control",maxlength=100 })
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control", maxlength = 100 })
                                         </div>
 
                                         <div class="form-group label-floating">
@@ -236,14 +240,14 @@
                                             <label class="control-label">
                                                 Enter Address 2
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control",maxlength=100 })
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control", maxlength = 100 })
                                         </div>
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">
                                                 Enter Pin Code
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6, minlength = 6})
+                                            @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6, minlength = 6 })
                                         </div>
                                     </div>
 
@@ -261,7 +265,7 @@
                                             <label class="control-label">
                                                 Select State
                                             </label>
-                                            <select name="CountryStateID" id="CountryStateID" class="form-control"></select>
+                                            <select name="CountryStateID" id="PermanentAddress_CountryID" class="form-control"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -278,7 +282,7 @@
 
 
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header bg-info">
                                     Currrent Address
                                 </div>
 
@@ -288,14 +292,14 @@
                                             <label class="control-label">
                                                 Enter Address 1
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address1, new { @class = "form-control",maxlength=100 })
+                                            @Html.TextBoxFor(Model => Model.CurrentAddress.Address1, new { @class = "form-control", maxlength = 100 })
                                         </div>
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">
                                                 Enter City Name
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.City, new { @class = "form-control", maxlength = 50 })
+                                            @Html.TextBoxFor(Model => Model.CurrentAddress.City, new { @class = "form-control", maxlength = 50 })
                                         </div>
 
                                     </div>
@@ -304,14 +308,14 @@
                                             <label class="control-label">
                                                 Enter Address 2
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.Address2, new { @class = "form-control",maxlength=100 })
+                                            @Html.TextBoxFor(Model => Model.CurrentAddress.Address2, new { @class = "form-control", maxlength = 100 })
                                         </div>
 
                                         <div class="form-group label-floating">
                                             <label class="control-label">
                                                 Enter Pin Code
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.PermanentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6 })
+                                            @Html.TextBoxFor(Model => Model.CurrentAddress.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6 })
                                         </div>
                                     </div>
 
@@ -321,7 +325,6 @@
                                                 Select Country
                                             </label>
                                             <select name="CountryID" id="CountryID1" class="form-control" disabled></select>
-                                            @*@Html.TextBoxFor(Model => Model.CountryID, new { @class = "form-control", type = "email" })*@
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -329,7 +332,8 @@
                                             <label class="control-label">
                                                 Select State
                                             </label>
-                                            <select name="CountryStateID" id="CountryStateID1" class="form-control CountryState"></select>
+
+                                            <select name="CountryStateID" id="CurrentAddress_CountryStateID" class="form-control CountryState"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -420,7 +424,7 @@
 
                         <div class="tab-pane" id="wages">
                             <div class="card">
-                                <div class="card-header">Employee Pay Scale</div>
+                                <div class="card-header bg-info">Employee Pay Scale</div>
 
                                 <div>
                                     <div class="row col-md-12">
@@ -475,7 +479,7 @@
                     <div class="wizard-footer">
                         <div class="float-right">
                             <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                            <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSaveEmployee" onclick="HCSStaff.showSwal('success-message')" name='finish' value='Finish' />
+                            <input type='submit' class='btn btn-finish btn-fill btn-rose btn-wd' id="btnSaveEmployee" name='finish' value='Finish' />
                         </div>
                         <div class="float-left">
                             <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
@@ -483,9 +487,8 @@
                         <div class="clearfix"></div>
                     </div>
 
-
-                </form>
-                @*}*@
+                    @*</form>*@
+                }
             </div>
         </div>
 
@@ -494,11 +497,6 @@
 
 </div>
 
-@*<script src="~/ProjectScript/CreateEmployee/CreateEmployee.js"></script>*@
+
 <script src="~/Scripts/AppScripts/Common.js"></script>
 <script src="~/Scripts/CreateEmployee/CreateEmployee.js"></script>
-
-@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval");
-    }*@

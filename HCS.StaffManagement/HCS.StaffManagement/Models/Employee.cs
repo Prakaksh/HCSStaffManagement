@@ -27,6 +27,10 @@ namespace HCS.StaffManagement.Models
         [StringLength(13, MinimumLength = 10)]
         public string MobileNo { get; set; }
 
+        [StringLength(13, MinimumLength = 10)]
+        public string ContactNo { get; set; }
+
+
         [DataType(DataType.EmailAddress)]
         public string EmailID { get; set; }
         public string Natioality { get; set; }
@@ -45,7 +49,10 @@ namespace HCS.StaffManagement.Models
         public string UpdatedBy { get; set; }
         public string UpdatedDate { get; set; }
 
-       
+        //public string CurrentAddress_CountryStateID { get; set; }
+        //public string PermanentAddress_CountryID { get; set; }
+
+
 
         //Employee Address
         //public string AddressCategoryCode { get; set; }

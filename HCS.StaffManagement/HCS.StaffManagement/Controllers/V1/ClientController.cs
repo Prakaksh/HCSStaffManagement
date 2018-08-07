@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using HCS.StaffManagement.Repositories.V1;
 using HCS.StaffManagement.Repositories.DTO;
+using HCS.StaffManagement.Repositories;
 
 namespace HCS.StaffManagement.Controllers.V1
 {
@@ -33,17 +34,38 @@ namespace HCS.StaffManagement.Controllers.V1
 
         //}
 
-        [Route("GetClient")]
+        [Route("ClientGet")]
         [HttpGet]
-        public HttpResponseMessage GetClient([FromBody]Client objClient)
+        public HttpResponseMessage ClientGet([FromUri]Client objClient)
         {
             try
             {
-                ClientContext obj = new ClientContext();
+                Repositories.V1.ClientContext obj = new Repositories.V1.ClientContext();
 
-                IEnumerable<ClientDto> objResult = obj.GetClient(objClient);
+                IEnumerable<ClientDto> objResult = obj.ClientGet(objClient);
 
                 return Request.CreateResponse(HttpStatusCode.OK, objResult);
+            }
+            catch (Exception ex)
+            {
+                //objErrorLogServices.LogError("Client", "GetClient", "", "", ex.Message.ToString());
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Internal Server Error");
+            }
+
+        }
+
+
+        [Route("ClientUpdate")]
+        [HttpPost]
+        public HttpResponseMessage ClientUpdate([FromBody]Client objClient)
+        {
+            try
+            {
+                Repositories.ClientContext obj = new Repositories.ClientContext();
+
+              var result= obj.ClientInsertUpdate(objClient);
+
+                return Request.CreateResponse(HttpStatusCode.OK, result);
             }
             catch (Exception ex)
             {

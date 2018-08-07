@@ -1,29 +1,27 @@
-﻿$(document).ready(function()
-{
+﻿$(document).ready(function () {
     fnCountry();
-    fnDDLBind("#ddlState", "api/V1/CountryStateGet","CountryStateID", "StateName", "Select State");
-        //AutoComplete Text Turn Off
-       $("input:text,form").attr("autocomplete", "off");
-})
+    fnDDLBind("#ddlState", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
+    $("#ddlState").val("0").trigger('change');
+    $("input:text,form").attr("autocomplete", "off");
+});
 
+//  Client Save Success Section 
 var onAjaxRequestSuccess = function (result) {
-       
-    if (result = "success") {
+    if (result.result == 'success') {
         HCSStaff.showAlert('success-message');
-        //var Url = 'Url.Action("GetClient", "Client")'
-        //window.location.href = Url;
         $("#form0")[0].reset();
     }
-
-}
+   else if (result.result == 'exist') {
+        HCSStaff.showAlert('exist-message');
+    }
+};
 
 
 function fnCountry() {
     $.each(CountryList.Country, function (data, value) {
-
         $("#ddlCountry").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
         $("#ddlCountry").val("IND").trigger('change');
-    })
+    });
 }
 
 //function SaveClient() {
