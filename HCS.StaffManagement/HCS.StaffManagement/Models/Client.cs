@@ -22,7 +22,7 @@ namespace HCS.StaffManagement.Models
         public string CountryStateID { get; set; }
         public string City { get; set; }
         [DataType(DataType.PostalCode)]
-        public int PinCode { get; set; }
+        public string PinCode { get; set; }
         [StringLength(13, MinimumLength = 10)]
         public string MobileNo { get; set; }
         [StringLength(13,MinimumLength =10)]

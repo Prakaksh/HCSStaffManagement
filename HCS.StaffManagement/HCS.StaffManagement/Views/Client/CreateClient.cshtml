@@ -94,7 +94,7 @@
                     <label class="control-label">
                         Pin Code
                     </label>
-                    @Html.TextBoxFor(Model => Model.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6,minlength=6, autocomplete = "off"})
+                    @Html.TextBoxFor(Model => Model.PinCode, new { @class = "form-control DigitOnlyValidation", maxlength = 6,minlength=6})
                 </div>
             </div>
 
@@ -102,6 +102,7 @@
                 <div class="form-group label-floating">
                     <label class="control-label">
                         Mobile No.
+                        <small>*</small>
                     </label>
                     @Html.TextBoxFor(Model => Model.MobileNo, new { @class = "form-control DigitOnlyValidation", required = "true", minlength = 10, maxlength = 13 })
                 </div>
@@ -120,6 +121,7 @@
                 <div class="form-group label-floating">
                     <label class="control-label">
                         Email ID
+                        <small>*</small>
                     </label>
                     @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", type = "Email",required= "required" })
                 </div>

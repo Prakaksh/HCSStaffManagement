@@ -34,11 +34,13 @@ namespace HCS.StaffManagement.Controllers
                 string result= objEmp.EmployeeInsertUpdate(objEmployee);
                 TempData["Success"] = "Added Successfully!";
                 
-                return RedirectToAction("Employee", "Employee");
+                
                 //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
             }
-            catch(Exception ex) { }
-            return View();
+            catch(Exception ex) {
+                throw ex;
+            }
+            return RedirectToAction("Employee", "Employee");
         }
         //--this is for edit
         [HttpPost]

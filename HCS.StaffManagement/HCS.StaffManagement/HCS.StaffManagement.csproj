@@ -358,6 +358,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\sass\" />
     <Folder Include="ExternalDll\" />
+    <Folder Include="HCS\StaffManagement\Controllers\V1\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Common\" />

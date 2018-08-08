@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HCS.StaffManagement.Filter;
 using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories;
+using HCS.StaffManagement.Repositories.DTO;
 
 namespace HCS.StaffManagement.Controllers
 {
@@ -14,15 +15,27 @@ namespace HCS.StaffManagement.Controllers
     {
         // GET: Client
         [HttpGet]
-        public ActionResult GetClient()
+        public ActionResult GetClient(Client objclient)
         {
+            //if (objclient.OrganizationClientID != null)
+            //{
+            //    ClientContext obj = new ClientContext();
+
+            //    //IEnumerable<ClientDto> objResult = obj.GetClient(objClient);
+            //}
             return View();
         }
 
         [HttpGet]
-        public ActionResult CreateClient()
+        public ActionResult CreateClient(Client objclient)
         {
-            return View();
+            if (objclient.OrganizationClientID != null)
+            {
+                ClientContext obj = new ClientContext();
+
+               // IEnumerable<ClientDto> objResult = obj.GetClient(objclient);
+            }
+            return View(objclient);
         }
 
 

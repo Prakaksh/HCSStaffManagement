@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 var QualificationList = {
     "Qualification": [
-        { "QualificationCode": 1, "QualificationName": "Select Qualification" },
+        { "QualificationCode": "0", "QualificationName": "Select Qualification" },
         { "QualificationCode": "SSLC", "QualificationName": "SSLC" },
         { "QualificationCode": "PUC", "QualificationName": "PUC" },
         { "QualificationCode": "BTECH", "QualificationName": "Btech" },
@@ -25,84 +25,111 @@ var QualificationList = {
         { "QualificationCode": "PGD", "QualificationName": "PGD" },
         { "QualificationCode": "BCOM", "QualificationName": "B.Com" },
         { "QualificationCode": "OTHER", "QualificationName": "Other Bachelors" }
-        ]
-}  
+    ]
+};  
 
 
 
 var MaritalStatusList = {
     "MaritalStatus": [
-        { "MaritalStatusCode": "1", "MaritalStatusName": "Select MaritalStatus" },
+        { "MaritalStatusCode": "0", "MaritalStatusName": "Select MaritalStatus" },
         { "MaritalStatusCode": "MR", "MaritalStatusName": "Married" },
+        { "MaritalStatusCode": "NM", "MaritalStatusName": "Single" },
         { "MaritalStatusCode": "SP", "MaritalStatusName": "Separated" },
         { "MaritalStatusCode": "WD", "MaritalStatusName": "Widowed" },
         { "MaritalStatusCode": "DV", "MaritalStatusName": "Divorced" },
         { "MaritalStatusCode": "NM", "MaritalStatusName": "Never Married" }
     ]
-}
+};
+
+
+var GenderList = {
+    "Gender": [
+        { "GenderCode": "0", "GenderName": "Select Gender" },
+        { "GenderCode": "M", "GenderName": "Male" },
+        { "GenderCode": "F", "GenderName": "Female" },
+        { "GenderCode": "O", "GenderName": "Other" }
+    ]
+};
 
 
 var CountryList = {
     "Country": [
         { "CountryCode": "1", "CountryName": "Select Country" },
         { "CountryCode": "IND", "CountryName": "India" }
-        ]
-}
+    ]
+};
 
 // This function To Check Image Extension Type .jpeg,jpg,png, ext-- 
 function isImage(ImageID) {
-    var extension = ImageID.val().split('.').pop().toLowerCase()
+    var extension = ImageID.val().split('.').pop().toLowerCase();
     if ($.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) === -1) {
         return false;
     }
-    else { return true }
+    else { return true;}
 }
+
+//function label_floatingRemove(ID) {
+//    $(this).parent('.label-floating').removeClass('is-empty');
+//}
+
 
 
 HCSStaff = {
     showAlert: function (type) {
-        if (type == 'success-message') {
+        if (type === 'success-message') {
             swal({
                 title: "Created Successfully! ",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
                 type: "success"
             });
-        } 
-        if (type == 'invalid-message') {
+        }
+        else if (type === "update-message") {
+            swal({
+                title: "Updated Successfully! ",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            });
+        }
+        else if (type === "exist-message") {
+            swal({
+                title: "Record already exist!",
+                type: 'warning',
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-primary"
+            });
+        }
+        else if (type === 'invalid-message') {
             swal({
                 //title: "Auto close alert!",
                 text: "invalid format !",
                 type: 'error',
                 confirmButtonClass: "btn btn-info",
-                buttonsStyling: false,
+                buttonsStyling: false
 
             });
         }
-        if (type == 'image-size') {
+        else if (type === 'image-size') {
             swal({
                 //title: "Auto close alert!",
                 text: "Please check image size !",
                 type: 'error',
                 confirmButtonClass: "btn btn-info",
-                buttonsStyling: false,
+                buttonsStyling: false
 
             });
         }
-    },
-}
-
-//$('.datepicker').off('change').on('change', function () {
-//    debugger;
-//    var ele = $(this).parent.find('div');
-//    ele.removeClass('label-floating')
-//})
+    }
+};
 
 
 $('.datepicker').datetimepicker({
 
     format: 'DD-MM-YYYY',
-    useCurrent: false, 
+    useCurrent: false,
+    maxDate: $.now(),
     icons: {
         time: "fa fa-clock-o",
         date: "fa fa-calendar",
@@ -140,7 +167,7 @@ function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
             fnSuccess(result);
         },
         error: function (xhr, error, data) {
-            function fnError() { };
+            function fnError() { }
         }
     });
 }
@@ -148,7 +175,6 @@ function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
 
 //This Function Only for Image or File uploading
 function fnFileUpload(URL, fileData, fnSuccess) {
-    debugger;
     $.ajax({
         url: URL,
         type: "POST",
@@ -183,7 +209,7 @@ function fnDDLBind(controlID, Url, propKey, propVal, selectText, objdata) {
             $(controlID).append(html);
         },
         error: function (xhr, error, data) {
-            function fnError() { };
+            function fnError() { }
         }
     });
 }
@@ -195,7 +221,7 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
     if (destroy) {
         var table = tableName.DataTable();
         table.destroy();
-    };
+    }
     tableName.DataTable({
         "columns": columns,
         "columnDefs": colDefs,
@@ -216,7 +242,7 @@ function createDataTable(destroy, tableName, url, fnDataTableCallBack, columns, 
             }
         },
         "order": order,
-        "fnDrawCallback": function () { fnDataTableCallBack(); $('.tooltipped').tooltip(); },
+        "fnDrawCallback": function () { fnDataTableCallBack(); $('.tooltipped').tooltip(); }
         //"order": order
     });
 }
@@ -251,7 +277,7 @@ function returnRowData(current, table) {
 
 $(".DigitOnlyValidation").keypress(function (e) {
     //if the letter is not digit then display error and don't type anything
-    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+    if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
         //display error message
         //$("#errmsg").html("Digits Only").show().fadeOut("slow");
         return false;

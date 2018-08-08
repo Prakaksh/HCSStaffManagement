@@ -1,13 +1,10 @@
 ﻿using HCS.StaffManagement.Repositories.DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using HCS.StaffManagement.Models;
 using HCS.StaffManagement.Repositories.V1;
-using HCS.StaffManagement.Repositories.DTO;
 using NLog;
 
 namespace HCS.StaffManagement.Controllers.V1
@@ -31,7 +28,8 @@ namespace HCS.StaffManagement.Controllers.V1
             }
             catch (Exception ex)
             {
-                logger.Error(ex.Message, "test");
+                
+                logger.Error(ex.Message, "Employee EmployeeGet");
                             
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Internal Server Error");
             }

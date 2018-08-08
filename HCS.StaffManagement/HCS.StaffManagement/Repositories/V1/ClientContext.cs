@@ -15,7 +15,7 @@ namespace HCS.StaffManagement.Repositories.V1
     {
         private SqlConnection sqlConnection;
 
-        public IEnumerable<ClientDto> GetClient(Client objClient)
+        public IEnumerable<ClientDto> ClientGet(Client objClient)
         {
             IEnumerable<ClientDto> ResultGetClient = new List<ClientDto>();
 
@@ -26,6 +26,7 @@ namespace HCS.StaffManagement.Repositories.V1
                 {
                     var com = new DynamicParameters();
                     //com.Add("@OrganizationID", objClient.OrganizationID);
+                    com.Add("@OrganizationClientID", objClient.OrganizationClientID);
                     ResultGetClient = sqlConnection.Query<ClientDto>("usp_OrganizationClientGet",com, commandType: CommandType.StoredProcedure).ToList();
                     return ResultGetClient;
                 }

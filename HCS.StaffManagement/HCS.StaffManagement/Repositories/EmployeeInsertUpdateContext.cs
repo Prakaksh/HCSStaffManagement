@@ -16,41 +16,52 @@ namespace HCS.StaffManagement.Repositories
 
         public string EmployeeInsertUpdate(Employee objEmp)
         {
+            try { 
             string result = "";
-            using (sqlConnection = SqlUtility.GetConnection())
+                using (sqlConnection = SqlUtility.GetConnection())
+                {
+                    var com = new DynamicParameters();
+
+                    com.Add("@OrganizationID", objEmp.OrganizationID);
+                    com.Add("@AadharNo", objEmp.AadharNo);
+                    com.Add("@@EmployeeID", objEmp.EmployeeID);
+                    com.Add("@@EmployeeNo", objEmp.EmployeeNo);
+                    com.Add("@EmployeeFirstName", objEmp.EmployeeFirstName);
+                    com.Add("@EmployeeLastName", objEmp.EmployeeLastName);
+                    com.Add("@DOB", objEmp.DOB);
+                    com.Add("@MobileNo", objEmp.MobileNo);
+                    com.Add("@PanNo", objEmp.PanNo);
+                    com.Add("@RationCardNo", objEmp.RationCardNo);
+                    com.Add("@DrivingLicenseNo", objEmp.DrivingLicenseNo);
+                    com.Add("@VoterCardNo", objEmp.VoterCardNo);
+                    com.Add("@EmailID", objEmp.EmailID);
+                    //com.Add("@EmployeeFirstName", objEmp.objBankAccount.AccountNo);
+                    //com.Add("@EmployeeFirstName", objEmp.objBankAccount.AccountType);
+                    //com.Add("@EmployeeFirstName", objEmp.objBankAccount.BankName);
+                    //com.Add("@EmployeeFirstName", objEmp.objBankAccount.BankAddress);
+
+                    com.Add("@AddressCategoryCode", objEmp.CurrentAddress.AddressCategoryCode);
+                    com.Add("@Address1", objEmp.CurrentAddress.Address1);
+                    com.Add("@CountryID", objEmp.CurrentAddress.CountryID);
+                    com.Add("@CountryID", objEmp.CurrentAddress.CountryID);
+                    com.Add("@CountryStateID", objEmp.CurrentAddress.CountryStateID);
+                    com.Add("@City", objEmp.CurrentAddress.City);
+
+                    com.Add("@EmployeeFirstName", objEmp.PermanentAddress.AddressCategoryCode);
+                    com.Add("@Address1", objEmp.PermanentAddress.Address1);
+                    com.Add("@CountryID", objEmp.PermanentAddress.CountryID);
+                    com.Add("@CountryID", objEmp.PermanentAddress.CountryID);
+                    com.Add("@CountryStateID", objEmp.PermanentAddress.CountryStateID);
+                    com.Add("@City", objEmp.PermanentAddress.City);
+
+                    result = sqlConnection.Query<string>("usp_EmployeeInsertUpdate", commandType: CommandType.StoredProcedure).SingleOrDefault();
+                    return result;
+                }
+        }
+
+            catch (Exception ex)
             {
-                var com = new DynamicParameters();
-                com.Add("@AadharNo", objEmp.AadharNo);
-                com.Add("@EmployeeFirstName", objEmp.EmployeeFirstName);
-                com.Add("@EmployeeLastName", objEmp.EmployeeLastName);
-                com.Add("@DOB", objEmp.DOB);
-                com.Add("@MobileNo", objEmp.MobileNo);
-                com.Add("@PanNo", objEmp.PanNo);
-                com.Add("@RationCardNo", objEmp.RationCardNo);
-                com.Add("@DrivingLicenseNo", objEmp.DrivingLicenseNo);
-                com.Add("@VoterCardNo", objEmp.VoterCardNo);
-                com.Add("@EmailID", objEmp.EmailID);
-                com.Add("@EmployeeFirstName", objEmp.objBankAccount.AccountNo);
-                com.Add("@EmployeeFirstName", objEmp.objBankAccount.AccountType);
-                com.Add("@EmployeeFirstName", objEmp.objBankAccount.BankName);
-                com.Add("@EmployeeFirstName", objEmp.objBankAccount.BankAddress);
-
-                com.Add("@AddressCategoryCode", objEmp.CurrentAddress.AddressCategoryCode);
-                com.Add("@Address1", objEmp.CurrentAddress.Address1);
-                com.Add("@CountryID", objEmp.CurrentAddress.CountryID);
-                com.Add("@CountryID", objEmp.CurrentAddress.CountryID);
-                com.Add("@CountryStateID", objEmp.CurrentAddress.CountryStateID);
-                com.Add("@City", objEmp.CurrentAddress.City);
-
-                com.Add("@EmployeeFirstName", objEmp.PermanentAddress.AddressCategoryCode);
-                com.Add("@Address1", objEmp.PermanentAddress.Address1);
-                com.Add("@CountryID", objEmp.PermanentAddress.CountryID);
-                com.Add("@CountryID", objEmp.PermanentAddress.CountryID);
-                com.Add("@CountryStateID", objEmp.PermanentAddress.CountryStateID);
-                com.Add("@City", objEmp.PermanentAddress.City);
-
-                result = sqlConnection.Query<string>("Usp_GetMstStateList", commandType: CommandType.StoredProcedure).SingleOrDefault();
-                return result;
+                throw ex;
             }
         }
     }
