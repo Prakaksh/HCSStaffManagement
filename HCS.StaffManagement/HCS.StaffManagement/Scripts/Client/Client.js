@@ -34,6 +34,7 @@ var datatableColumn = [
 function GetClient() {
 
     var objClient = new Object();
+    objClient.OrganizationID = 'CDDBCAB3-DFB4-44A8-9F9C-871440862F8A';
     //objClient.UserID = null;
     createDataTable(false, TableName, "Api/V1/ClientGet", fnDataTableCallBack, datatableColumn, objClient, [], []);
 }
@@ -46,6 +47,7 @@ function fnDataTableCallBack() {
     $('.Edit_Mode').off('click').on('click', function () {
         var objClient = new Object();
         var row = returnRowData($(this), TableName)
+        objClient.OrganizationID = 'CDDBCAB3-DFB4-44A8-9F9C-871440862F8A';
         objClient.OrganizationClientID = row.OrganizationClientID
         fnAjax(BaseUrl + "Api/V1/ClientGet", "GET", objClient, fnSuccess, fnError);
     });

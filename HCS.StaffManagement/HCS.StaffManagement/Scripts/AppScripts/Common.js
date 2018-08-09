@@ -126,7 +126,6 @@ HCSStaff = {
 
 
 $('.datepicker').datetimepicker({
-
     format: 'DD-MM-YYYY',
     useCurrent: false,
     maxDate: $.now(),

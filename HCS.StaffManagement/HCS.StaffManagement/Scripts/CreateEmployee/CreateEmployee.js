@@ -343,29 +343,26 @@ function fnQualification() {
 
 function fnMaritalStatus() {
     $.each(MaritalStatusList.MaritalStatus, function (data, value) {
-        $("#MaritalStatusCode").append($("<option></option>").val(value.MaritalStatusCode).html(value.MaritalStatusName));
-        $('#MaritalStatusCode').val('0').trigger('change');
+        $("#MaritalStatusCode").append($("<option></option>").val(value.MaritalStatusCode).html(value.MaritalStatusName));        
     });
+    $('#MaritalStatusCode').val('0').trigger('change');
 }
 
 
 function fnCountry() {
     $.each(CountryList.Country, function (data, value) {
-        $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
-        $("#CountryID,#CountryID1").val("IND").trigger('change');
+        $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));        
     });
+    $("#CountryID,#CountryID1").val("IND").trigger('change');
 }
 
 
 function fnGender() {
     $.each(GenderList.Gender, function (data, value) {
-
         $("#ddlGender").append($("<option></option>").val(value.GenderCode).html(value.GenderName));
-        $("#ddlGender").val("0").trigger('change');
     });
+    $("#ddlGender").val("0").trigger('change');
 }
-
-
 
 function fnSuccess(res) {
     $('#EmployeeProfilePictureID').val(res.ID);

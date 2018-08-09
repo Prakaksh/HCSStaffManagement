@@ -325,6 +325,9 @@
     <Content Include="Content\js\bootstrap.js.map" />
     <Content Include="Content\js\bootstrap.bundle.min.js.map" />
     <Content Include="Content\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\material-icons\fallback.woff2" />
+    <Content Include="Content\material-icons\cyrillic-ext.woff2" />
+    <Content Include="Content\material-icons\cyrillic.woff2" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

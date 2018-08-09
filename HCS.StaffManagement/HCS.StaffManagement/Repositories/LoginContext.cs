@@ -14,9 +14,10 @@ namespace HCS.StaffManagement.Repositories
     {
         private SqlConnection sqlConnection;
 
-        public string GetLogin(Login obj)
+        public UserInfo GetLogin(Login obj)
         {
-            string result = "";
+            //string result = "";
+            UserInfo objUser = new UserInfo();
             try
             {
                 using (sqlConnection = SqlUtility.GetConnection())
@@ -24,8 +25,8 @@ namespace HCS.StaffManagement.Repositories
                     var com = new DynamicParameters();
                         com.Add("@EmailID", obj.EmailID);
                         com.Add("@Password", obj.Password);
-                    result = sqlConnection.Query<string>("usp_UserAuthenticate", com, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                    return result;
+                    objUser = sqlConnection.Query<UserInfo>("usp_UserAuthenticate", com, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    return objUser;
                 }
             }
             catch (Exception ex)

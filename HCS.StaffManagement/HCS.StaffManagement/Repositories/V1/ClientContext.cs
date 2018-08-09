@@ -25,7 +25,7 @@ namespace HCS.StaffManagement.Repositories.V1
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
                     var com = new DynamicParameters();
-                    //com.Add("@OrganizationID", objClient.OrganizationID);
+                    com.Add("@OrganizationID", objClient.OrganizationID);
                     com.Add("@OrganizationClientID", objClient.OrganizationClientID);
                     ResultGetClient = sqlConnection.Query<ClientDto>("usp_OrganizationClientGet",com, commandType: CommandType.StoredProcedure).ToList();
                     return ResultGetClient;

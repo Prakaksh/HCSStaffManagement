@@ -29,11 +29,12 @@ namespace HCS.StaffManagement.Controllers
                 {
                     LoginContext obj = new LoginContext();
                  
-                    string result = obj.GetLogin(objlogin);
-                    if (result != "0")
+                    UserInfo objUser = obj.GetLogin(objlogin);
+                    if (objUser != null && objUser.Status != "0")
                     {
+                        
                         //Redirecting to screen based on role..
-                        return GetRoleType(result, objlogin);
+                        GetRoleType(objUser, objlogin);
                     }
                     else {
                         ViewBag.Message = "Please enter valid credentials!";

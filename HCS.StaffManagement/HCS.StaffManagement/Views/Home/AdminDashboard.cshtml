@@ -4,6 +4,14 @@
     Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
 }
 
+<style>
+    .disabled {
+    /*display:inline-block;*/
+    cursor: not-allowed;
+    pointer-events: none;       
+    opacity: 0.6;   
+}
+</style>
 
     <div class="container-fluid">
         <div class="row">
@@ -31,13 +39,14 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href=@Url.Action("Payslip","Payslip")>
+                    @*<a href=@Url.Action("Payslip","Payslip") class="disabled">*@
+                    <a href="#" class="disabled">
                         <div class="card card-stats btn-outline-info">
                             @*<div>
-                        <div class="card-header" data-background-color="orange">
-                            <i class="material-icons">group</i>
-                        </div>
-                    </div>*@
+                    <div class="card-header" data-background-color="orange">
+                        <i class="material-icons">group</i>
+                    </div>
+                </div>*@
                             <div class="card-content">
                                 <h3 class="card-title center-align">Generate Payslip</h3>
                             </div>
@@ -49,13 +58,14 @@
 
 
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href=@Url.Action("PayslipDownload","Payslip")>
+                    @*<a href=@Url.Action("PayslipDownload","Payslip") class="disabled">*@
+                    <a href="#" class="disabled">
                         <div class="card card-stats btn-outline-info">
                             @*<div>
-                        <div class="card-header" data-background-color="rose">
-                            <i class="material-icons">move_to_inbox</i>
-                        </div>
-                    </div>*@
+                    <div class="card-header" data-background-color="rose">
+                        <i class="material-icons">move_to_inbox</i>
+                    </div>
+                </div>*@
                             <div class="card-content">
                                 <!-- <p class="category">Revenue</p> -->
                                 <h3 class="card-title center-align">Download</h3>
@@ -64,13 +74,14 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href=@Url.Action("ReportGet","Report")>
+                    @*<a href=@Url.Action("ReportGet","Report") class="disabled">*@
+                    <a href="#" class="disabled">
                         <div class="card card-stats btn-outline-info">
                             @*<div>
-                        <div class="card-header" data-background-color="purple">
-                            <i class="material-icons">list_alt</i>
-                        </div>
-                    </div>*@
+                    <div class="card-header" data-background-color="purple">
+                        <i class="material-icons">list_alt</i>
+                    </div>
+                </div>*@
                             <div class="card-content">
                                 <!-- <p class="category">Followers</p> -->
                                 <h3 class="card-title center-align">Reports</h3>
@@ -95,16 +106,15 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href=@Url.Action("","")>
+                    @*<a href=@Url.Action("","") class="disabled">*@
+                    <a href="#" class="disabled">
                         <div class="card card-stats btn-outline-info">
                             <div class="card-content">
                                 <h3 class="card-title center-align">Utilities</h3>
                             </div>
-
                         </div>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
