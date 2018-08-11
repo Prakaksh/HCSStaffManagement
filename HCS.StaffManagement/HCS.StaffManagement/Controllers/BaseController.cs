@@ -54,11 +54,11 @@ namespace HCS.StaffManagement.Controllers
                 UserInfo obj = new UserInfo();
                 if (Session != null)
                 {
-                    obj.UserID = new Guid(Session["UserID"].ToString());
-                    obj.OrganizationID = new Guid(Session["OrganizationID"].ToString());
+                    obj.UserID = Session["UserID"].ToString();
+                    obj.OrganizationID = Session["OrganizationID"].ToString();
                     obj.UserName = (string)Session["UserName"];
                     obj.RoleName = (string)Session["RoleName"];
-                    obj.RoleTypeID = new Guid(Session["RoleTypeID"].ToString());
+                    obj.RoleTypeID = Session["RoleTypeID"].ToString();
                 }
                 return obj;
             }

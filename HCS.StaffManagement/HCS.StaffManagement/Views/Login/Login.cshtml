@@ -36,11 +36,15 @@
     body {
         background-color: rgb(60, 72, 88);
         data-background-color ="black";
-        background-image: url('../../Content/Images/StaffManagement1.jpg');
+        /*background-image: url('../../Content/Images/StaffManagement1.jpg');*/
         /*background-position: center;*/
         background-repeat: no-repeat;
         /*background-size:cover;*/
         /*width: 100%;*/
+    }
+    .background-image {
+        background-image: url('../../Content/Images/StaffManagement1.jpg');
+        background-repeat: no-repeat;
     }
 </style>
 
@@ -54,25 +58,16 @@
                 </div>
             </div>
         </div>
-        <br /><br />
         <div class="row">
-            <div class="col-md-7"></div>
+            <div class="col-md-7 background-image"></div>
             <div class="col-md-4">
+                <br /><br />
                 <div class="card">
                     <div class="card-header card-header-icon" data-background-color="blue">
                         <i class="material-icons">lock</i>
                         <span><b>Login Form </b></span>
                     </div>
                     <div class="card-content">
-                        @*@using (Ajax.BeginForm(
-                            new AjaxOptions
-                            {
-                                HttpMethod = "Post",
-                                Url = "ClientInsertUpdate",
-                                InsertionMode = InsertionMode.Replace,
-                                OnSuccess = "onAjaxRequestSuccess"
-
-                            }))*@
                         <!--<h4 class="card-title">Login Form</h4>-->
                         @using (Html.BeginForm())
                         {
@@ -111,11 +106,12 @@
                                         <button type="submit" id="btnLogin" class="btn btn-fill btn-rose">Sign in</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                            
                         }
                         @*</form>*@
-                    </div>
+                    </div>                    
                 </div>
+                <br /><br /><br /><br /><br />
             </div>
         </div>
     </div>

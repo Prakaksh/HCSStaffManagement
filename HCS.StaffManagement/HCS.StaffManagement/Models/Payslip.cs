@@ -7,10 +7,10 @@ namespace HCS.StaffManagement.Models
 {
     public class Payslip
     {
-        public Guid OrganizationID { get; set; }        
+        public string OrganizationID { get; set; }        
         public string EmployeeNo { get; set; }
-        public Guid EmployeeID { get; set; }
-        public Guid EmployeePaymentID { get; set; }
+        public string EmployeeID { get; set; }
+        public string EmployeePaymentID { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
         public string MonthName { get; set; }
@@ -64,10 +64,10 @@ namespace HCS.StaffManagement.Models
         //public EmployeeBankAccount EmployeeBankDataObj { get; set; }
 
         //Payslisp
-        public Guid OrganizationID { get; set; }
+        public string OrganizationID { get; set; }
         public string EmployeeNo { get; set; }
-        public Guid EmployeeID { get; set; }
-        public Guid EmployeePaymentID { get; set; }
+        public string EmployeeID { get; set; }
+        public string EmployeePaymentID { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
         public string MonthName { get; set; }

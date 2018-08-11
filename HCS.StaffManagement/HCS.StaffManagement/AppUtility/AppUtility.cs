@@ -78,11 +78,11 @@ namespace HCS.StaffManagement.AppUtility
                 UserInfo obj = new UserInfo();
                 if (objSession != null)
                 {
-                    obj.UserID = (Guid)objSession["UserID"];
-                    obj.OrganizationID = (Guid)objSession["OrganizationID"];
+                    obj.UserID = (string)objSession["UserID"];
+                    obj.OrganizationID = (string)objSession["OrganizationID"];
                     obj.UserName = (string)objSession["UserName"];
                     obj.RoleName = (string)objSession["RoleName"];
-                    obj.RoleTypeID = (Guid)objSession["RoleTypeID"];
+                    obj.RoleTypeID = (string)objSession["RoleTypeID"];
                 }
                 return obj;
             }

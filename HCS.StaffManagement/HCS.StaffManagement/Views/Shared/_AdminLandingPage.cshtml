@@ -112,6 +112,14 @@
         .center-align {
             text-align: center;
         }
+
+        .right-align {
+            text-align: right;
+        }
+
+        .left-align {
+            text-align: left;
+        }
     </style>
 
 </head>
@@ -127,7 +135,29 @@
     <div class="container-fluid">
         @RenderBody()
     </div>
-    
+    <input type="button" style="display:none;" id="btnModalDeleteTrigger" data-target="#modalDelete" />
+    <div class="modal fade" tabindex="-1" role="dialog" id="modalDelete">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="divModalHeading"></div>
+                    <button type="button" class="close modalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                            <div id="divModalContent"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div><button type="button" class="btn btn-primary" id="btnModalDelete">Delete</button></div>
+                    <div><button type="button" class="btn btn-warning modalClose" data-dismiss="modal" aria-label="Close" id="btnModalCancel">Cancel</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="row col-md-12 offset-5">
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">
@@ -140,6 +170,6 @@
 
 </html>
 <script>
-        var BaseUrl = window.location.origin+"/";
+    var BaseUrl = window.location.origin + "/";
 </script>
 <script src="@Url.Content("~/Scripts/AppScripts/Common.js")"></script>

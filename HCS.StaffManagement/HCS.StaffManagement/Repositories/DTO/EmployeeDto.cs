@@ -7,7 +7,7 @@ namespace HCS.StaffManagement.Repositories.DTO
 {
     public class EmployeeDto
     {
-        public Guid OrganizationID { get; set; }
+        public string OrganizationID { get; set; }
         public int SlNo { get; set; }
         public string EmployeeNo { get; set; }
         public string EmployeeName { get; set; }

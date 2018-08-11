@@ -8,7 +8,7 @@ namespace HCS.StaffManagement.Models
 {
     public class Organization
     {
-        public Guid OrganizationID { get; set; }
+        public string OrganizationID { get; set; }
 
         [Required]
         public string OrganizationName { get; set; }

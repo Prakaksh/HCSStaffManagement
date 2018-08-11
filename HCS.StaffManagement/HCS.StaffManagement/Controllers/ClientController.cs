@@ -13,7 +13,7 @@ namespace HCS.StaffManagement.Controllers
     [SessionTimeout]
     public class ClientController : BaseController
     {
-        ClientContext obj;
+        ClientContext objdbContext;
         // GET: Client
         [HttpGet]
         public ActionResult Client()
@@ -22,42 +22,56 @@ namespace HCS.StaffManagement.Controllers
         }
 
         [HttpGet]
+        public ActionResult ClientCreate()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public JsonResult ClientGet(Client objClient)
         {
-            obj = new ClientContext();
+            objdbContext = new ClientContext();
             List<ClientDto> objResult = new List<ClientDto>();
             try
             {
-                objResult = obj.ClientGet(objClient, UserInfoGet());                
+                objResult = objdbContext.ClientGet(objClient, UserInfoGet());
             }
             catch (Exception ex)
             {
                 return Json("[]");
             }
-            return Json(objResult,JsonRequestBehavior.AllowGet);
+            return Json(objResult, JsonRequestBehavior.AllowGet);
         }
 
 
         [HttpPost]
         public JsonResult ClientInsertUpdate(Client objClient)
         {
-                try
-                {
-                    ClientContext objEmp = new ClientContext();
-
-                    var result = objEmp.ClientInsertUpdate(objClient, UserInfoGet());
-                
-                    TempData["Success"] = "Added Successfully!";
-
-                return Json(new{result}, JsonRequestBehavior.AllowGet);
+            try
+            {
+                objdbContext = new ClientContext();
+                var result = objdbContext.ClientInsertUpdate(objClient, UserInfoGet());
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-                catch (Exception ex) {
-                }
-            
-            return Json("GetClient", "Client");
-
-            
+            catch (Exception ex)
+            {
+            }
+            return Json("");
         }
-        
+
+        [HttpDelete]
+        public JsonResult ClientDelete(Client objClient)
+        {
+            try
+            {
+                objdbContext = new ClientContext();
+                var result = objdbContext.ClientDelete(objClient, UserInfoGet());
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+            }
+            return Json("");
+        }
     }
 }

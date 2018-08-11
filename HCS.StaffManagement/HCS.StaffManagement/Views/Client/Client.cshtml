@@ -9,7 +9,7 @@
     <div class="card">
         <div class="container-fluid">
             <div class="row">
-                <button class="btn btn-outline-dark btn-dark" id="btnaddClient">
+                <button class="btn btn-outline-dark btn-dark" id="btnAddClient">
                     <i class="material-icons">person_add</i>
                     Add Client
                 </button>
@@ -26,7 +26,7 @@
         <form action="" id="formClientUpdate">
             <div class="modal-content">
                 <div class="modal-header">
-                    <b> Salary Account Details</b>
+                    <b>Client Details</b>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -73,7 +73,9 @@
                                 <label class="control-label">
                                     Select Country
                                 </label>
-                                <select name="ddlCountry" id="CountryStateID" class="form-control" disabled></select>
+                                <select name="ddlCountry" id="ddlCountry" class="form-control" disabled>
+                                    <option value="1" selected>India</option>
+                                </select>
                             </div>
                         </div>
 
@@ -82,7 +84,7 @@
                                 <label class="control-label">
                                     Select State
                                 </label>
-                                <select name="ddlState" id="ddlState" class="form-control"></select>
+                                <select name="ddlState" id="ddlState" class="form-control"><option>Select State</option></select>
                                 @Html.HiddenFor(Model => Model.CountryStateID)
                             </div>
                         </div>
