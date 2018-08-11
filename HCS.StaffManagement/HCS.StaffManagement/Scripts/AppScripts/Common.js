@@ -55,8 +55,8 @@ var GenderList = {
 
 var CountryList = {
     "Country": [
-        { "CountryCode": "1", "CountryName": "Select Country" },
-        { "CountryCode": "IND", "CountryName": "India" }
+        { "CountryCode": "0", "CountryName": "Select Country" },
+        { "CountryCode": "1", "CountryName": "India" }
     ]
 };
 

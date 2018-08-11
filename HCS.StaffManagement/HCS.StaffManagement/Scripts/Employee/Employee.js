@@ -32,3 +32,8 @@ function fnDataTableCallBack() { }
 $('#addEmployee').off('click').on('click', function (e) {
     return window.location = '/Employee/CreateEmployee';
 })
+
+
+$('#EmployeeBank').off('click').on('click', function (e) {
+  
+})

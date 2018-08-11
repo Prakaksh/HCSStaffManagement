@@ -20,7 +20,7 @@ var onAjaxRequestSuccess = function (result) {
 function fnCountry() {
     $.each(CountryList.Country, function (data, value) {
         $("#ddlCountry").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
-        $("#ddlCountry").val("IND").trigger('change');
+        $("#ddlCountry").val("1").trigger('change');
     });
 }
 
