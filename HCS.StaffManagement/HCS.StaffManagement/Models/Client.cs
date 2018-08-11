@@ -8,8 +8,8 @@ namespace HCS.StaffManagement.Models
 {
     public class Client
     {
-        public string OrganizationClientID { get; set; }
-        public string OrganizationID { get; set; }
+        public Guid OrganizationClientID { get; set; }
+        public Guid OrganizationID { get; set; }
         [Required]
         public string ClientName { get; set; }
         public string ClientGSTIN { get; set; }

@@ -17,7 +17,7 @@ namespace HCS.StaffManagement.Controllers
             try
             {
 
-                Session["UserID"] = objUser.EmailID.ToString();
+                Session["UserID"] = objUser.UserID.ToString();
                 Session["OrganizationId"] = objUser.OrganizationID;
                 Session["UserName"] = objUser.FirstName + " " + objUser.LastName;
                 Session["RoleName"] = objUser.RoleName;
@@ -46,5 +46,27 @@ namespace HCS.StaffManagement.Controllers
                 throw ex;
             }
         }
+
+        public UserInfo UserInfoGet()
+        {
+            try
+            {
+                UserInfo obj = new UserInfo();
+                if (Session != null)
+                {
+                    obj.UserID = new Guid(Session["UserID"].ToString());
+                    obj.OrganizationID = new Guid(Session["OrganizationID"].ToString());
+                    obj.UserName = (string)Session["UserName"];
+                    obj.RoleName = (string)Session["RoleName"];
+                    obj.RoleTypeID = new Guid(Session["RoleTypeID"].ToString());
+                }
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

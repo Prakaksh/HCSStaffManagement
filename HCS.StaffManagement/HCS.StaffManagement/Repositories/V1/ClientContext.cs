@@ -15,17 +15,15 @@ namespace HCS.StaffManagement.Repositories.V1
     {
         private SqlConnection sqlConnection;
 
-        public IEnumerable<ClientDto> ClientGet(Client objClient)
+        public IEnumerable<ClientDto> ClientGet(Client objClient, UserInfo objUser)
         {
             IEnumerable<ClientDto> ResultGetClient = new List<ClientDto>();
-
             try
-            {
-               
+            {               
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
                     var com = new DynamicParameters();
-                    com.Add("@OrganizationID", objClient.OrganizationID);
+                    com.Add("@OrganizationID", objUser.OrganizationID);
                     com.Add("@OrganizationClientID", objClient.OrganizationClientID);
                     ResultGetClient = sqlConnection.Query<ClientDto>("usp_OrganizationClientGet",com, commandType: CommandType.StoredProcedure).ToList();
                     return ResultGetClient;

@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using HCS.StaffManagement.Repositories.DTO;
 
 namespace HCS.StaffManagement.Repositories
 {
@@ -14,7 +15,27 @@ namespace HCS.StaffManagement.Repositories
     {
         private SqlConnection sqlConnection;
 
-        public string ClientInsertUpdate(Client objClient)
+        public List<ClientDto> ClientGet(Client objClient, UserInfo objUser)
+        {
+            List<ClientDto> ResultGetClient = new List<ClientDto>();
+            try
+            {
+                using (sqlConnection = SqlUtility.GetConnection())
+                {
+                    var com = new DynamicParameters();
+                    com.Add("@OrganizationID", objUser.OrganizationID);
+                    com.Add("@OrganizationClientID", AppUtility.AppUtility.GuidGet(objClient.OrganizationClientID));
+                    ResultGetClient = sqlConnection.Query<ClientDto>("usp_OrganizationClientGet", com, commandType: CommandType.StoredProcedure).ToList();
+                    return ResultGetClient;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public string ClientInsertUpdate(Client objClient, UserInfo objUser)
         {
            
                 string result = "";
@@ -23,7 +44,7 @@ namespace HCS.StaffManagement.Repositories
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
                     var com = new DynamicParameters();
-                    //com.Add("@OrganizationID", objClient.OrganizationID);
+                    com.Add("@OrganizationID", objUser.OrganizationID);
                     com.Add("@OrganizationClientID", objClient.OrganizationClientID);
                     com.Add("@ClientCode", objClient.ClientCode);
                     com.Add("@ClientName", objClient.ClientName);
@@ -38,7 +59,6 @@ namespace HCS.StaffManagement.Repositories
                     com.Add("@MobileNo", objClient.MobileNo);
                     com.Add("@ContactNo", objClient.ContactNo);
                     com.Add("@EmailID", objClient.EmailID);
-
 
                     result = sqlConnection.Query<string>("usp_OrganizationClientInsertUpdate", com, commandType: CommandType.StoredProcedure).SingleOrDefault();
                     result= AppUtility.AppUtility.getStatus(Convert.ToInt32(result));

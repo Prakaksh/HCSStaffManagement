@@ -11,31 +11,30 @@ using HCS.StaffManagement.Repositories.DTO;
 namespace HCS.StaffManagement.Controllers
 {
     [SessionTimeout]
-    public class ClientController : Controller
+    public class ClientController : BaseController
     {
+        ClientContext obj;
         // GET: Client
         [HttpGet]
-        public ActionResult GetClient(Client objclient)
+        public ActionResult Client()
         {
-            //if (objclient.OrganizationClientID != null)
-            //{
-            //    ClientContext obj = new ClientContext();
-
-            //    //IEnumerable<ClientDto> objResult = obj.GetClient(objClient);
-            //}
             return View();
         }
 
         [HttpGet]
-        public ActionResult CreateClient(Client objclient)
+        public JsonResult ClientGet(Client objClient)
         {
-            if (objclient.OrganizationClientID != null)
+            obj = new ClientContext();
+            List<ClientDto> objResult = new List<ClientDto>();
+            try
             {
-                ClientContext obj = new ClientContext();
-
-               // IEnumerable<ClientDto> objResult = obj.GetClient(objclient);
+                objResult = obj.ClientGet(objClient, UserInfoGet());                
             }
-            return View(objclient);
+            catch (Exception ex)
+            {
+                return Json("[]");
+            }
+            return Json(objResult,JsonRequestBehavior.AllowGet);
         }
 
 
@@ -46,7 +45,7 @@ namespace HCS.StaffManagement.Controllers
                 {
                     ClientContext objEmp = new ClientContext();
 
-                    var result = objEmp.ClientInsertUpdate(objClient);
+                    var result = objEmp.ClientInsertUpdate(objClient, UserInfoGet());
                 
                     TempData["Success"] = "Added Successfully!";
 
