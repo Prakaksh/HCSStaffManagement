@@ -14,7 +14,6 @@ namespace HCS.StaffManagement.Controllers
     {
         // GET: Login
         [HttpGet]
-        //[SessionTimeout]
         public ActionResult Login()
         {
             return View();
@@ -32,9 +31,32 @@ namespace HCS.StaffManagement.Controllers
                     UserInfo objUser = obj.GetLogin(objlogin);
                     if (objUser != null && objUser.Status != "0")
                     {
-                        
-                        //Redirecting to screen based on role..
-                        GetRoleType(objUser, objlogin);
+                        Session["UserID"] = objUser.UserID.ToString();
+                        Session["OrganizationId"] = objUser.OrganizationID;
+                        Session["UserName"] = objUser.FirstName + " " + objUser.LastName;
+                        Session["RoleName"] = objUser.RoleName;
+                        Session["RoleTypeID"] = objUser.RoleTypeID;
+
+                        switch (objUser.RoleName)
+                        {
+                            case "Admin":
+                                return RedirectToAction("AdminDashboard", "Home");
+
+                            case "Manager":
+                                return RedirectToAction("AdminDashboard", "Home");
+
+                            case "SuperAdmin":
+                                return RedirectToAction("SuperAdminDashboard", "Home");
+                            case "0":
+                                ViewBag.Message = "Please enter valid credentials!";
+                                return View();
+
+                            default:
+                                return RedirectToAction("Login", "Login");
+                        }
+
+                        ////Redirecting to screen based on role..
+                        //GetRoleType(objUser, objlogin);
                     }
                     else {
                         ViewBag.Message = "Please enter valid credentials!";
@@ -74,5 +96,38 @@ namespace HCS.StaffManagement.Controllers
             return RedirectToAction("Login", "Login");
         }
 
+        public ActionResult GetRoleType(UserInfo objUser, Login objSession)
+        {
+            try
+            { 
+                Session["UserID"] = objUser.UserID.ToString();
+                Session["OrganizationId"] = objUser.OrganizationID;
+                Session["UserName"] = objUser.FirstName + " " + objUser.LastName;
+                Session["RoleName"] = objUser.RoleName;
+                Session["RoleTypeID"] = objUser.RoleTypeID;
+
+                switch (objUser.RoleName)
+                {
+                    case "Admin":
+                        return RedirectToAction("AdminDashboard", "Home");
+
+                    case "Manager":
+                        return RedirectToAction("AdminDashboard", "Home");
+
+                    case "SuperAdmin":
+                        return RedirectToAction("SuperAdminDashboard", "Home");
+                    case "0":
+                        ViewBag.Message = "Please enter valid credentials!";
+                        return View();
+
+                    default:
+                        return RedirectToAction("Login", "Login");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

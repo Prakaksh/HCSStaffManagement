@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HCS.StaffManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -62,12 +63,38 @@ namespace HCS.StaffManagement.AppUtility
         {
             try
             {
-                return flVal.ToString("n" + precession.ToString("n"+ precession.ToString()));
+                return flVal.ToString("n" + precession.ToString("n" + precession.ToString()));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public static UserInfo UserInfoGet(dynamic objSession)
+        {
+            try
+            {
+                UserInfo obj = new UserInfo();
+                if (objSession != null)
+                {
+                    obj.UserID = (Guid)objSession["UserID"];
+                    obj.OrganizationID = (Guid)objSession["OrganizationID"];
+                    obj.UserName = (string)objSession["UserName"];
+                    obj.RoleName = (string)objSession["RoleName"];
+                    obj.RoleTypeID = (Guid)objSession["RoleTypeID"];
+                }
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static string GuidGet(Guid objVal)
+        {
+            return (objVal.ToString() != "00000000-0000-0000-0000-000000000000" ? objVal.ToString() : null);
         }
     }
 }

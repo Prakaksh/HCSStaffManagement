@@ -1,7 +1,7 @@
 ﻿@model HCS.StaffManagement.Models.Login
 @{
     Layout = "";
- }
+}
 
 
 <head>
@@ -17,8 +17,8 @@
     <!--   Core JS Files   -->
     <script src="~/Content/js/jquery-3.1.1.min.js"></script>
     <script src="~/Content/js/jquery-ui.min.js"></script>
-  
-   <script src="~/Content/js/jquery.validate.min.js"></script>
+
+    <script src="~/Content/js/jquery.validate.min.js"></script>
 
     <script src="~/Content/js/bootstrap.min.js"></script>
     <script src="~/Content/js/material.min.js"></script>
@@ -32,39 +32,39 @@
 
 </head>
 
-    <style>
-        body {
-            background-color: rgb(60, 72, 88);
-            data-background-color ="black";
-            background-image: url('../../Content/Images/StaffManagement1.jpg');
-            /*background-position: center;*/
-            background-repeat: no-repeat;
-            /*background-size:cover;*/
-            /*width: 100%;*/
-        }
-    </style>
+<style>
+    body {
+        background-color: rgb(60, 72, 88);
+        data-background-color ="black";
+        background-image: url('../../Content/Images/StaffManagement1.jpg');
+        /*background-position: center;*/
+        background-repeat: no-repeat;
+        /*background-size:cover;*/
+        /*width: 100%;*/
+    }
+</style>
 
 
-    <div class="content">
-        <div class="container-fluid" ondrag="return false" ondrop="return false">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card-header">
-                        <h2 style="text-align:left;color:#00acc1;"> &nbsp;&nbsp;&nbsp; HCS Staff Management System</h2>
-                    </div>
+<div class="content">
+    <div class="container-fluid" ondrag="return false" ondrop="return false">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-header">
+                    <h2 style="text-align:left;color:#00acc1;"> &nbsp;&nbsp;&nbsp; HCS Staff Management System</h2>
                 </div>
             </div>
-            <br /><br />
-            <div class="row">
-                <div class="col-md-7"></div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header card-header-icon" data-background-color="blue">
-                            <i class="material-icons">lock</i>
-                            <span><b>Login Form </b></span>
-                        </div>
-                        <div class="card-content">
-                            @using (Ajax.BeginForm(
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-7"></div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons">lock</i>
+                        <span><b>Login Form </b></span>
+                    </div>
+                    <div class="card-content">
+                        @*@using (Ajax.BeginForm(
                             new AjaxOptions
                             {
                                 HttpMethod = "Post",
@@ -72,58 +72,57 @@
                                 InsertionMode = InsertionMode.Replace,
                                 OnSuccess = "onAjaxRequestSuccess"
 
-                            }))
-                            {
-                                <!--<h4 class="card-title">Login Form</h4>-->
-                            @*<form class="form-horizontal" id="loginform" action="">*@
-                                <div class="row">
-                                    <label class="col-md-3 label-on-left">Email</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label"></label>
-                                            @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", required = "true", type = "email", maxlength = 50 })
-                                        </div>
-                                        <div class="errorTxt1"></div>
+                            }))*@
+                        <!--<h4 class="card-title">Login Form</h4>-->
+                        @using (Html.BeginForm())
+                        {
+                        @*<form class="form-horizontal" id="loginform" method="post" action="">*@
+                            <div class="row">
+                                <label class="col-md-3 label-on-left">Email</label>
+                                <div class="col-md-9">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        @Html.TextBoxFor(Model => Model.EmailID, new { @class = "form-control", required = "true", type = "email", maxlength = 50 })
                                     </div>
+                                    <div class="errorTxt1"></div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-md-3 label-on-left">Password</label>
-                                    <div class="col-md-9">
-                                        <div class="form-group label-floating is-empty">
-                                            <label class="control-label"></label>
-                                            @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", required = "true", maxlength = 25 })
-                                        </div>
-                                        <div class="errorTxt2"></div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3 label-on-left">Password</label>
+                                <div class="col-md-9">
+                                    <div class="form-group label-floating is-empty">
+                                        <label class="control-label"></label>
+                                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", required = "true", maxlength = 25 })
                                     </div>
+                                    <div class="errorTxt2"></div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-md-3"></label>
-                                    <div class="col-md-9">
-                                        <div style="color:red;" id="">@ViewBag.Message</div>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-3"></label>
+                                <div class="col-md-9">
+                                    <div style="color:red;" id="">@ViewBag.Message</div>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <label class="col-md-3"></label>
-                                    <div class="col-md-9">
-                                        <div class="form-group form-button">
-                                            @*<button type="submit" class="btn btn-rose btn-fill">Register</button>*@
-                                            <button type="submit" id="btnLogin" class="btn btn-fill btn-rose">Sign in</button>
-                                        </div>
+                            <div class="row">
+                                <label class="col-md-3"></label>
+                                <div class="col-md-9">
+                                    <div class="form-group form-button">
+                                        <button type="submit" id="btnLogin" class="btn btn-fill btn-rose">Sign in</button>
                                     </div>
                                 </div>
-                            }
-                            @*</form>*@
-                        </div>
+                            </div>
+                        }
+                        @*</form>*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 <script>
-        var BaseUrl = "@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"].ToString()";
+    var BaseUrl = "@System.Configuration.ConfigurationManager.AppSettings["BaseUrl"].ToString()";
 </script>
 
 @*<script src="~/Scripts/AppScripts/Common.js"></script>*@
-<script src="~/Scripts/Login/Login.js"></script>
+<script src="@Url.Content("~/Scripts/Login/Login.js")"></script>

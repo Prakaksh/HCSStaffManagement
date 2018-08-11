@@ -8,6 +8,7 @@ using System.Web.Http;
 using HCS.StaffManagement.Repositories.V1;
 using HCS.StaffManagement.Repositories.DTO;
 using HCS.StaffManagement.Repositories;
+using System.Web;
 
 namespace HCS.StaffManagement.Controllers.V1
 {
@@ -40,10 +41,9 @@ namespace HCS.StaffManagement.Controllers.V1
         {
             try
             {
-                Repositories.V1.ClientContext obj = new Repositories.V1.ClientContext();
+                Repositories.V1.ClientContext obj = new Repositories.V1.ClientContext();                
 
-                IEnumerable<ClientDto> objResult = obj.ClientGet(objClient);
-
+                IEnumerable<ClientDto> objResult = obj.ClientGet(objClient, AppUtility.AppUtility.UserInfoGet(HttpContext.Current.Session));
                 return Request.CreateResponse(HttpStatusCode.OK, objResult);
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace HCS.StaffManagement.Controllers.V1
             {
                 Repositories.ClientContext obj = new Repositories.ClientContext();
 
-              var result= obj.ClientInsertUpdate(objClient);
+                var result = obj.ClientInsertUpdate(objClient, AppUtility.AppUtility.UserInfoGet(HttpContext.Current.Session));
 
                 return Request.CreateResponse(HttpStatusCode.OK, result);
             }

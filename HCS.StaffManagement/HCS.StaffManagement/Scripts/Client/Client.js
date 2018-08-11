@@ -1,7 +1,7 @@
 ﻿var TableName = $('#tblGetClient');
 
 $(document).ready(function () {
-    GetClient();
+    ClientGet();
     $('form').attr('autocomplete', 'off');
     $.material.options.autofill = true;
     $.material.init();
@@ -14,7 +14,6 @@ var btnNotePadActions = '<a href="#!" class="custom-div notepad" data-activates=
 function fnAction() {
     var btnNotePadActions = '<a href="#!" class="custom-div Edit_Mode" data-toggle="modal" data-target="#ClientUpateModal"><i class="material-icons">edit</i></a>'
     return btnNotePadActions;
-
 }
 
 
@@ -31,12 +30,13 @@ var datatableColumn = [
 ]
 
 //Get All Client Data 
-function GetClient() {
-
+function ClientGet() {
+    debugger;
     var objClient = new Object();
-    objClient.OrganizationID = 'CDDBCAB3-DFB4-44A8-9F9C-871440862F8A';
+    //objClient.OrganizationID = 'CDDBCAB3-DFB4-44A8-9F9C-871440862F8A';
     //objClient.UserID = null;
-    createDataTable(false, TableName, "Api/V1/ClientGet", fnDataTableCallBack, datatableColumn, objClient, [], []);
+    //createDataTable(false, TableName, "Api/V1/ClientGet", fnDataTableCallBack, datatableColumn, objClient, [], []);
+    createDataTable(false, TableName, "/Client/ClientGet", fnDataTableCallBack, datatableColumn, objClient, [], []);
 }
 
 var ClientModel = new Object();
