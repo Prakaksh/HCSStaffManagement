@@ -336,10 +336,8 @@
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Organization\CreateOrganization.cshtml" />
     <Content Include="Views\Payslip\Payslip.cshtml" />
-    <Content Include="Views\Client\Client.cshtml" />
-    <Content Include="Views\Client\ClientInsertUpdate.cshtml" />
+    <Content Include="Views\Client\GetClient.cshtml" />
     <Content Include="Views\Client\CreateClient.cshtml" />
-    <Content Include="Views\Client\GetClientDetails.cshtml" />
     <Content Include="Views\Home\SuperAdminDashboard.cshtml" />
     <Content Include="Views\Shared\_SuperAdminDashboard.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
@@ -356,7 +354,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\sass\" />
     <Folder Include="ExternalDll\" />
-    <Folder Include="HCS\StaffManagement\Controllers\V1\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Common\" />

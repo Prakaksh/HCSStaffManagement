@@ -1,4 +1,4 @@
-﻿
+﻿@model HCS.StaffManagement.Models.Employee
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
@@ -22,18 +22,113 @@
 </head>
 
 <div class="container-fluid">
-
     <div class="card container-fluid">
         <div class="row">
             <button class="btn btn-outline-dark btn-dark" id="addEmployee">
                 <i class="material-icons">person_add</i>
                 Add Employee
             </button>
+            <button class="btn btn-outline-dark btn-dark" id="EmployeeBank" data-toggle="modal" data-target="#EmployeeBankDetail">
+               EmployeeBankDetails
+            </button>
         </div>
         <table id="tblGetEmployee" class="table-style table-striped table-bordered nowrap" sytle="width:100%"></table>
-   
     </div>
-    </div>
+</div>
+
+<div class="modal fade" tabindex="1" role="dialog" id="EmployeeBankDetail">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="" id="formClientUpdate">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <b> Salary Account Details</b>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12">
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Enter Bank Account No.
+                                    <small>*</small>
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.AccountNo, new { @class = "form-control DigitOnlyValidation", maxlength = "20", required = "required" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Enter Linked Mobile No.
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.LinkedMobileNo, new { @class = "form-control DigitOnlyValidation", maxlength = "13", minlength = 10 })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Enter Name as per Bank Account
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.NameAsPerAccount, new { @class = "form-control", maxlength = "50" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Enter Linked Email ID
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.LinkedEmailID, new { @class = "form-control", type = "Email" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Enter Salary Bank Name
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.BankName, new { @class = "form-control", maxlength = "150" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    IFSC Code
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.IFSCCode, new { @class = "form-control", maxlength = 11, minlength = 11 })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Account Type
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.AccountType, new { @class = "form-control", maxlength = 50 })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Branch Name
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.BankAddress, new { @class = "form-control", maxlength = 50 })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    Pin Code
+                                </label>
+                                @Html.TextBoxFor(Model => Model.objBankAccount.PinCode, new { @class = "form-control", maxlength =6,minlength=6 })
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnBankDetails">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 <script src="~/Scripts/AppScripts/Common.js"></script>
 <script src="~/Scripts/Employee/Employee.js"></script>

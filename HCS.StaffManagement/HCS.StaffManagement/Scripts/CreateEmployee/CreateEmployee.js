@@ -353,7 +353,7 @@ function fnCountry() {
     $.each(CountryList.Country, function (data, value) {
         $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));        
     });
-    $("#CountryID,#CountryID1").val("IND").trigger('change');
+    $("#CountryID,#CountryID1").val("1").trigger('change');
 }
 
 
