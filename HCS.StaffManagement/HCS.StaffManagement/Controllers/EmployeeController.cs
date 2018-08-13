@@ -7,46 +7,82 @@ using System.Web;
 using System.Web.Mvc;
 using HCS.StaffManagement.Filter;
 using System.IO;
+using HCS.StaffManagement.Repositories.DTO;
 
 namespace HCS.StaffManagement.Controllers
 {
-   // [SessionTimeout]
+    [SessionTimeout]
     public class EmployeeController : BaseController
     {
+        EmployeeContext objEmp;
         // GET: Employee
         [HttpGet]
         public ActionResult Employee()
         {
             return View();
         }
-        public ActionResult CreateEmployee()
+        public ActionResult EmployeeCreate(string employeeID)
         {
+            try
+            {
+                objEmp = new EmployeeContext();
+                List<Employee> objResult = objEmp.EmployeeGet(employeeID, UserInfoGet());
+                if (!string.IsNullOrEmpty(employeeID))
+                {
+                    Employee objEmployee = objResult.FirstOrDefault();
+                    return View(objEmployee);
+                }
+            }
+            catch(Exception ex)
+            {
+                return View();
+            }
             return View();
         }
+
+        public JsonResult EmployeeGet(string employeeID)
+        {
+            try
+            {
+                objEmp = new EmployeeContext();
+                List<Employee> objResult = objEmp.EmployeeGet(employeeID, UserInfoGet());
+                return Json(objResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("[]", JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         //--this is for add
         public ActionResult EmployeeInsertUpdate(Employee objEmployee)
         {
             try
             {
-                EmployeeInsertUpdateContext objEmp = new EmployeeInsertUpdateContext();
-
-                string result= objEmp.EmployeeInsertUpdate(objEmployee);
-                TempData["Success"] = "Added Successfully!";
-                
-                
-                //return Request.CreateResponse(HttpStatusCode.OK, maritalStatuses);
+                objEmp = new EmployeeContext();
+                string result= objEmp.EmployeeInsertUpdate(objEmployee, UserInfoGet());
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
             catch(Exception ex) {
-                throw ex;
+                return Json("failure", JsonRequestBehavior.AllowGet);
             }
-            return RedirectToAction("Employee", "Employee");
+            
         }
         //--this is for edit
-        [HttpPost]
-        public ActionResult EmployeeDelete (Employee objEmployee)
+        [HttpDelete]
+        public JsonResult EmployeeDelete (string EmployeeID)
         {
-            return View();
+            try
+            {
+                objEmp = new EmployeeContext();
+                string result = objEmp.EmployeeDelete(EmployeeID, UserInfoGet());
+               return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+               return Json("failure", JsonRequestBehavior.AllowGet);
+            }            
         }
 
 

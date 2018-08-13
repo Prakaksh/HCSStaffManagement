@@ -22,15 +22,16 @@
 </head>
 
 <div class="container-fluid">
+    <input type="hidden" id="hEmployeeID" />
     <div class="card container-fluid">
         <div class="row">
             <button class="btn btn-outline-dark btn-dark" id="addEmployee">
                 <i class="material-icons">person_add</i>
                 Add Employee
             </button>
-            <button class="btn btn-outline-dark btn-dark" id="EmployeeBank" data-toggle="modal" data-target="#EmployeeBankDetail">
+            @*<button class="btn btn-outline-dark btn-dark" id="EmployeeBank" data-toggle="modal" data-target="#EmployeeBankDetail">
                EmployeeBankDetails
-            </button>
+            </button>*@
         </div>
         <table id="tblGetEmployee" class="table-style table-striped table-bordered nowrap" sytle="width:100%"></table>
     </div>
@@ -129,9 +130,8 @@
         </form>
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-<script src="~/Scripts/AppScripts/Common.js"></script>
-<script src="~/Scripts/Employee/Employee.js"></script>
+@*<script src="~/Scripts/AppScripts/Common.js"></script>*@
+<script src="@Url.Content("~/Scripts/Employee/Employee.js")"></script>
 
 
 

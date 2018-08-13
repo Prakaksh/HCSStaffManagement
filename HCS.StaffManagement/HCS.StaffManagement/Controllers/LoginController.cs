@@ -31,6 +31,8 @@ namespace HCS.StaffManagement.Controllers
                     UserInfo objUser = obj.GetLogin(objlogin);
                     if (objUser != null && objUser.Status != "0")
                     {
+                        //Forms Authentication
+                        FormsAuthentication.SetAuthCookie(objUser.UserID,false);
                         Session["UserID"] = objUser.UserID.ToString();
                         Session["OrganizationId"] = objUser.OrganizationID;
                         Session["UserName"] = objUser.FirstName + " " + objUser.LastName;

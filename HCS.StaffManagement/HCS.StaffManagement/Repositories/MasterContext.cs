@@ -22,7 +22,7 @@ namespace HCS.StaffManagement.Repositories
                 pm.Add("CountryID", objStatus.CountryID);
                 using (sqlConnection = SqlUtility.GetConnection())
                 {
-                    IEnumerable<MasterCountryState> objRes = sqlConnection.Query<MasterCountryState>("usp_CountryStateGet", commandType: CommandType.StoredProcedure).ToList();
+                    IEnumerable<MasterCountryState> objRes = sqlConnection.Query<MasterCountryState>("usp_CountryStateGet",  pm,commandType: CommandType.StoredProcedure).ToList();
                     return objRes;
                 }
             }

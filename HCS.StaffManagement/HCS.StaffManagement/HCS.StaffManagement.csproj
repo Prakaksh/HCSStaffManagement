@@ -214,7 +214,7 @@
     <Content Include="Scripts\AppScripts\Common.js" />
     <Content Include="Scripts\Client\Client.js" />
     <Content Include="Scripts\Client\ClientCreate.js" />
-    <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
+    <Content Include="Scripts\Employee\EmployeeCreate.js" />
     <Content Include="Scripts\Employee\Employee.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Login\Login.js" />
@@ -289,7 +289,7 @@
     <Compile Include="Repositories\DTO\LoginDto.cs" />
     <Compile Include="Repositories\DTO\PayslipDownloadDto.cs" />
     <Compile Include="Repositories\DTO\ReportDto.cs" />
-    <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
+    <Compile Include="Repositories\EmployeeContext.cs" />
     <Compile Include="Repositories\PayslipContext.cs" />
     <Compile Include="Repositories\RoleType.cs" />
     <Compile Include="Repositories\UploadImageContext.cs" />
@@ -328,7 +328,7 @@
     <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Shared\_AdminLandingPage.cshtml" />
     <Content Include="Views\Employee\Employee.cshtml" />
-    <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeCreate.cshtml" />
     <Content Include="Views\Organization\CreateOrganization.cshtml" />
     <Content Include="Views\Payslip\Payslip.cshtml" />
     <Content Include="Views\Client\GetClient.cshtml" />
@@ -352,7 +352,6 @@
     <Folder Include="ExternalDll\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
