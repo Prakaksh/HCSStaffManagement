@@ -10,10 +10,17 @@ namespace HCS.StaffManagement.AppUtility
 
         public static SqlConnection GetConnection()
         {
-            var connection = new SqlConnection(StaffManagementConnectionString);
+            try
+            {
+                var connection = new SqlConnection(StaffManagementConnectionString);
 
-            connection.Open();
-            return connection;
+                connection.Open();
+                return connection;
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
+      
         }
 
         public static string GetConnectionStringValue(string key)

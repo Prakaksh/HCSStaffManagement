@@ -7,6 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="~/Content/Images/favicon." />
     <title>LoginPage</title>
     <link href="~/Content/css/material-dashboard.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
@@ -36,10 +37,10 @@
     body {
         background-color: rgb(60, 72, 88);
         data-background-color ="black";
-        /*background-image: url('../../Content/Images/StaffManagement1.jpg');*/
+        background-image: url('../../Content/Images/background.png');
         /*background-position: center;*/
         background-repeat: no-repeat;
-        /*background-size:cover;*/
+        background-size: cover;
         /*width: 100%;*/
     }
     .background-image {
@@ -59,10 +60,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 background-image"></div>
+            <div class="col-md-7">
+                @*<img src="~/Content/Images/Untitled.jpg" />*@
+            </div>
             <div class="col-md-4">
-                <br /><br />
-                <div class="card">
+                <br />
+                <div class="card" style="right:-51px;">
                     <div class="card-header card-header-icon" data-background-color="blue">
                         <i class="material-icons">lock</i>
                         <span><b>Login Form </b></span>
