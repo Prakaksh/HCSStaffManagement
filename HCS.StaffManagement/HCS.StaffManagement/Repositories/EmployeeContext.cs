@@ -7,6 +7,7 @@ using System.Web;
 using Dapper;
 using HCS.StaffManagement.AppUtility;
 using HCS.StaffManagement.Models;
+using System.Globalization;
 
 namespace HCS.StaffManagement.Repositories
 {
@@ -74,8 +75,9 @@ namespace HCS.StaffManagement.Repositories
                     com.Add("EmployeeNo", objEmp.EmployeeNo);                    
                     com.Add("EmployeeFirstName", objEmp.EmployeeFirstName);
                     com.Add("EmployeeLastName", objEmp.EmployeeLastName);
-                    com.Add("DOB", objEmp.DOB);
-                    com.Add("DateofJoin", objEmp.DOB);
+                    
+                    com.Add("DOB", AppUtility.AppUtility.getSqlDate(objEmp.DOB, "dd-MM-yyyy"));
+                    com.Add("DateofJoin", AppUtility.AppUtility.getSqlDate(objEmp.DateofJoin, "dd-MM-yyyy"));
                     com.Add("Gender", objEmp.Gender);
                     //com.Add("FatherOrHusbandName", objEmp.FatherOrHusbandName);
                     //com.Add("RelatioinshipCode", objEmp.RelatioinshiopCode);
@@ -120,6 +122,7 @@ namespace HCS.StaffManagement.Repositories
                     com.Add("PermanentCity", objEmp.PermanentAddress.City);
                     com.Add("PermanentPinCode", objEmp.PermanentAddress.PinCode);
 
+                    com.Add("EmployeeProfilePictureID", objEmp.EmployeeProfilePictureID);
                     com.Add("By", objUser.UserID);
 
                     int res= sqlConnection.Query<int>("usp_EmployeeInsertUpdate",com, commandType: CommandType.StoredProcedure).SingleOrDefault();

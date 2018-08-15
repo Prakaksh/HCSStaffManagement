@@ -369,17 +369,23 @@ function fnGender() {
 }
 
 function fnSuccess(res) {
-    $('#EmployeeProfilePictureID').val(res.ID);
+    $('#hEmployeeProfilePictureID').val(res.ID);
 }
 
 var onEmployeeInsertUpdateSuccess = function (result) {
     if (result == "success") {
         HCSStaff.showAlert('success-message');
-        $("#form0")[0].reset();
-        setTimeout(function() {
-            window.location = BaseUrl + "/Employee/Employee/"
-        }, 5000);        
+        $("#form0")[0].reset();       
+    } else if(result == "update"){
+        HCSStaff.showAlert('update-message');
+        $("#form0")[0].reset();        
+    } else if (result == "exist") {
+        HCSStaff.showAlert('exist-message');
+        return;
     }
+    setTimeout(function () {
+        window.location = BaseUrl + "/Employee/Employee/"
+    }, 3000);
 }
 
 function bindEmployeeData(objData) {

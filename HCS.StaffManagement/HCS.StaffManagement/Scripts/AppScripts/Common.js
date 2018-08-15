@@ -326,7 +326,6 @@ function fnModalDelete(module, content, flag, okCallback) {
 
     $("#btnModalDelete").off("click").on("click", function (e) {
         e.preventDefault();
-        debugger;
         if (okCallback)
             okCallback();
         $('.modalClose').trigger('click');

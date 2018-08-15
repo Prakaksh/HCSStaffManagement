@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -95,6 +96,12 @@ namespace HCS.StaffManagement.AppUtility
         public static string GuidGet(Guid objVal)
         {
             return (objVal.ToString() != "00000000-0000-0000-0000-000000000000" ? objVal.ToString() : null);
+        }
+
+        public static string getSqlDate(string inputDate, string inputDateFormat)
+        {
+            DateTime date = DateTime.ParseExact(inputDate, (!string.IsNullOrEmpty(inputDateFormat) ? inputDateFormat : "dd/MM/yyyy"), CultureInfo.InvariantCulture);
+            return date.ToString("yyyy/MM/dd");
         }
     }
 }

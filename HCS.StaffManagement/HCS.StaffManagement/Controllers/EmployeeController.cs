@@ -89,12 +89,11 @@ namespace HCS.StaffManagement.Controllers
         [HttpPost]
         public ActionResult ProfileImageUpload()
         {
-            UploadImageContext objImage = new UploadImageContext();
-            ImageDetail objimageModel = new ImageDetail();
+            DocumentUploadContext objImage = new DocumentUploadContext();
+            DocumentDetail objDocument = new DocumentDetail();
                      
             if (Request.Files.Count > 0)
             {
-
                 try
                 {
                 //  Get all files from Request object  
@@ -105,19 +104,25 @@ namespace HCS.StaffManagement.Controllers
                     //string filename = Path.GetFileName(Request.Files[i].FileName);  
 
                     HttpPostedFileBase file = files[i];
-                    string fname;
+                        string fname;
+                        objDocument.FileName = file.FileName;
+                        objDocument.FileExtension = file.FileName.Substring(file.FileName.LastIndexOf('.')).ToString();
+                        objDocument.FileSize = file.ContentLength;
+                        objDocument.DocumentDetailID = null;
+                        objDocument.ContentType = file.ContentType;
+                        objDocument.FileURL = "";
+
+
 
                     // Checking for Internet Explorer  
-                    if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
                     {
                         string[] testfiles = file.FileName.Split(new char[] { '\\' });
                         fname = testfiles[testfiles.Length - 1];
                     }
                     else
                     {
-                            fname = objImage.ImageUploadSave(objimageModel);
-                            objimageModel.ID = fname;
-                            // fname = file.FileName;
+                            fname = objImage.DocumentUpload(objDocument, UserInfoGet());
                         }
 
                         // Get the complete folder path and store the file inside it.  
@@ -136,7 +141,7 @@ namespace HCS.StaffManagement.Controllers
                      
                 }
                 // Returns message that successfully uploaded  
-                return Json(objimageModel);
+                return Json(objDocument);
             }
             catch (Exception ex)
             {

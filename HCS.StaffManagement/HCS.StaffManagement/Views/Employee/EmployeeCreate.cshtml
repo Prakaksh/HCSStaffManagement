@@ -17,7 +17,6 @@
                                 Url = "EmployeeInsertUpdate",
                                 InsertionMode = InsertionMode.Replace,
                                 OnSuccess = "onEmployeeInsertUpdateSuccess"
-
                             }))
                 {
                     @*@using (Html.BeginForm("EmployeeInsertUpdate", "Employee", FormMethod.Post))
@@ -55,7 +54,7 @@
                                             <div class="picture">
                                                 <img src="~/Content/Images/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
                                                 <input type="file" id="profile-picture">
-                                                <input type="hidden" id="EmployeeProfilePictureID">
+                                                <input  id="EmployeeProfilePictureID" name="EmployeeProfilePictureID" style="display:none;">
                                             </div>
                                             <h6>Choose Picture</h6>
                                         </div>

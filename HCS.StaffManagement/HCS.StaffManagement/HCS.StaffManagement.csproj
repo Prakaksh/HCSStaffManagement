@@ -252,7 +252,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Client.cs" />
-    <Compile Include="Models\ImageDetail.cs" />
+    <Compile Include="Models\DocumentDetail.cs" />
     <Compile Include="Models\MasterQualification.cs" />
     <Compile Include="Models\MasterRelationship.cs" />
     <Compile Include="Models\NumberToWordConverter.cs" />
@@ -292,7 +292,7 @@
     <Compile Include="Repositories\EmployeeContext.cs" />
     <Compile Include="Repositories\PayslipContext.cs" />
     <Compile Include="Repositories\RoleType.cs" />
-    <Compile Include="Repositories\UploadImageContext.cs" />
+    <Compile Include="Repositories\DocumentUploadContext.cs" />
     <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
     <Compile Include="Repositories\V1\ClientContext.cs" />
     <Compile Include="Repositories\MasterContext.cs" />
