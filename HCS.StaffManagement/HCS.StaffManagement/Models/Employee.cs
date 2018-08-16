@@ -54,8 +54,8 @@ namespace HCS.StaffManagement.Models
         public string UpdatedBy { get; set; }
         public string UpdatedDate { get; set; }
 
-
         public string EmployeeProfilePictureID { get; set; }
+
         //public string CurrentAddress_CountryStateID { get; set; }
         //public string PermanentAddress_CountryID { get; set; }
 

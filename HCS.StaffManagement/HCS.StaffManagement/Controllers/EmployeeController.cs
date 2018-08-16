@@ -33,7 +33,7 @@ namespace HCS.StaffManagement.Controllers
                     return View(objEmployee);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return View();
             }
@@ -61,28 +61,29 @@ namespace HCS.StaffManagement.Controllers
             try
             {
                 objEmp = new EmployeeContext();
-                string result= objEmp.EmployeeInsertUpdate(objEmployee, UserInfoGet());
+                string result = objEmp.EmployeeInsertUpdate(objEmployee, UserInfoGet());
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 return Json("failure", JsonRequestBehavior.AllowGet);
             }
-            
+
         }
         //--this is for edit
         [HttpDelete]
-        public JsonResult EmployeeDelete (string EmployeeID)
+        public JsonResult EmployeeDelete(string EmployeeID)
         {
             try
             {
                 objEmp = new EmployeeContext();
                 string result = objEmp.EmployeeDelete(EmployeeID, UserInfoGet());
-               return Json(result, JsonRequestBehavior.AllowGet);
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-               return Json("failure", JsonRequestBehavior.AllowGet);
-            }            
+                return Json("failure", JsonRequestBehavior.AllowGet);
+            }
         }
 
 
@@ -91,19 +92,19 @@ namespace HCS.StaffManagement.Controllers
         {
             DocumentUploadContext objImage = new DocumentUploadContext();
             DocumentDetail objDocument = new DocumentDetail();
-                     
+
             if (Request.Files.Count > 0)
             {
                 try
                 {
-                //  Get all files from Request object  
-                HttpFileCollectionBase files = Request.Files;
-                for (int i = 0; i < files.Count; i++)
-                {
-                    //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
-                    //string filename = Path.GetFileName(Request.Files[i].FileName);  
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+                        //string filename = Path.GetFileName(Request.Files[i].FileName);  
 
-                    HttpPostedFileBase file = files[i];
+                        HttpPostedFileBase file = files[i];
                         string fname;
                         objDocument.FileName = file.FileName;
                         objDocument.FileExtension = file.FileName.Substring(file.FileName.LastIndexOf('.')).ToString();
@@ -114,45 +115,48 @@ namespace HCS.StaffManagement.Controllers
 
 
 
-                    // Checking for Internet Explorer  
+                        // Checking for Internet Explorer  
                         if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
-                    {
-                        string[] testfiles = file.FileName.Split(new char[] { '\\' });
-                        fname = testfiles[testfiles.Length - 1];
-                    }
-                    else
-                    {
-                            fname = objImage.DocumentUpload(objDocument, UserInfoGet());
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
                         }
+                        else
+                        {
+                            fname = objImage.DocumentUpload(objDocument, UserInfoGet());                            
+                        }
+
+                        objDocument.DocumentDetailID = fname;
 
                         // Get the complete folder path and store the file inside it.  
                         // If directory does not exist, don't even try 
-                        
-                        fname = Path.Combine(Server.MapPath("~/ProfileImage/"), fname+".jpeg");
+
+                        fname = Path.Combine(Server.MapPath("~/ProfileImage/"), fname + ".jpeg");
                         if (Directory.Exists(fname))
                         {
                             file.SaveAs(fname);
                         }
-                        else {
+                        else
+                        {
                             Directory.CreateDirectory(Server.MapPath("~/ProfileImage"));
                             file.SaveAs(fname);
                         }
 
-                     
+
+                    }
+                    // Returns message that successfully uploaded  
+                    return Json(objDocument);
                 }
-                // Returns message that successfully uploaded  
-                return Json(objDocument);
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return Json("Error occurred. Error details: " + ex.Message);
+                return Json("No files selected.");
             }
-        }  
-    else  
-    {  
-        return Json("No files selected.");
-    }
-}
+        }
 
 
     }

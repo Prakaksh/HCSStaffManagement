@@ -369,7 +369,8 @@ function fnGender() {
 }
 
 function fnSuccess(res) {
-    $('#hEmployeeProfilePictureID').val(res.ID);
+    if(res)
+        $('#EmployeeProfilePictureID').val(res.DocumentDetailID);
 }
 
 var onEmployeeInsertUpdateSuccess = function (result) {
