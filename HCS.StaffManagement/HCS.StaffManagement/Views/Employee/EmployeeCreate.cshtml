@@ -76,14 +76,14 @@
                                                 Employee AadharNo
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", maxlength = 16, minlength = 12, tabindex = 1 })
+                                            @Html.TextBoxFor(Model => Model.AadharNo, new { @class = "form-control DigitOnlyValidation", maxlength = 16, minlength = 12, tabindex = 1, Required="Required" })
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">
                                                 Date of Birth
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.DOB, new { @class = "form-control datepicker", tabindex = 4 })
+                                            @Html.TextBoxFor(Model => Model.DOB, new { @class = "form-control datepicker", tabindex = 4, Required = "Required" })
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">
@@ -105,7 +105,7 @@
                                                 Employee First Name
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control", maxlength = 25, tabindex = 2 })
+                                            @Html.TextBoxFor(Model => Model.EmployeeFirstName, new { @class = "form-control", maxlength = 25, tabindex = 2, Required = "Required" })
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">
@@ -133,7 +133,7 @@
                                                 Employee Last Name
                                                 <small>*</small>
                                             </label>
-                                            @Html.TextBoxFor(Model => Model.EmployeeLastName, new { @class = "form-control", maxlength = 25, tabindex = 3 })
+                                            @Html.TextBoxFor(Model => Model.EmployeeLastName, new { @class = "form-control", maxlength = 25, tabindex = 3, Required = "Required" })
                                         </div>
                                         <div class="form-group label-floating">
                                             <label class="control-label">
@@ -323,7 +323,7 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="wages">
-                            <div class="card">
+                            @*<div class="card">
                                 <div class="card-header bg-info"><b>Employee Pay Scale</b></div>
                                 <div>
                                     <div class="row col-md-12">
@@ -332,7 +332,7 @@
                                                 <label class="control-label">
                                                     Basic Salary
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.BasicWages.BasicSalary, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })
+                                                @Html.TextBoxFor(Model => Model.BasicWages.BasicSalary, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })
                                             </div>
                                         </div>
 
@@ -341,39 +341,53 @@
                                                 <label class="control-label">
                                                     Bonus Percentage
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.BasicWages.BonusPercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 2 })
+                                                @Html.TextBoxFor(Model => Model.BasicWages.BonusPercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">
-                                                    Incentive PerDay
+                                                    Incentive
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.BasicWages.IncentivePerDay, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })
+                                                @Html.TextBoxFor(Model => Model.BasicWages.IncentivePercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })
                                             </div>
                                         </div>
                                         <div class="col-sm-3">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">
-                                                    PF No.
+                                                    Wages
                                                 </label>
-                                                @Html.TextBoxFor(Model => Model.PFNo, new { @class = "form-control", maxlength = 25 })
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">
-                                                    ESI No.
-                                                </label>
-                                                @Html.TextBoxFor(Model => Model.ESINo, new { @class = "form-control", maxlength = 25 })
+                                                @Html.TextBoxFor(Model => Model.BasicWages.Wages, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>*@
+
+                            <div class="card">
+                                <div class="card-header bg-info">
+                                    <b>PF and ESI</b>
+                                </div>
+                                <div class="row col-sm-12">
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                PF No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.PFNo, new { @class = "form-control", maxlength = 25 })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                ESI No.
+                                            </label>
+                                            @Html.TextBoxFor(Model => Model.ESINo, new { @class = "form-control", maxlength = 25 })
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
                     <div class="wizard-footer">
                         <div class="float-right">

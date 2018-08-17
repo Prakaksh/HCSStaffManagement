@@ -86,9 +86,10 @@ namespace HCS.StaffManagement.Models
     }
 
     public class BasicWages {
-        public int BasicSalary { get; set; }
-        public int BonusPercentage { get; set; }
-        public int IncentivePerDay { get; set; }
+        public float BasicSalary { get; set; }
+        public float BonusPercentage { get; set; }
+        public float IncentivePercentage { get; set; }
+        public float Wages { get; set; }
     }
 }
 

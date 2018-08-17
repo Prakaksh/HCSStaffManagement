@@ -8,7 +8,8 @@ $(document).ready(function () {
 
 function fnActionLink() {
     var btnNotePadActions = '<a href="#" class="custom-div edit_Mode" data-toggle="modal"><i class="material-icons">edit</i></a>';
-    btnNotePadActions = btnNotePadActions + '<a href="#" class="custom-div delete_Mode" data-toggle="modal" data-target="#modalDelete"><i class="material-icons">delete</i></a>';
+    //btnNotePadActions = btnNotePadActions + '<a href="#" class="custom-div delete_Mode" data-toggle="modal" data-target="#modalDelete"><i class="material-icons">delete</i></a>';
+    btnNotePadActions = btnNotePadActions + '<a href="#" class="custom-div wage_Click"><i class="material-icons">account_balance_wallet</i></a>';
     return btnNotePadActions;
 }
 
@@ -37,13 +38,24 @@ function fnDataTableCallBack() {
         var row = returnRowData($(this), TableName);
         return window.location = '/Employee/EmployeeCreate?employeeID='+row.EmployeeID;
     });
-    $('.delete_Mode').off("click").on("click", function (e) {
+
+    
+    $('.wage_Click').off("click").on("click", function (e) {
         e.preventDefault();
+        $("#btnModalWageTrigger").trigger("click");
         var objClient = new Object();
         var row = returnRowData($(this), TableName)
         $('#hEmployeeID').val(row.EmployeeID);
+        //Ajax call with Employee ID
         fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
     });
+    //$('.delete_Mode').off("click").on("click", function (e) {
+    //    e.preventDefault();
+    //    var objClient = new Object();
+    //    var row = returnRowData($(this), TableName)
+    //    $('#hEmployeeID').val(row.EmployeeID);
+    //    fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
+    //});
 }
 
 function fnEmployeeDelete() {

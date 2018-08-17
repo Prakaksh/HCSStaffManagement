@@ -30,13 +30,79 @@
                 Add Employee
             </button>
             @*<button class="btn btn-outline-dark btn-dark" id="EmployeeBank" data-toggle="modal" data-target="#EmployeeBankDetail">
-               EmployeeBankDetails
-            </button>*@
+                   EmployeeBankDetails
+                </button>*@
         </div>
         <table id="tblGetEmployee" class="table-style table-striped table-bordered nowrap" sytle="width:100%"></table>
     </div>
 </div>
 
+<button class="btn btn-outline-dark btn-dark" id="btnModalWageTrigger" hidden data-toggle="modal" data-target="#modalWages">
+    </button>
+<div class="modal fade" tabindex="1" role="dialog" id="modalWages">
+    <div class="modal-dialog modal-lg" role="document">
+        <form action="" id="formWages">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <b> Wage/Salary Details</b>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12">
+                        <div class="card">
+                            <div class="card-header bg-info"><b>Employee Pay Scale</b></div>
+                            <div>
+                                <div class="row col-md-12">
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Basic Salary
+                                            </label>
+                                            <input type="text" max="7" id="txtBasicSalary" class="form-control DigitOnlyValidation" />
+                                            @*@Html.TextBoxFor(Model => Model.BasicWages.BasicSalary, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })*@
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Bonus (%)
+                                            </label>
+                                            <input type="text" max="5" id="txtBonusPercentage" class="form-control DigitOnlyValidation" />
+                                            @*@Html.TextBoxFor(Model => Model.BasicWages.BonusPercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 5 })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Incentive 
+                                            </label>
+                                            <input type="text" max="7" id="txtIncentivePercentage" class="form-control DigitOnlyValidation" />
+                                            @*@Html.TextBoxFor(Model => Model.BasicWages.IncentivePercentage, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })*@
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">
+                                                Wages
+                                            </label>
+                                            <input type="text" max="7" id="txtWages" class="form-control DigitOnlyValidation" />
+                                            @*@Html.TextBoxFor(Model => Model.BasicWages.Wages, new { @class = "form-control DigitOnlyValidation", maxlength = 7 })*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnWage">Save</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <div class="modal fade" tabindex="1" role="dialog" id="EmployeeBankDetail">
     <div class="modal-dialog modal-lg" role="document">
         <form action="" id="formClientUpdate">
@@ -117,12 +183,12 @@
                                 <label class="control-label">
                                     Pin Code
                                 </label>
-                                @Html.TextBoxFor(Model => Model.objBankAccount.PinCode, new { @class = "form-control", maxlength =6,minlength=6 })
+                                @Html.TextBoxFor(Model => Model.objBankAccount.PinCode, new { @class = "form-control", maxlength = 6, minlength = 6 })
                             </div>
                         </div>
                     </div>
 
-                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary" id="btnBankDetails">Save</button>
                 </div>

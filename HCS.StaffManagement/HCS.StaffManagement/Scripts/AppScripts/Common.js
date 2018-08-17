@@ -300,8 +300,9 @@ function returnRowData(current, table) {
 
 
 $(".DigitOnlyValidation").keypress(function (e) {
+    debugger;
     //if the letter is not digit then display error and don't type anything
-    if (e.which !== 8 && e.which !== 0 && (e.which < 48 || e.which > 57)) {
+    if (e.which !== 8 && e.which !== 0 && e.which != 46  && (e.which < 48 || e.which > 57 )) {
         //display error message
         //$("#errmsg").html("Digits Only").show().fadeOut("slow");
         return false;
