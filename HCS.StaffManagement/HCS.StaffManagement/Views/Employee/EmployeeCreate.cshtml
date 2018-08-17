@@ -53,7 +53,7 @@
                                         <div class="picture-container" style="padding-top:65px;">
                                             <div class="picture">
                                                 @{
-                                                    if (Model.EmployeeProfilePictureID != null)
+                                                    if (Model!=null && Model.EmployeeProfilePictureID != null)
                                                     {
                                                         <img src="@Url.Content("~/ProfileImage/" + Model.EmployeeProfilePictureID + ".jpeg")" class="picture-src" id="wizardPicturePreview" title="" />
                                                     }

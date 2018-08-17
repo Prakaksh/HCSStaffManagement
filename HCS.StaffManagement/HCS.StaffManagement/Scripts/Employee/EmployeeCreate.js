@@ -374,19 +374,17 @@ function fnSuccess(res) {
 }
 
 var onEmployeeInsertUpdateSuccess = function (result) {
+    var url = BaseUrl + "/Employee/Employee/"
     if (result == "success") {
-        HCSStaff.showAlert('success-message');
+        HCSStaff.showAlert('success-message', true, url);
         $("#form0")[0].reset();       
     } else if(result == "update"){
-        HCSStaff.showAlert('update-message');
+        HCSStaff.showAlert('update-message',true, url);
         $("#form0")[0].reset();        
     } else if (result == "exist") {
         HCSStaff.showAlert('exist-message');
         return;
     }
-    setTimeout(function () {
-        window.location = BaseUrl + "/Employee/Employee/"
-    }, 3000);
 }
 
 function bindEmployeeData(objData) {

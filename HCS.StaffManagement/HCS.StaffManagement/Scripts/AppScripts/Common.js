@@ -76,13 +76,15 @@ function isImage(ImageID) {
 
 
 HCSStaff = {
-    showAlert: function (type) {
+    showAlert: function (type, isThen, url) {
         if (type === 'success-message') {
             swal({
                 title: "Created Successfully! ",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
                 type: "success"
+            }).then((value) => {
+                if (isThen && value) { window.location = url; }
             });
         }
         else if (type === "update-message") {
@@ -91,7 +93,9 @@ HCSStaff = {
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-success",
                 type: "success"
-            });
+            }).then((value) => {
+                if (isThen && value) { window.location = url; }
+            });;
         }
         else if (type === "failed-message") {
             swal({
@@ -300,14 +304,20 @@ function returnRowData(current, table) {
 
 
 $(".DigitOnlyValidation").keypress(function (e) {
-    debugger;
     //if the letter is not digit then display error and don't type anything
     if (e.which !== 8 && e.which !== 0 && e.which != 46  && (e.which < 48 || e.which > 57 )) {
         //display error message
         //$("#errmsg").html("Digits Only").show().fadeOut("slow");
         return false;
     }
+
 });
+
+
+function fnValidateFloatValue(el) {
+    var floatValue = parseFloat(el.value);
+    el.value = (isNaN(floatValue)) ? '' : floatValue.toFixed(2);
+}
 
 //remove isEmpty lable without focus
 function fnLabelInOut(ctrl, flag) {

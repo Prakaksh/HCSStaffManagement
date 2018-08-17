@@ -41,13 +41,18 @@ function fnDataTableCallBack() {
 
     
     $('.wage_Click').off("click").on("click", function (e) {
+      
         e.preventDefault();
         $("#btnModalWageTrigger").trigger("click");
         var objClient = new Object();
+        debugger;
         var row = returnRowData($(this), TableName)
-        $('#hEmployeeID').val(row.EmployeeID);
-        //Ajax call with Employee ID
-        fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
+        objClient.OrganizationID = row.OrganizationID
+        objClient.EmployeeID = row.EmployeeID
+
+        fnAjax("/Employee/EmployeePayScaleGet", "GET", objClient, fnGetSuccess, fnGetError, "JSON");
+
+        //fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
     });
     //$('.delete_Mode').off("click").on("click", function (e) {
     //    e.preventDefault();
@@ -57,6 +62,18 @@ function fnDataTableCallBack() {
     //    fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
     //});
 }
+
+
+
+function fnGetSuccess(res) {
+    debugger;
+    $("#hEmployeePayScaleID").val('')
+}
+
+function fnGetError(res) {
+}
+
+
 
 function fnEmployeeDelete() {
     var objDel = new Object();
