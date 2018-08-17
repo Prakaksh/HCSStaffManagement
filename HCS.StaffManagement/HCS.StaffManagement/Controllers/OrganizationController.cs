@@ -11,7 +11,7 @@ namespace HCS.StaffManagement.Controllers
     public class OrganizationController : Controller
     {
         // GET: Organization
-        public ActionResult CreateOrganization()
+        public ActionResult OrganizationCreate()
         {
             return View();
         }

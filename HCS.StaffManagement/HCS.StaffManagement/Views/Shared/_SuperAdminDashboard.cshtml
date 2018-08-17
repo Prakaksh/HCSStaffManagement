@@ -2,43 +2,151 @@
 <html>
 <head>
     <title>@Page.Title</title>
-    @RenderSection("head", required: false)
-   
-        <title>HCSStaffAdmin</title>
+    @*@RenderSection("head", required: false)*@
 
-        <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="~/Content/css/material-dashboard.css" />
+    <title>HCS Staff Admin</title>
+    <link href="~/Content/css/material-dashboard.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
 
-        <!--     Fonts and icons     -->
-        <link rel="stylesheet" type="text/css" href="~/Content/css/material-icons.css" />
-        <link rel="stylesheet" type="text/css" href="~/Content/css/font-awesome.css" />
+    <!--     Fonts and icons     -->
+    @*<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">*@
+    <link href="~/Content/css/material-icons.css" rel="stylesheet" />
+    @*<link href="~/Content/css/material-fonts.css" rel="stylesheet" />*@
+    
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+    <!--   Core JS Files   -->
+    <script src="~/Content/js/jquery-3.1.1.min.js"></script>
+    @*<script src="~/Content/js/jquery-3.0.0.slim.min.js"></script>*@
+    <script src="~/Content/js/umd/popper.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/material.min.js"></script>
 
-        <!--   Core JS Files   -->
-        <script src="~/Content/js/jquery-3.1.1.min.js"></script>
-     
-        <script src="~/Scripts/js/bootstrap.min.js"></script>
-        <script src="~/Scripts/js/material-plugins/material.min.js"></script>
-        <script src="~/Scripts/js/material-plugins/perfect-scrollbar.jquery.min.js"></script>
-        <script src="~/Scripts/js/material-plugins/material-dashboard.js"></script>
+    <script src="~/Content/js/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="~/Content/js/material-dashboard.js"></script>
+    <script src="~/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <link href="~/Content/css/SuperAdminDashboard.css" rel="stylesheet" />
+
+    @*<script src="~/Content/js/jquery.validate.min.js"></script>*@
+
+    <script src="~/Content/js/jquery.unobtrusive-ajax.min.js"></script>
+    @*<script src="~/Content/js/jquery.validate.unobtrusive.js"></script>*@
+    <script src="~/Content/js/moment.min.js"></script>
+    <script src="~/Content/js/chartist.min.js"></script>
+    <script src="~/Content/js/jquery.bootstrap-wizard.js"></script>
+    <script src="~/Content/js/bootstrap-notify.js"></script>
+    <script src="~/Content/js/bootstrap-datetimepicker.js"></script>
+    <script src="~/Content/js/jquery-jvectormap.js"></script>
+    <script src="~/Content/js/nouislider.min.js"></script>
+    <script src="~/Content/js/jquery.select-bootstrap.js"></script>
+    <script src="~/Content/js/jasny-bootstrap.min.js"></script>
+
+
+    @*dont include this for project just refer *@
+    @*<link href="~/Content/css/demo.css" rel="stylesheet" />
+        <script src="~/Content/js/demo.js"></script>*@
+    <!--  DataTables.net Plugin    -->
+    <script src="~/Content/js/jquery.datatables.js"></script>
+    <link href="~/Content/css/dataTables.bootstrap4..css" rel="stylesheet" />
+    <script src="~/Content/js/dataTables.bootstrap4.js"></script>
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">*@
+    @*<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>*@
+
+    <!-- Sweet Alert 2 plugin -->
+    <script src="~/Content/js/sweetalert2.js"></script>
+
+    <!--  Full Calendar Plugin    -->
+    <script src="~/Content/js/fullcalendar.min.js"></script>
+
+    <!-- TagsInput Plugin -->
+    <script src="~/Content/js/jquery.tagsinput.js"></script>
+
+
+
+    @*<style>
+        body {
+            background-color: rgb(37, 199, 211);
+            overflow-x: hidden;
+            overflow-y: scroll;
+            margin-bottom: 109px;
+        }
+
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+    </style>*@
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="">@Html.ActionLink("Home", "SuperAdminDashBoard", "Home")</li>
-                </ul>
 
-                @*@Html.Partial("_LoginPartial")*@
+<body>
+    <div id="wrapper" class="animate">
+        <nav class="navbar header-top fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-toggler-icon leftmenutrigger"></span>
+            <a class="navbar-brand" href="#">LOGO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+
+                <ul class="navbar-nav animate side-nav">
+
+                    <li class="nav-item collapsed" data-toggle="collapse">
+                        <a class="nav-link" href="@Url.Action("OrganizationCreate","Organization")" title="Organization"><i class="fas fa-cart-plus"></i> Organization <i class="fas fa-cart-plus shortmenu animate"></i></a>
+
+                    </li>
+
+                    <li class="nav-item collapsed" data-toggle="collapse">
+                        <a class="nav-link" href="@Url.Action("UserCreate","User")" title="Cart"><i class="fas fa-cart-plus"></i> User <i class="fas fa-cart-plus shortmenu animate"></i></a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i> Submenu <i class="fas fa-user shortmenu animate"></i>
+                        </a>
+                        <div class="dropdown-menu collapse active" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Comment"><i class="fas fa-comment"></i> Comment <i class="fas fa-comment shortmenu animate"></i></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-md-auto d-md-flex">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("LogOut","Login")"><i class="fas fa-key"></i> Logout</a>
+                    </li>
+                </ul>
             </div>
+        </nav>
+
+        <div>
+            @RenderBody()
         </div>
     </div>
-    @*<div class="container">
-            <hr />
-        </div>*@
-    <div class="container-fluid">
-        @RenderBody()
-    </div>
-    @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.leftmenutrigger').on('click', function (e) {
+            $('.side-nav').toggleClass("open");
+            $('#wrapper').toggleClass("open");
+            e.preventDefault();
+        });
+    });
+</script>
