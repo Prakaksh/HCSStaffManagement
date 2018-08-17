@@ -1,0 +1,8 @@
+
+HCS Staff Management - Releases
+===============================
+
+Sl.No - Release	- Description 				-- Remarks
+==========================================================
+01	SM001	  Client, Employee and Employee Wage
+		   Insert, Update and Delete 		Initial Release
