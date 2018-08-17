@@ -340,6 +340,8 @@
     <Content Include="Views\Report\ReportGet.cshtml" />
     <Content Include="Views\Payslip\PayslipDownload.cshtml" />
     <Content Include="Views\Client\Client.cshtml" />
+    <Content Include="Views\User\UserCreate.cshtml" />
+    <Content Include="Views\Organization\OrganizationCreate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
