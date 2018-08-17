@@ -40,16 +40,11 @@ function fnDataTableCallBack() {
     });
     
     $('.wage_Click').off("click").on("click", function (e) {
-      
         e.preventDefault();
         $("#btnModalWageTrigger").trigger("click");
-        var objClient = new Object();
-        debugger;
         var row = returnRowData($(this), TableName)
-        objClient.OrganizationID = row.OrganizationID
-        objClient.EmployeeID = row.EmployeeID
-
-        fnAjax("/Employee/EmployeePayScaleGet", "GET", objClient, fnGetSuccess, fnGetError, "JSON");
+        $("#hEmployeeID").val(row.EmployeeID);
+        fnAjax("/Employee/EmployeePayScaleGet?employeeID=" + row.EmployeeID, "GET", null, fnPayScaleGetSuccess, fnPayScaleGetError, "JSON");
 
         //fnModalDelete("<b>Employee</b>", "<div>Are you sure to delete <b>" + row.EmployeeName + "</b>?</div>", true, fnEmployeeDelete);        
     });
@@ -62,16 +57,51 @@ function fnDataTableCallBack() {
     //});
 }
 
+$('#btnWage').off("click").on("click", function (e) {
+    e.preventDefault();
+    var $valid = $('#formWages').valid();
+    if (!$valid) {
+        return false;
+    } else {
+        var objPayScale = new Object();
+        objPayScale.EmployeeID = $("#hEmployeeID").val();
+        objPayScale.EmployeePayScaleID = $("#hEmployeePayScaleID").val();
+        objPayScale.BasicPerMonth = $("#txtBasicSalary").val();
+        objPayScale.WagesDAPerMonth = $("#txtWages").val();
+        objPayScale.BonusPercentage = $("#txtBonusPercentage").val();
+        objPayScale.IncentivePerMonth = $("#txtIncentivePercentage").val();
+        fnAjax("/Employee/EmployeePayScaleInsertUpdate", "POST", objPayScale, fnPayScaleInsertUpdateSuccess, fnPayScaleInsertUpdateError, "JSON");
+    }
+});
 
-
-function fnGetSuccess(res) {
-    debugger;
-    $("#hEmployeePayScaleID").val('')
+function fnPayScaleGetSuccess(res) {
+    if (res) {
+        $("#hEmployeePayScaleID").val(res.EmployeePayScaleID);
+        $("#txtBasicSalary").val(res.BasicPerMonth);
+        $("#txtWages").val(res.WagesDAPerMonth);
+        $("#txtBonusPercentage").val(res.BonusPercentage);
+        $("#txtIncentivePercentage").val(res.IncentivePerMonth);
+        $.material.options.autofill = true;
+        $.material.init();
+    }
 }
 
-function fnGetError(res) {
+function fnPayScaleGetError(res) {
 }
 
+function fnPayScaleInsertUpdateSuccess(result) {
+    if (result == "success") {       
+        if ($("#hEmployeePayScaleID").val()) {
+            HCSStaff.showAlert('update-message');
+        } else {
+            HCSStaff.showAlert('success-message');
+        }
+        $('.modalClose').trigger('click');
+    }
+}
+function fnPayScaleInsertUpdateError(err) {
+
+}
 
 
 function fnEmployeeDelete() {

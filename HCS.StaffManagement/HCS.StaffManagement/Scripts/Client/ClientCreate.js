@@ -9,12 +9,14 @@
 
 //  Client Save Success Section 
 var onAjaxRequestSuccess = function (result) {
+    debugger;
     if (result == 'success') {
-        HCSStaff.showAlert('success-message');
+        HCSStaff.showAlert('success-message', true, BaseUrl +"/Client/Client/");
         $("#form0")[0].reset();
         //return window.location = "/Client/Client";
     }
-   else if (result.result == 'exist') {
+    else if (result == 'exist') {
+        debugger;
         HCSStaff.showAlert('exist-message');
     }
 };

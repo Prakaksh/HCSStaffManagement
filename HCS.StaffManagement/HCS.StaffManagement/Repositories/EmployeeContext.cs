@@ -177,7 +177,7 @@ namespace HCS.StaffManagement.Repositories
             return objResult;
         }
 
-        internal string PayScaleInsertUpdate(PayScale objPayScale, UserInfo objUser)
+        internal string EmployeePayScaleInsertUpdate(PayScale objPayScale, UserInfo objUser)
         {
             string strResult = string.Empty;
             try

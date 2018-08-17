@@ -105,6 +105,14 @@ HCSStaff = {
                 type: "warning"
             });
         }
+        else if (type === "delete-message") {
+            swal({
+                title: "Record Deleted Successfully! ",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-warning",
+                type: "warning"
+            });
+        }
         else if (type === "exist-message") {
             swal({
                 title: "Record already exist!",
@@ -142,6 +150,7 @@ HCSStaff = {
 
             });
         }
+
     }
 };
 
@@ -308,15 +317,32 @@ $(".DigitOnlyValidation").keypress(function (e) {
     if (e.which !== 8 && e.which !== 0 && e.which != 46  && (e.which < 48 || e.which > 57 )) {
         //display error message
         //$("#errmsg").html("Digits Only").show().fadeOut("slow");
-        return false;
+        //return false;
+        e.preventDefault();
     }
+
+    var text = $(this).val();
+    //if ((event.which == 46) && (text.indexOf('.') == -1)) {
+    //    setTimeout(function () {
+    //        if ($(this).val().substring($this.val().indexOf('.')).length > 3) {
+    //            $(this).val($this.val().substring(0, $this.val().indexOf('.') + 3));
+    //        }
+    //    }, 1);
+    //}
+
+    if ((text.indexOf('.') != -1) &&
+        (text.substring(text.indexOf('.')).length > 2) &&
+        (event.which != 0 && event.which != 8) &&
+        ($(this)[0].selectionStart >= text.length - 2)) {
+        event.preventDefault();
+    }  
 
 });
 
 
 function fnValidateFloatValue(el) {
-    var floatValue = parseFloat(el.value);
-    el.value = (isNaN(floatValue)) ? '' : floatValue.toFixed(2);
+    //var floatValue = parseFloat(el.value);
+    //el.value = (isNaN(floatValue)) ? '' : floatValue.toFixed(2);
 }
 
 //remove isEmpty lable without focus

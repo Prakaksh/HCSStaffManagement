@@ -1,6 +1,6 @@
 ﻿@model HCS.StaffManagement.Models.Employee
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employee";
     Layout = "~/Views/Shared/_AdminLandingPage.cshtml";
 }
 
@@ -41,11 +41,11 @@
     </button>
 <div class="modal fade" tabindex="1" role="dialog" id="modalWages">
     <div class="modal-dialog modal-lg" role="document">
-        <form action="" id="formWages">
+        <form action="" id="formWages"  name="formWages" method="post">
             <div class="modal-content">
                 <div class="modal-header">
                     <b> Wage/Salary Details</b>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close modalClose" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
                     <div class="row col-md-12 col-sm-12 col-lg-12 col-xl-12">
@@ -57,7 +57,9 @@
                                         Basic Salary
                                         <small>*</small>
                                     </label>
-                                    <input type="text" maxlength="7" id="txtBasicSalary" class="form-control DigitOnlyValidation" required onchange="fnValidateFloatValue(this)"/>
+                                    <input type="hidden" id="hEmployeePayScaleID" />
+                                    <input type="hidden" id="hEmployeeID" />
+                                    <input type="text" maxlength="8" id="txtBasicSalary" name="txtBasicSalary" class="form-control DigitOnlyValidation" required onchange="fnValidateFloatValue(this)" />
                                 </div>
                             </div>
 
@@ -66,7 +68,7 @@
                                     <label class="control-label">
                                         Wages
                                     </label>
-                                    <input type="text" maxlength="7" id="txtWages" class="form-control DigitOnlyValidation" onchange="fnValidateFloatValue(this)" />
+                                    <input type="text" maxlength="8" id="txtWages" name="txtWages"  class="form-control DigitOnlyValidation" onchange="fnValidateFloatValue(this)" />
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -74,7 +76,7 @@
                                     <label class="control-label">
                                         Bonus (%)
                                     </label>
-                                    <input type="text" maxlength="5" id="txtBonusPercentage" class="form-control DigitOnlyValidation" />
+                                    <input type="text" maxlength="5"  id="txtBonusPercentage" name="txtBonusPercentage" class="form-control DigitOnlyValidation" onchange="fnValidateFloatValue(this)" />
 
                                 </div>
                             </div>
@@ -83,18 +85,15 @@
                                     <label class="control-label">
                                         Incentive
                                     </label>
-                                    <input type="text" maxlength="7" id="txtIncentivePercentage" class="form-control DigitOnlyValidation" onchange="fnValidateFloatValue(this)" />
+                                    <input type="text" maxlength="8" id="txtIncentivePercentage" name="txtIncentivePercentage" class="form-control DigitOnlyValidation" onchange="fnValidateFloatValue(this)" />
                                 </div>
                             </div>
 
                         </div>
                             </div>
                         </div>
-                   
-
-              
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="btnWage">Save</button>
+                    <button type="button" class="btn btn-primary" id="btnWage" name="btnWage">Save</button>
                 </div>
             </div><!-- /.modal-content -->
         </form>

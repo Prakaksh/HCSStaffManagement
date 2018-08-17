@@ -89,7 +89,7 @@ function fnDataTableCallBack() {
     function fnDeleteSuccess(res) {
         if (res == "success") {
             createDataTable(true, TableName, "/Client/ClientGet", fnDataTableCallBack, datatableColumn, null, [], []);
-            HCSStaff.showAlert('update-message');
+            HCSStaff.showAlert('delete-message');
             $('.modalClose').trigger('click');
         }
         else {
@@ -129,7 +129,7 @@ $('#btnClientUpdate').off('click').on('click', function (e) {
 });
 
 function fnUpdateSuccess(res) {
-    if (res == "success") {
+    if (res == "update") {
         createDataTable(true, TableName, "/Client/ClientGet", fnDataTableCallBack, datatableColumn, null, [], []);
         HCSStaff.showAlert('update-message');
         $('#ClientUpateModal').modal('toggle');
@@ -144,7 +144,7 @@ function fnUpdateError(res) {
 }
 
 $('#btnAddClient').off('click').on('click', function (e) {
-    return window.location = '/Client/ClientCreate';
+    return window.location = BaseUrl+ '/Client/ClientCreate';
 });
 
 
