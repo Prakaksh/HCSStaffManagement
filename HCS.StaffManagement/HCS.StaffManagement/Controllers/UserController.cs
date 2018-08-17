@@ -9,7 +9,7 @@ namespace HCS.StaffManagement.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult CreateUser()
+        public ActionResult UserCreate()
         {
             return View();
         }
