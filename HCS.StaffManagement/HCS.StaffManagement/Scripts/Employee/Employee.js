@@ -41,6 +41,7 @@ function fnDataTableCallBack() {
     
     $('.wage_Click').off("click").on("click", function (e) {
         e.preventDefault();
+        fnClearWages();
         $("#btnModalWageTrigger").trigger("click");
         var row = returnRowData($(this), TableName)
         $("#hEmployeeID").val(row.EmployeeID);
@@ -73,6 +74,13 @@ $('#btnWage').off("click").on("click", function (e) {
         fnAjax("/Employee/EmployeePayScaleInsertUpdate", "POST", objPayScale, fnPayScaleInsertUpdateSuccess, fnPayScaleInsertUpdateError, "JSON");
     }
 });
+
+function fnClearWages() {
+    $("#txtBasicSalary").val("");
+    $("#txtWages").val("");
+    $("#txtBonusPercentage").val("");
+    $("#txtIncentivePercentage").val("");
+}
 
 function fnPayScaleGetSuccess(res) {
     if (res) {

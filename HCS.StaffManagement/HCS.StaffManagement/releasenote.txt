@@ -1,0 +1,4 @@
+HCS STAFF MANAGEMENT :- Release Notes
+=========================================
+
+v1	SM001	Initial Release		"Employee, Client, Employee Wages" add and edit functionality	17-Aug-2018
