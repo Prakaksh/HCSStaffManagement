@@ -55,7 +55,6 @@ namespace HCS.StaffManagement.Controllers
         }
 
         [HttpPost]
-        //--this is for add
         public ActionResult EmployeeInsertUpdate(Employee objEmployee)
         {
             try
@@ -68,9 +67,8 @@ namespace HCS.StaffManagement.Controllers
             {
                 return Json("failure", JsonRequestBehavior.AllowGet);
             }
-
         }
-        //--this is for edit
+        
         [HttpDelete]
         public JsonResult EmployeeDelete(string EmployeeID)
         {
@@ -85,8 +83,7 @@ namespace HCS.StaffManagement.Controllers
                 return Json("failure", JsonRequestBehavior.AllowGet);
             }
         }
-
-
+        
         [HttpPost]
         public ActionResult ProfileImageUpload()
         {
@@ -158,6 +155,34 @@ namespace HCS.StaffManagement.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult EmployeePayScaleGet(string employeeID)
+        {
+            try
+            {
+                objEmp = new EmployeeContext();
+                PayScale objResult = objEmp.EmployeePayScaleGet(employeeID, UserInfoGet());
+                return Json(objResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("[]", JsonRequestBehavior.AllowGet);
+            }
+        }
 
+        [HttpPost]
+        public ActionResult EmployeePayScaleInsertUpdate(PayScale objPayScale)
+        {
+            try
+            {
+                objEmp = new EmployeeContext();
+                string result = objEmp.EmployeePayScaleInsertUpdate(objPayScale, UserInfoGet());
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json("failure", JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

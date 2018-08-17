@@ -157,5 +157,51 @@ namespace HCS.StaffManagement.Repositories
             }
         }
 
+        internal PayScale EmployeePayScaleGet(string EmployeeID, UserInfo objUser)
+        {
+            PayScale objResult = new PayScale();
+            try
+            {
+                var pm = new DynamicParameters();
+                pm.Add("@OrganizationID", objUser.OrganizationID);
+                pm.Add("@EmployeeID", EmployeeID);
+                using (sqlConnection = SqlUtility.GetConnection())
+                {
+                    objResult = sqlConnection.Query<PayScale>("usp_EmployeePayScaleGet", pm, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return objResult;
+        }
+
+        internal string PayScaleInsertUpdate(PayScale objPayScale, UserInfo objUser)
+        {
+            string strResult = string.Empty;
+            try
+            {
+                var pm = new DynamicParameters();
+                pm.Add("@OrganizationID", objUser.OrganizationID);
+                pm.Add("@EmployeeID", objPayScale.EmployeeID);
+                pm.Add("@BasicPerMonth", objPayScale.BasicPerMonth);
+                pm.Add("@WagesDAPerMonth", objPayScale.WagesDAPerMonth);
+                pm.Add("@BonusPercentage", objPayScale.BonusPercentage);
+                pm.Add("@IncentivePerMonth", objPayScale.IncentivePerMonth);
+                //pm.Add("@EmployeeID", objPayScale.EmployeeID);
+                pm.Add("@By", objUser.UserID);
+                using (sqlConnection = SqlUtility.GetConnection())
+                {
+                    int res = sqlConnection.Query<int>("usp_EmployeePayScaleInsertUpdate", pm, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                    strResult = AppUtility.AppUtility.getStatus(res);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return strResult;
+        }
     }
 }

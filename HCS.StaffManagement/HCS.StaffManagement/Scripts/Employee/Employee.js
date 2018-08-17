@@ -38,7 +38,6 @@ function fnDataTableCallBack() {
         var row = returnRowData($(this), TableName);
         return window.location = '/Employee/EmployeeCreate?employeeID='+row.EmployeeID;
     });
-
     
     $('.wage_Click').off("click").on("click", function (e) {
       

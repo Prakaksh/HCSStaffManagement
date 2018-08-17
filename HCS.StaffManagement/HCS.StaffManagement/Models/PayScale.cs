@@ -16,6 +16,8 @@ namespace HCS.StaffManagement.Models
         public float WagesDAPerDay { get; set; }
         public float WagesDAPerMonth { get; set; }
         public float IncentivePercentage { get; set; }
+        public float IncentivePerDay { get; set; }
+        public float IncentivePerMonth { get; set; }
         public float BonusPercentage { get; set; }
         public string Remarks { get; set; }
         public bool IsActive { get; set; }
