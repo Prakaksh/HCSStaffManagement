@@ -1,15 +1,18 @@
 ﻿$(document).ready(function () {
     fnCountry();
-    fnDDLBind("#ddlState", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
-    $("#ddlState").val("0").trigger('change');
+    var objState = new Object();
+    objState.CountryID = 1;
+    fnDDLBind("#ddlState", "/Master/CountryStateGet", "CountryStateID", "StateName", "Select State", objState);
+    //$("#ddlState").val("0").trigger('change');
     $("input:text,form").attr("autocomplete", "off");
 });
 
 //  Client Save Success Section 
 var onAjaxRequestSuccess = function (result) {
-    if (result.result == 'success') {
+    if (result == 'success') {
         HCSStaff.showAlert('success-message');
         $("#form0")[0].reset();
+        //return window.location = "/Client/Client";
     }
    else if (result.result == 'exist') {
         HCSStaff.showAlert('exist-message');

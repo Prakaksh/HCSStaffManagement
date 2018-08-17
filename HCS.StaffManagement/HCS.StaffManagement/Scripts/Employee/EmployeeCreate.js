@@ -1,45 +1,45 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    var employeeId = getParameterByName("employeeID");
+    if (employeeId) {
+        setTimeout(function () {
+            bindEmployeeData(EmployeeObj);
+        },1200);
+    }
     initMaterialWizard();
     fnQualification();
     fnMaritalStatus();
     fnCountry();
     fnGender();
 
-    fnDDLBind("#PermanentAddress_CountryID,#CurrentAddress_CountryStateID", "api/V1/CountryStateGet", "CountryStateID", "StateName", "Select State");
-    $('#PermanentAddress_CountryID,#CurrentAddress_CountryStateID').val('0').trigger('change');
+    var objState = new Object();
+    objState.CountryID = 1;
+    fnDDLBind("#PermanentAddress_CountryStateID,#CurrentAddress_CountryStateID", "/Master/CountryStateGet", "CountryStateID", "StateName", "Select State", objState);
 });
 
-//$('#PermanentAddress_CountryID').slideDown()
-//{
-//    label_floatingRemove(this);
-//}
-
-    function initMaterialWizard() {
+function initMaterialWizard() {
     // Code for the Validator
-    //var $validator = $('.wizard-card form').validate({
-    //    rules: {
-    //        firstname: {
-    //            required: true,
-    //            minlength: 3
-    //        },
-    //        //AadharNo: {
-    //        //    required: true,
-    //        //},
-    //        lastname: {
-    //            required: true,
-    //            minlength: 3
-    //        },
-    //        email: {
-    //            required: true,
-    //            minlength: 3,
-    //        }
-    //    },
-
-    //    errorPlacement: function (error, element) {
-    //        $(element).parent('div').addClass('has-error');
-    //    }
-    //});
+    var $validator = $('.wizard-card form').validate({
+        rules: {
+            firstname: {
+                required: true,
+                minlength: 3
+            },
+            //AadharNo: {
+            //    required: true,
+            //},
+            lastname: {
+                required: true,
+                minlength: 3
+            },
+            email: {
+                required: true,
+                minlength: 3,
+            }
+        },
+        errorPlacement: function (error, element) {
+            $(element).parent('div').addClass('has-error');
+        }
+    });
 
     // Wizard Initialization
     $('.wizard-card').bootstrapWizard({
@@ -239,7 +239,7 @@ $('#sameasPermanent').change(function () {
         $('#CurrentAddress_PinCode').val($('#PermanentAddress_PinCode').val());
         $('#CurrentAddress_PinCode').parent('.label-floating').removeClass('is-empty');
 
-        $('#CurrentAddress_CountryStateID').val($('#PermanentAddress_CountryID').val());
+        $('#CurrentAddress_CountryStateID').val($('#PermanentAddress_CountryStateID').val());
         $('#CurrentAddress_CountryStateID').parent('.label-floating').removeClass('is-empty');
 
         
@@ -335,13 +335,15 @@ function fnErrorMaritalStatusGet() { }
 //});
 
 function fnQualification() {
+    $('#QualificationCode').empty();
     $.each(QualificationList.Qualification, function (data, value) {
-        $("#Qualification").append($("<option></option>").val(value.QualificationCode).html(value.QualificationName)).sort();
-        $('#Qualification').val('0').trigger('change');
+        $("#QualificationCode").append($("<option></option>").val(value.QualificationCode).html(value.QualificationName)).sort();
+        $('#QualificationCode').val('0').trigger('change');
     });
  }
 
 function fnMaritalStatus() {
+    $('#MaritalStatusCode').empty();
     $.each(MaritalStatusList.MaritalStatus, function (data, value) {
         $("#MaritalStatusCode").append($("<option></option>").val(value.MaritalStatusCode).html(value.MaritalStatusName));        
     });
@@ -350,20 +352,43 @@ function fnMaritalStatus() {
 
 
 function fnCountry() {
-    $.each(CountryList.Country, function (data, value) {
-        $("#CountryID,#CountryID1").append($("<option></option>").val(value.CountryCode).html(value.CountryName));        
+    $("#CurrentAddress_CountryID,#PermanentAddress_CountryID").empty();
+    $.each(CountryList.Country, function (data, value) {        
+        $("#CurrentAddress_CountryID,#PermanentAddress_CountryID").append($("<option></option>").val(value.CountryCode).html(value.CountryName));
     });
-    $("#CountryID,#CountryID1").val("1").trigger('change');
+    $("#CurrentAddress_CountryID,#PermanentAddress_CountryID").val("1").trigger('change');
 }
 
 
 function fnGender() {
+    $("#Gender").empty();
     $.each(GenderList.Gender, function (data, value) {
-        $("#ddlGender").append($("<option></option>").val(value.GenderCode).html(value.GenderName));
+        $("#Gender").append($("<option></option>").val(value.GenderCode).html(value.GenderName));
     });
-    $("#ddlGender").val("0").trigger('change');
+    $("#Gender").val("0").trigger('change');
 }
 
 function fnSuccess(res) {
     $('#EmployeeProfilePictureID').val(res.ID);
+}
+
+var onEmployeeInsertUpdateSuccess = function (result) {
+    if (result == "success") {
+        HCSStaff.showAlert('success-message');
+        $("#form0")[0].reset();
+        setTimeout(function() {
+            window.location = BaseUrl + "/Employee/Employee/"
+        }, 5000);        
+    }
+}
+
+function bindEmployeeData(objData) {
+    $("#Gender").val(objData.Gender).trigger('change');
+    $("#MaritalStatusCode").val(objData.MaritalStatusCode).trigger('change');
+    $("#QualificationCode").val(objData.QualificationCode).trigger('change');
+    $("#PermanentAddress_CountryID").val(objData.PermanentAddress.CountryID).trigger('change');
+    $("#CurrentAddress_CountryID").val(objData.CurrentAddress.CountryID).trigger('change');
+    $("#PermanentAddress_CountryStateID").val(objData.PermanentAddress.CountryStateID).trigger('change');
+    $("#CurrentAddress_CountryStateID").val(objData.CurrentAddress.CountryStateID).trigger('change');
+    
 }

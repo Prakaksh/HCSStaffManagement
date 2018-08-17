@@ -93,6 +93,14 @@ HCSStaff = {
                 type: "success"
             });
         }
+        else if (type === "failed-message") {
+            swal({
+                title: "Failed to update! ",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-warning",
+                type: "warning"
+            });
+        }
         else if (type === "exist-message") {
             swal({
                 title: "Record already exist!",
@@ -109,6 +117,15 @@ HCSStaff = {
                 confirmButtonClass: "btn btn-info",
                 buttonsStyling: false
 
+            });
+        }
+        else if (type === 'error-message') {
+            swal({
+                title: "Error occured, please try again!",
+                //text: "invalid format !",
+                type: 'error',
+                confirmButtonClass: "btn btn-error",
+                buttonsStyling: false
             });
         }
         else if (type === 'image-size') {
@@ -154,14 +171,14 @@ $('.datepicker').datetimepicker({
 
 
 //Function for Global ajax calls
-function fnAjax(Url, Method, objdata,fnSuccess, fnError) {
+function fnAjax(Url, methodType, objdata,fnSuccess, fnError, dataType) {
     $.ajax({
         url: Url,
-        method: Method,
+        method: methodType,
         //dataType: (DataType != null ? DataType : "json"),
         contentType: 'application/json',
-        dataType: "json",
-        data: objdata,
+        dataType: (dataType ? dataType :"json"),
+        data: (dataType ? (dataType.toLowerCase() == "json" ? JSON.stringify(objdata) : objdata) : objdata),
         success: function (result) {
             fnSuccess(result);
         },
@@ -191,7 +208,7 @@ function fnFileUpload(URL, fileData, fnSuccess) {
 }
 
 //Function for Dropdown binding
-function fnDDLBind(controlID, Url, propKey, propVal, selectText, objdata) {
+function fnDDLBind(controlID, Url, propKey, propVal, selectText, objdata, selectedVal, isTrigger) {
     $.ajax({
         url: BaseUrl+Url,
         contentType:"application/x-www-form-urlencoded; charset=UTF-8",
@@ -200,12 +217,20 @@ function fnDDLBind(controlID, Url, propKey, propVal, selectText, objdata) {
            $(controlID).empty();
           var html;
             if (result.length > 0) {
-                html = "<option value='0'>" + selectText + "</option>";
+                html = "<option value='0' selected>" + selectText + "</option>";
                 $.each(result, function (i, item) {
                     html += "<option value='" + item[propKey] + "'>" + item[propVal] + "</option>";
                 }); 
             }
             $(controlID).append(html);
+            if (selectedVal) {
+                $(controlID).val(selectedVal).trigger('change');
+            } else {
+                $(controlID).val('0').trigger('change');
+            }
+            //if (isTrigger) {
+            //    $(controlID).trigger('change');
+            //}
         },
         error: function (xhr, error, data) {
             function fnError() { }
@@ -291,3 +316,40 @@ function fnLabelInOut(ctrl, flag) {
         $(ctrl).closest(".form-group").removeClass("is-empty");
     }
 }
+
+function fnModalDelete(module, content, flag, okCallback) {
+    if (flag) {
+        $("#divModalHeading").html(module);
+        $("#divModalContent").html(content);
+        $("#btnModalDeleteTrigger").trigger("click");
+    }
+
+    $("#btnModalDelete").off("click").on("click", function (e) {
+        e.preventDefault();
+        debugger;
+        if (okCallback)
+            okCallback();
+        $('.modalClose').trigger('click');
+
+    });
+    //$("#btnModalCancel").off("click").on("click", function (e) {
+    //    e.preventDefault();
+    //});
+}
+
+//Read parameters
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function fnDBDateGet(inputDate) {
+    var newDate = date.split("-").reverse().join("-");
+    return newDate;
+}
+

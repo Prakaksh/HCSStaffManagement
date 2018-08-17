@@ -214,8 +214,8 @@
     <Content Include="Content\css\bootstrap-grid.css.map" />
     <Content Include="Scripts\AppScripts\Common.js" />
     <Content Include="Scripts\Client\Client.js" />
-    <Content Include="Scripts\Client\CreateClient.js" />
-    <Content Include="Scripts\CreateEmployee\CreateEmployee.js" />
+    <Content Include="Scripts\Client\ClientCreate.js" />
+    <Content Include="Scripts\Employee\EmployeeCreate.js" />
     <Content Include="Scripts\Employee\Employee.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\Login\Login.js" />
@@ -238,18 +238,15 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PayslipController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\V1\AddressCategoryController.cs" />
     <Compile Include="Controllers\V1\ClientController.cs" />
-    <Compile Include="Controllers\V1\CountryController.cs" />
-    <Compile Include="Controllers\V1\CountryStateController.cs" />
     <Compile Include="Controllers\V1\EmployeeController.cs" />
-    <Compile Include="Controllers\V1\MaritalStatusController.cs" />
     <Compile Include="Controllers\V1\PayslipController.cs" />
-    <Compile Include="Controllers\V1\RelationshipController.cs" />
     <Compile Include="Controllers\V1\ReportController.cs" />
     <Compile Include="Filters\SessionTimeoutAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -293,19 +290,17 @@
     <Compile Include="Repositories\DTO\LoginDto.cs" />
     <Compile Include="Repositories\DTO\PayslipDownloadDto.cs" />
     <Compile Include="Repositories\DTO\ReportDto.cs" />
-    <Compile Include="Repositories\EmployeeInsertUpdateContext.cs" />
+    <Compile Include="Repositories\EmployeeContext.cs" />
     <Compile Include="Repositories\PayslipContext.cs" />
     <Compile Include="Repositories\RoleType.cs" />
     <Compile Include="Repositories\UploadImageContext.cs" />
     <Compile Include="Repositories\V1\AddressCategoryContext.cs" />
     <Compile Include="Repositories\V1\ClientContext.cs" />
-    <Compile Include="Repositories\V1\CountryStateContext.cs" />
+    <Compile Include="Repositories\MasterContext.cs" />
     <Compile Include="Repositories\V1\EmployeeContext.cs" />
     <Compile Include="Repositories\LoginContext.cs" />
-    <Compile Include="Repositories\V1\MaritalStatusContext.cs" />
     <Compile Include="Repositories\V1\PayslipContext.cs" />
     <Compile Include="Repositories\V1\QualificationContext.cs" />
-    <Compile Include="Repositories\V1\RelationshipContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -334,16 +329,17 @@
     <Content Include="Views\Home\AdminDashboard.cshtml" />
     <Content Include="Views\Shared\_AdminLandingPage.cshtml" />
     <Content Include="Views\Employee\Employee.cshtml" />
-    <Content Include="Views\Employee\CreateEmployee.cshtml" />
+    <Content Include="Views\Employee\EmployeeCreate.cshtml" />
     <Content Include="Views\Organization\CreateOrganization.cshtml" />
     <Content Include="Views\Payslip\Payslip.cshtml" />
     <Content Include="Views\Client\GetClient.cshtml" />
-    <Content Include="Views\Client\CreateClient.cshtml" />
+    <Content Include="Views\Client\ClientCreate.cshtml" />
     <Content Include="Views\Home\SuperAdminDashboard.cshtml" />
     <Content Include="Views\Shared\_SuperAdminDashboard.cshtml" />
     <Content Include="Views\User\CreateUser.cshtml" />
     <Content Include="Views\Report\ReportGet.cshtml" />
     <Content Include="Views\Payslip\PayslipDownload.cshtml" />
+    <Content Include="Views\Client\Client.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -357,7 +353,6 @@
     <Folder Include="ExternalDll\" />
     <Folder Include="Temp\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
